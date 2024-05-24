@@ -15,7 +15,7 @@ final lightColorSchemeProvider = Provider<ColorScheme>(
     final scheme = SeedColorScheme.fromSeeds(
       primaryKey: Colors.yellow,
       secondaryKey: Colors.white,
-      tertiary: Colors.orangeAccent,
+      tertiaryKey: Colors.orangeAccent,
       tones: FlexTones.candyPop(Brightness.light),
       brightness: Brightness.light,
     );
