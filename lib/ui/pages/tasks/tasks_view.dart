@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/errors/too_many_tasks_error.dart';
+import 'package:workus/models/task.dart';
+import 'package:workus/providers/constraints.dart';
+import 'package:workus/providers/selected_tasks_type.dart';
+import 'package:workus/providers/tasks.dart';
+import 'package:workus/ui/pages/tasks/add_task_button.dart';
+import 'package:workus/ui/pages/tasks/task_tile.dart';
+
+class TasksView extends ConsumerWidget {
+  const TasksView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint('building the tasks view...');
+    debugTasks(ref);
+
+    final type = ref.watch(selectedTaskTypeProvider);
+    final tasks = obtainTasksByType(ref, type);
+    final limit = ref.watch(maxTasksCountInCategoryProvider);
+    final avaiableSlots = limit - tasks.length;
+    return Column(
+      children: [
+        ..._buildTaskTiles(tasks, ref),
+        if (avaiableSlots > 0)
+          for (var i = 0; i < avaiableSlots; i++)
+            AddTaskButton(
+              taskNumber: i + 1 + tasks.length,
+              taskType: type,
+            ),
+      ],
+    );
+  }
+
+  List<Widget> _buildTaskTiles(List<Task> tasks, WidgetRef ref) {
+    final limit = ref.watch(maxTasksCountInCategoryProvider);
+
+    if (tasks.length > limit) {
+      throw TooManyTasksError(
+          'there are too many tasks (${tasks.length} vs limit of $limit) when building task tiles for TasksView');
+    }
+    return tasks.map(
+      (task) {
+        return TaskTile(task: task);
+      },
+    ).toList();
+  }
+}
