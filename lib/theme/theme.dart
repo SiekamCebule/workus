@@ -4,19 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final lightThemeProvider = Provider(
   (ref) {
-    return ThemeData.light(useMaterial3: true).copyWith(
-      colorScheme: ref.watch(lightColorSchemeProvider),
+    final colorScheme = ref.watch(lightColorSchemeProvider);
+    return FlexThemeData.light(
+      useMaterial3: true,
+      scheme: FlexScheme.deepPurple,
     );
   },
 );
 
 final lightColorSchemeProvider = Provider<ColorScheme>(
   (ref) {
-    final scheme = SeedColorScheme.fromSeeds(
-      primaryKey: Colors.yellow,
-      secondaryKey: Colors.white,
-      tertiaryKey: Colors.orangeAccent,
-      tones: FlexTones.candyPop(Brightness.light),
+    final scheme = ColorScheme.fromSeed(
+      seedColor: Colors.yellow,
       brightness: Brightness.light,
     );
     return scheme;

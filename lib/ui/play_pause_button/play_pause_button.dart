@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:workus/providers/work_configuration.dart';
 import 'package:workus/providers/work_status.dart';
+import 'package:workus/providers/work_timer/remaining_session_time_notifier.dart';
 
 part '__generic_button.dart';
 part '__pause_button.dart';
@@ -25,7 +27,7 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
     }
 
     return AnimatedSwitcher(
-      duration: Durations.short4,
+      duration: Durations.medium1,
       switchInCurve: Curves.easeIn,
       switchOutCurve: Curves.easeOut,
       transitionBuilder: (child, animation) {
@@ -34,14 +36,12 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
           child: child,
         );
       },
-      child: shouldShowPlayButton(workStatus)
-          ? const _PlayButton()
-          : const _PauseButton(),
+      child: shouldShowPlayButton(workStatus) ? const _PlayButton() : const _PauseButton(),
     );
   }
 
-  bool shouldShowPlayButton(WorkStatus? status) {
-    return status == null || status == WorkStatus.pausedByUser;
+  bool shouldShowPlayButton(WorkStatus status) {
+    return status == WorkStatus.nonStarted || status == WorkStatus.paused;
   }
 
   bool shouldThrowException(WorkStatus? status) {

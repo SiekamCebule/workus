@@ -1,12 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum WorkStatus {
+  nonStarted,
   running,
   miniBreak,
-  pausedByUser,
+  paused,
   ended;
 }
 
-final workStatusProvider = StateProvider<WorkStatus?>(
-  (ref) => null,
+final workStatusProvider = StateProvider<WorkStatus>(
+  (ref) => WorkStatus.nonStarted,
 );
