@@ -26,7 +26,7 @@ class AddTaskButton extends ConsumerWidget {
   void addTask(WidgetRef ref) {
     debugPrint('adding the default task');
     debugTasks(ref);
-    final provider = obtainTasksProviderByType(ref, taskType);
+    final provider = obtainTasksProviderByType(taskType);
     final name = ref.read(defaultNewTaskName);
     ref.read(provider.notifier).add(Task(name, taskType));
   }

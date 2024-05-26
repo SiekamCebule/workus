@@ -44,10 +44,8 @@ class _TaskTileTextFieldState extends ConsumerState<TaskTileTextField> {
       controller: controller,
       onSubmitted: (newText) {
         final type = widget.task.type;
-        final provider = obtainTasksProviderByType(ref, type);
-        ref
-            .read(provider.notifier)
-            .update(widget.task, widget.task.copyWith(title: newText));
+        final provider = obtainTasksProviderByType(type);
+        ref.read(provider.notifier).update(widget.task, widget.task.copyWith(title: newText));
       },
     );
   }

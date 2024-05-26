@@ -1,7 +1,7 @@
 enum TaskType {
-  beforeWork,
+  beforeSession,
   duringMiniBreak,
-  afterWork;
+  afterSession;
 
   static TaskType fromIndex(int index) => values[index];
 }

@@ -7,7 +7,7 @@ final lightThemeProvider = Provider(
     final colorScheme = ref.watch(lightColorSchemeProvider);
     return FlexThemeData.light(
       useMaterial3: true,
-      scheme: FlexScheme.deepPurple,
+      colorScheme: colorScheme,
     );
   },
 );
@@ -17,6 +17,7 @@ final lightColorSchemeProvider = Provider<ColorScheme>(
     final scheme = ColorScheme.fromSeed(
       seedColor: Colors.yellow,
       brightness: Brightness.light,
+      dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
     );
     return scheme;
   },

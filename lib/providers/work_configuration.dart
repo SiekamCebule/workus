@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // TODO: Some default duration
 final sessionDurationProvider = StateProvider<Duration>(
-  (ref) => Duration.zero,
+  (ref) => const Duration(minutes: 30),
 );
 
 // TODO: Some default interval
-final miniBreakIntervalProvider = StateProvider<Duration>(
-  (ref) => Duration.zero,
+final smallBreakIntervalProvider = StateProvider<Duration>(
+  (ref) => const Duration(minutes: 15),
 );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
+import 'package:workus/models/task_type.dart';
 import 'package:workus/ui/pages/work/modes/before_session/mini_break_interval_slider.dart';
-import 'package:workus/ui/pages/work/modes/before_session/mini_break_interval_title.dart';
+import 'package:workus/ui/pages/work/modes/before_session/mini_break_interval_title/mini_break_interval_title.dart';
 import 'package:workus/ui/pages/work/modes/before_session/session_duration_slider.dart';
 import 'package:workus/ui/pages/work/modes/before_session/session_duration_title.dart';
 import 'package:workus/ui/pages/work/tasks_to_complete.dart';
@@ -23,12 +25,16 @@ class BeforeSessionScreen extends ConsumerWidget {
           children: [
             Spacer(),
             PlayPauseButton(),
+            Spacer(),
             SessionDurationTitle(),
             SessionDurationSlider(),
+            Gap(5),
             MiniBreakIntervalTitle(),
             MiniBreakIntervalSlider(),
             Spacer(),
-            TasksToComplete(),
+            TasksToComplete(
+              tasksType: TaskType.beforeSession,
+            ),
           ],
         ),
       ),

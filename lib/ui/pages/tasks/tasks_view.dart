@@ -18,8 +18,7 @@ class TasksView extends ConsumerWidget {
 
     final type = ref.watch(selectedTaskTypeProvider);
     final tasks = obtainTasksByType(ref, type);
-    final limit = ref.watch(maxTasksCountInCategoryProvider);
-    final avaiableSlots = limit - tasks.length;
+    final avaiableSlots = maxTasksCountInCategory - tasks.length;
     return Column(
       children: [
         ..._buildTaskTiles(tasks, ref),
@@ -34,11 +33,9 @@ class TasksView extends ConsumerWidget {
   }
 
   List<Widget> _buildTaskTiles(List<Task> tasks, WidgetRef ref) {
-    final limit = ref.watch(maxTasksCountInCategoryProvider);
-
-    if (tasks.length > limit) {
+    if (tasks.length > maxTasksCountInCategory) {
       throw TooManyTasksError(
-          'there are too many tasks (${tasks.length} vs limit of $limit) when building task tiles for TasksView');
+          'there are too many tasks (${tasks.length} vs limit of $maxTasksCountInCategory) when building task tiles for TasksView');
     }
     return tasks.map(
       (task) {

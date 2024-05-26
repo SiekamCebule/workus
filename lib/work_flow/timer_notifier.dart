@@ -2,23 +2,24 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TimerRemainingTimeNotifier extends Notifier<Duration> {
-  TimerRemainingTimeNotifier({
-    required this.interval,
-    this.intervalCallback,
+// The Duration in generic argument represents remaining time
+class TimerNotifier extends Notifier<Duration> {
+  TimerNotifier({
+    this.tick = const Duration(seconds: 1),
+    this.tickCallback,
     this.onEnd,
   });
 
-  final Duration interval;
-  VoidCallback? intervalCallback;
+  Duration tick;
+  VoidCallback? tickCallback;
   VoidCallback? onEnd;
 
   late Duration _totalDuration;
   late final Timer _totalTimer;
   late final Timer _periodicTimer;
 
-  Duration _elapsedTime = Duration.zero;
-  Duration get _remainingTime => _totalDuration - _elapsedTime;
+  Duration elapsedTime = Duration.zero;
+  Duration get remainingTime => _totalDuration - elapsedTime;
   bool _isRunning = false;
   bool get _isNotRunning => !_isRunning;
 
@@ -36,14 +37,15 @@ class TimerRemainingTimeNotifier extends Notifier<Duration> {
 
   void _assignNewDuration(Duration duration) {
     _totalDuration = duration;
+    print(_totalDuration);
     state = _totalDuration;
   }
 
   void _startPeriodicTimer(Duration duration) {
-    _periodicTimer = Timer.periodic(interval, (timer) {
-      _elapsedTime += interval;
-      state = _remainingTime;
-      intervalCallback?.call();
+    _periodicTimer = Timer.periodic(tick, (timer) {
+      elapsedTime += tick;
+      state = remainingTime;
+      tickCallback?.call();
     });
   }
 
@@ -61,7 +63,7 @@ class TimerRemainingTimeNotifier extends Notifier<Duration> {
 
   void _resetTheState() {
     _totalDuration = Duration.zero;
-    _elapsedTime = Duration.zero;
+    elapsedTime = Duration.zero;
   }
 
   void pause() {
@@ -77,6 +79,6 @@ class TimerRemainingTimeNotifier extends Notifier<Duration> {
 
   void resume() {
     if (_isRunning) return;
-    start(_totalDuration - _elapsedTime);
+    start(_totalDuration - elapsedTime);
   }
 }

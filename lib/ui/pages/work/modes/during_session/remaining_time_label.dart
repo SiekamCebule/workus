@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/work_timer/remaining_session_time_notifier.dart';
+import 'package:workus/work_flow/remaining_session_time_provider.dart';
 
 class RemainingTimeLabel extends ConsumerWidget {
   const RemainingTimeLabel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final remainingTime = ref.watch(remainingSessionTimeProvider);
-    print(remainingTime);
-    return Text(
-      timerLabelForDuration(remainingTime),
+    return StreamBuilder(
+      stream: remainingSessionTimeStream(),
+      builder: (context, snapshot) {
+        final remainingTime = snapshot.data!;
+        return Text(
+          timerLabelForDuration(remainingTime),
+          style: Theme.of(context).textTheme.displayMedium,
+          textAlign: TextAlign.center,
+        );
+      },
     );
   }
 }
 
 String timerLabelForDuration(Duration duration) {
   final hours = duration.inHours;
-  final minutes = duration.inMinutes;
-  final seconds = duration.inSeconds;
+  final minutes = duration.inMinutes % 60;
+  final seconds = duration.inSeconds % 60;
   var label = '';
 
   if (hours > 0) {
     label += '${atLeastTwoDigit(hours)}g ';
-  } else if (minutes > 0) {
+  }
+  if (minutes > 0) {
     label += '${atLeastTwoDigit(minutes)}m ';
-  } else if (seconds > 0) {
+  }
+  if (seconds > 0) {
     label += '${atLeastTwoDigit(seconds)}s ';
   }
   return label.trim();

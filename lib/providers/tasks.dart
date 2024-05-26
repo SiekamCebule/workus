@@ -35,8 +35,7 @@ final tasksBeforeWorkProvider = NotifierProvider<TasksNotifier, List<Task>>(
   () => TasksNotifier(),
 );
 
-final tasksDuringSmallBreakProvider =
-    NotifierProvider<TasksNotifier, List<Task>>(
+final tasksDuringSmallBreakProvider = NotifierProvider<TasksNotifier, List<Task>>(
   () => TasksNotifier(),
 );
 
@@ -44,21 +43,17 @@ final tasksAfterWorkProvider = NotifierProvider<TasksNotifier, List<Task>>(
   () => TasksNotifier(),
 );
 
-NotifierProvider<TasksNotifier, List<Task>> obtainTasksProviderByType(
-    WidgetRef ref, TaskType type) {
+NotifierProvider<TasksNotifier, List<Task>> obtainTasksProviderByType(TaskType type) {
   return switch (type) {
-    TaskType.beforeWork => tasksBeforeWorkProvider,
+    TaskType.beforeSession => tasksBeforeWorkProvider,
     TaskType.duringMiniBreak => tasksDuringSmallBreakProvider,
-    TaskType.afterWork => tasksAfterWorkProvider,
+    TaskType.afterSession => tasksAfterWorkProvider,
   };
 }
 
 List<Task> obtainTasksByType(WidgetRef ref, TaskType type) {
-  return switch (type) {
-    TaskType.beforeWork => ref.watch(tasksBeforeWorkProvider),
-    TaskType.duringMiniBreak => ref.watch(tasksDuringSmallBreakProvider),
-    TaskType.afterWork => ref.watch(tasksAfterWorkProvider),
-  };
+  final provider = obtainTasksProviderByType(type);
+  return ref.watch(provider);
 }
 
 void debugTasks(WidgetRef ref) {

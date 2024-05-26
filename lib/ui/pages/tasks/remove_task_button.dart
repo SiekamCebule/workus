@@ -24,7 +24,7 @@ class RemoveTaskButton extends ConsumerWidget {
     debugPrint('removing the ($task)');
     debugTasks(ref);
     final type = task.type;
-    final provider = obtainTasksProviderByType(ref, type);
+    final provider = obtainTasksProviderByType(type);
     ref.read(provider.notifier).remove(task);
   }
 }

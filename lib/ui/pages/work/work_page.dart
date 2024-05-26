@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/work_status.dart';
+import 'package:workus/models/work_session_status.dart';
 import 'package:workus/ui/pages/work/modes/before_session/before_session_screen.dart';
 import 'package:workus/ui/pages/work/modes/during_session/during_session_screen.dart';
+import 'package:workus/work_flow/work_flow_notifier.dart';
 
 class WorkPage extends ConsumerWidget {
   const WorkPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final workStatus = ref.watch(workStatusProvider);
+    final workStatus = WorkFlowController.instance.status;
 
     return AnimatedSwitcher(
       duration: Durations.long2,
@@ -19,10 +20,10 @@ class WorkPage extends ConsumerWidget {
     );
   }
 
-  Widget appropiateWidgetForWorkStatus(WorkStatus status) {
+  Widget appropiateWidgetForWorkStatus(WorkSessionStatus status) {
     return switch (status) {
-      WorkStatus.nonStarted => const BeforeSessionScreen(),
-      WorkStatus.running => const DuringSessionScreen(),
+      WorkSessionStatus.nonStarted => const BeforeSessionScreen(),
+      WorkSessionStatus.running => const DuringSessionScreen(),
       _ => const Placeholder(),
     };
   }

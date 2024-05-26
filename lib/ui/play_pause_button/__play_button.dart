@@ -13,17 +13,25 @@ class _PlayButton extends ConsumerWidget {
         fill: 0,
       ),
       onPressed: () {
-        ref.read(workStatusProvider.notifier).state = WorkStatus.running;
-        ref.read(remainingSessionTimeProvider.notifier).onEnd = () {
-          print('Wow! An end!');
-        };
-        ref.read(remainingSessionTimeProvider.notifier).intervalCallback = () {
-          print('Every second callback...');
-        };
-        ref.read(remainingSessionTimeProvider.notifier).start(
-              const Duration(seconds: 10),
-            );
+        if (incompleteTaskExists(TaskType.beforeSession, ref)) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return IncompletedTasksBeforeSessionDialog(
+                onStartSessionTap: () => _startSession(ref),
+              );
+            },
+          );
+        } else {
+          _startSession(ref);
+        }
       },
     );
+  }
+
+  void _startSession(WidgetRef ref) {
+    final duration = ref.watch(sessionDurationProvider);
+    final smallBreakInterval = ref.watch(smallBreakIntervalProvider);
+    WorkFlowController.instance.startSession(duration, smallBreakInterval);
   }
 }

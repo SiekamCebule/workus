@@ -35,12 +35,12 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
 
   void initializeTasksBeforeWork() {
     ref.read(tasksBeforeWorkProvider.notifier).updateAll([
-      Task('Zrobić 8 przysiadów', TaskType.beforeWork),
-      Task('Wykonać ćwiczenie z długopisem', TaskType.beforeWork),
+      Task('Zrobić 8 przysiadów', TaskType.beforeSession),
+      Task('Wykonać ćwiczenie z długopisem', TaskType.beforeSession),
     ]);
     ref
         .read(taskBeforeWorkStatusesProvider.notifier)
-        .fill(ref.read(tasksBeforeWorkProvider), false);
+        .fill(ref.read(tasksBeforeWorkProvider), completed: false);
   }
 
   void initializeTasksDuringMiniBreak() {
@@ -50,15 +50,17 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
     ]);
     ref
         .read(taskDuringSmallBreakStatusesProvider.notifier)
-        .fill(ref.read(tasksDuringSmallBreakProvider), false);
+        .fill(ref.read(tasksDuringSmallBreakProvider), completed: false);
   }
 
   void initializeTasksAfterWork() {
     ref.read(tasksAfterWorkProvider.notifier).updateAll([
-      Task('Uśmiechnąć się', TaskType.afterWork),
-      Task('Zjeść kostkę czekolady', TaskType.afterWork),
-      Task('Wziąć dwa łyki wody', TaskType.afterWork),
+      Task('Uśmiechnąć się', TaskType.afterSession),
+      Task('Zjeść kostkę czekolady', TaskType.afterSession),
+      Task('Wziąć dwa łyki wody', TaskType.afterSession),
     ]);
-    ref.read(taskAfterWorkStatusesProvider.notifier).fill(ref.read(tasksAfterWorkProvider), false);
+    ref
+        .read(taskAfterWorkStatusesProvider.notifier)
+        .fill(ref.read(tasksAfterWorkProvider), completed: false);
   }
 }
