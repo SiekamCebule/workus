@@ -2,7 +2,6 @@ part of 'task_completion_tile.dart';
 
 class _TaskTitle extends StatefulWidget {
   const _TaskTitle({
-    super.key,
     required this.taskContent,
     required this.taskCompleted,
   });
@@ -20,6 +19,7 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
 
   @override
   void initState() {
+    print('init state');
     controller = AnimationController(
       vsync: this,
       duration: Durations.medium1,
@@ -28,6 +28,9 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
       parent: controller,
       curve: Curves.easeIn,
     );
+    if (widget.taskCompleted) {
+      controller.value = 1.0;
+    }
     super.initState();
   }
 
@@ -46,13 +49,18 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
     return AnimatedBuilder(
       animation: progress,
       builder: (context, child) {
+        print('compelted: ${widget.taskCompleted}');
+        print('lol! progress: $progress');
         return CustomPaint(
           painter: CrossOutPainter(
             progress: progress.value,
             color: lineColor,
             lineHeight: lineHeight,
           ),
-          child: _FadedText(text: widget.taskContent, faded: widget.taskCompleted),
+          child: _FadedText(
+            text: widget.taskContent,
+            faded: widget.taskCompleted,
+          ),
         );
       },
     );

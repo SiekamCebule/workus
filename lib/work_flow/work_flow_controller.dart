@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workus/models/work_session_status.dart';
-import 'package:workus/work_flow/timer_notifier.dart';
+import 'package:workus/work_flow/my_timer.dart';
 
 class WorkFlowController {
   static WorkFlowController get instance {
@@ -11,28 +11,28 @@ class WorkFlowController {
   static WorkFlowController? _instance;
 
   WorkFlowController._private() {
-    _entireSessionTimer = TimerNotifier(
+    _entireSessionTimer = MyTimer(
       tick: _tick,
       tickCallback: _invokeOnTickCallbacks,
     )..onEnd = _executeEndOfSession;
-    _smallBreakTimer = TimerNotifier(tick: _tick)..onEnd = _executeSmallBreak;
+    _smallBreakTimer = MyTimer(tick: _tick)..onEnd = _executeSmallBreak;
   }
 
   static const _tick = Duration(seconds: 1);
   final List<VoidCallback> _onTickCalllbacks = [];
   final List<VoidCallback> _onStatusChangedCallbacks = [];
 
-  late final TimerNotifier _smallBreakTimer;
-  late final TimerNotifier _entireSessionTimer;
+  late final MyTimer _smallBreakTimer;
+  late final MyTimer _entireSessionTimer;
   late Duration _smallBreakInterval;
   var _status = WorkSessionStatus.nonStarted;
 
   WorkSessionStatus get status => _status;
   set status(WorkSessionStatus other) {
+    _status = other;
     for (var callback in _onStatusChangedCallbacks) {
       callback();
     }
-    _status = other;
   }
 
   void _invokeOnTickCallbacks() {
@@ -45,9 +45,10 @@ class WorkFlowController {
   Duration get timeToSmallBreak => _smallBreakTimer.remainingTime;
 
   Future<void> startSession(Duration duration, Duration smallBreakInterval) async {
-    status = WorkSessionStatus.running;
     _entireSessionTimer.start(duration);
     _smallBreakTimer.start(smallBreakInterval);
+    _invokeOnTickCallbacks();
+    status = WorkSessionStatus.running;
     _smallBreakInterval = smallBreakInterval;
   }
 

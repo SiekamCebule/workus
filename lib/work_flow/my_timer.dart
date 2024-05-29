@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// The Duration in generic argument represents remaining time
-class TimerNotifier extends Notifier<Duration> {
-  TimerNotifier({
+class MyTimer {
+  MyTimer({
     this.tick = const Duration(seconds: 1),
     this.tickCallback,
     this.onEnd,
@@ -20,13 +18,9 @@ class TimerNotifier extends Notifier<Duration> {
 
   Duration elapsedTime = Duration.zero;
   Duration get remainingTime => _totalDuration - elapsedTime;
+
   bool _isRunning = false;
   bool get _isNotRunning => !_isRunning;
-
-  @override
-  Duration build() {
-    return Duration.zero;
-  }
 
   void start(Duration duration) {
     _isRunning = true;
@@ -37,14 +31,11 @@ class TimerNotifier extends Notifier<Duration> {
 
   void _assignNewDuration(Duration duration) {
     _totalDuration = duration;
-    print(_totalDuration);
-    state = _totalDuration;
   }
 
   void _startPeriodicTimer(Duration duration) {
     _periodicTimer = Timer.periodic(tick, (timer) {
       elapsedTime += tick;
-      state = remainingTime;
       tickCallback?.call();
     });
   }

@@ -13,9 +13,6 @@ class TasksView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('building the tasks view...');
-    debugTasks(ref);
-
     final type = ref.watch(selectedTaskTypeProvider);
     final tasks = obtainTasksByType(ref, type);
     final avaiableSlots = maxTasksCountInCategory - tasks.length;

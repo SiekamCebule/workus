@@ -1,7 +1,7 @@
 part of 'play_pause_button.dart';
 
 class _PlayButton extends ConsumerWidget {
-  const _PlayButton({super.key});
+  const _PlayButton();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,6 +25,7 @@ class _PlayButton extends ConsumerWidget {
         } else {
           _startSession(ref);
         }
+        print('session started');
       },
     );
   }

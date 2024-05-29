@@ -2,7 +2,6 @@ part of 'play_pause_button.dart';
 
 class _GenericButton extends StatelessWidget {
   const _GenericButton({
-    super.key,
     required this.icon,
     required this.onPressed,
   });

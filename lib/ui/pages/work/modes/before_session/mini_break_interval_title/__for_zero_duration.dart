@@ -1,7 +1,7 @@
 part of 'mini_break_interval_title.dart';
 
 class _ForZeroDuration extends StatelessWidget {
-  const _ForZeroDuration({super.key});
+  const _ForZeroDuration();
 
   @override
   Widget build(BuildContext context) {

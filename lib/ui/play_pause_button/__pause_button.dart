@@ -1,7 +1,7 @@
 part of 'play_pause_button.dart';
 
 class _PauseButton extends ConsumerWidget {
-  const _PauseButton({super.key});
+  const _PauseButton();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

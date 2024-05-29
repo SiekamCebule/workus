@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_completion_statuses.dart';
+import 'package:workus/providers/task_statuses_notifier.dart';
 import 'package:workus/providers/tasks.dart';
 import 'package:workus/ui/main_scaffold/main_page_view.dart';
 import 'package:workus/ui/main_scaffold/main_scaffold_navbar.dart';
+import 'package:workus/utils/uuid_gen.dart';
 
 class MainScaffold extends ConsumerStatefulWidget {
   const MainScaffold({super.key});
@@ -35,8 +36,16 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
 
   void initializeTasksBeforeWork() {
     ref.read(tasksBeforeWorkProvider.notifier).updateAll([
-      Task('Zrobić 8 przysiadów', TaskType.beforeSession),
-      Task('Wykonać ćwiczenie z długopisem', TaskType.beforeSession),
+      Task(
+        title: 'Zrobić 10 przysiadów',
+        type: TaskType.beforeSession,
+        id: uuidV4(),
+      ),
+      Task(
+        title: 'Wykonać ćwiczenie na skupienie',
+        type: TaskType.beforeSession,
+        id: uuidV4(),
+      ),
     ]);
     ref
         .read(taskBeforeWorkStatusesProvider.notifier)
@@ -45,8 +54,11 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
 
   void initializeTasksDuringMiniBreak() {
     ref.read(tasksDuringSmallBreakProvider.notifier).updateAll([
-      Task('Spojrzenie w górę (30 sekund)', TaskType.duringMiniBreak),
-      Task('Horyzont za oknem (30 sekund)', TaskType.duringMiniBreak),
+      Task(
+        title: 'Rozluźnić mięśnie oka',
+        type: TaskType.duringSmallBreak,
+        id: uuidV4(),
+      ),
     ]);
     ref
         .read(taskDuringSmallBreakStatusesProvider.notifier)
@@ -55,9 +67,16 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
 
   void initializeTasksAfterWork() {
     ref.read(tasksAfterWorkProvider.notifier).updateAll([
-      Task('Uśmiechnąć się', TaskType.afterSession),
-      Task('Zjeść kostkę czekolady', TaskType.afterSession),
-      Task('Wziąć dwa łyki wody', TaskType.afterSession),
+      Task(
+        title: 'Uśmiechnąć się',
+        type: TaskType.afterSession,
+        id: uuidV4(),
+      ),
+      Task(
+        title: 'Zrobić 4 pajacyki',
+        type: TaskType.afterSession,
+        id: uuidV4(),
+      ),
     ]);
     ref
         .read(taskAfterWorkStatusesProvider.notifier)

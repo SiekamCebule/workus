@@ -2,7 +2,6 @@ part of 'task_completion_tile.dart';
 
 class _FadedText extends StatelessWidget {
   const _FadedText({
-    super.key,
     required this.text,
     required this.faded,
   });

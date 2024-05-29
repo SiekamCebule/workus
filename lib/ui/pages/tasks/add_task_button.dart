@@ -4,6 +4,7 @@ import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/providers/defaults.dart';
 import 'package:workus/providers/tasks.dart';
+import 'package:workus/utils/uuid_gen.dart';
 
 class AddTaskButton extends ConsumerWidget {
   const AddTaskButton({
@@ -28,6 +29,6 @@ class AddTaskButton extends ConsumerWidget {
     debugTasks(ref);
     final provider = obtainTasksProviderByType(taskType);
     final name = ref.read(defaultNewTaskName);
-    ref.read(provider.notifier).add(Task(name, taskType));
+    ref.read(provider.notifier).add(Task(title: name, type: taskType, id: uuidV4()));
   }
 }

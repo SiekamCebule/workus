@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/task_completion_statuses.dart';
+import 'package:workus/providers/task_statuses_notifier.dart';
 import 'package:workus/ui/pages/work/modes/before_session/task_completion_tile/cross_out_painter.dart';
 
 part '__icon.dart';
@@ -19,8 +19,10 @@ class TaskCompletionTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('build of task compl tile');
     final taskStatusesProvider = obtainTaskStatusesProviderByType(task.type);
     final isCompleted = ref.watch(taskStatusesProvider.notifier).isCompleted(task);
+    print('iscomp: $isCompleted');
     return ListTile(
       title: _TaskTitle(
         taskContent: task.title,

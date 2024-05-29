@@ -2,7 +2,6 @@ part of 'task_completion_tile.dart';
 
 class _Icon extends ConsumerWidget {
   const _Icon({
-    super.key,
     required this.task,
     required this.completed,
   });

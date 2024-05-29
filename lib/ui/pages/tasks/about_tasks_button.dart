@@ -11,7 +11,7 @@ class AboutTasksButton extends StatelessWidget {
       onPressed: () {
         showAboutTasksDialog(context);
       },
-      icon: Icon(Symbols.help),
+      icon: const Icon(Symbols.help),
     );
   }
 }

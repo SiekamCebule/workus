@@ -2,7 +2,6 @@ part of 'mini_break_interval_title.dart';
 
 class _ForNonZeroDuration extends StatelessWidget {
   const _ForNonZeroDuration({
-    super.key,
     required this.duration,
   });
 

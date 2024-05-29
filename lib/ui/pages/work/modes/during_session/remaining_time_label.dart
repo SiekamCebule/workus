@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/work_flow/remaining_session_time_provider.dart';
+import 'package:workus/work_flow/work_flow_controller.dart';
+
+import 'package:workus/work_flow/work_flow_controller_messenger.dart';
 
 class RemainingTimeLabel extends ConsumerWidget {
   const RemainingTimeLabel({super.key});
@@ -8,9 +10,9 @@ class RemainingTimeLabel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder(
-      stream: remainingSessionTimeStream(),
+      stream: WorkFlowControllerMessenger.instance.remainingSessionTimeStream,
       builder: (context, snapshot) {
-        final remainingTime = snapshot.data!;
+        final remainingTime = snapshot.data ?? WorkFlowController.instance.remainingSessionTime;
         return Text(
           timerLabelForDuration(remainingTime),
           style: Theme.of(context).textTheme.displayMedium,

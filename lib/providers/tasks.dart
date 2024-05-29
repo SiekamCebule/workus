@@ -18,6 +18,7 @@ class TasksNotifier extends Notifier<List<Task>> {
       for (var task in state)
         if (task == oldTask) newTask else task
     ];
+    print('NEW TASKS: $state');
   }
 
   void add(Task task) {
@@ -46,7 +47,7 @@ final tasksAfterWorkProvider = NotifierProvider<TasksNotifier, List<Task>>(
 NotifierProvider<TasksNotifier, List<Task>> obtainTasksProviderByType(TaskType type) {
   return switch (type) {
     TaskType.beforeSession => tasksBeforeWorkProvider,
-    TaskType.duringMiniBreak => tasksDuringSmallBreakProvider,
+    TaskType.duringSmallBreak => tasksDuringSmallBreakProvider,
     TaskType.afterSession => tasksAfterWorkProvider,
   };
 }

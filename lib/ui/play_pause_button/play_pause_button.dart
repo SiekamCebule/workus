@@ -6,7 +6,7 @@ import 'package:workus/models/work_session_status.dart';
 import 'package:workus/providers/work_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 import 'package:workus/work_flow/checking_task_completion.dart';
-import 'package:workus/work_flow/work_flow_notifier.dart';
+import 'package:workus/work_flow/work_flow_controller.dart';
 
 part '__generic_button.dart';
 part '__pause_button.dart';
