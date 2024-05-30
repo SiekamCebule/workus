@@ -13,37 +13,34 @@ class MyTimer {
   VoidCallback? onEnd;
 
   late Duration _totalDuration;
-  late final Timer _totalTimer;
-  late final Timer _periodicTimer;
+  late Timer _timer;
 
   Duration elapsedTime = Duration.zero;
   Duration get remainingTime => _totalDuration - elapsedTime;
 
-  bool _isRunning = false;
-  bool get _isNotRunning => !_isRunning;
+  bool isRunning = false;
+  bool get isNotRunning => !isRunning;
 
-  void start(Duration duration) {
-    _isRunning = true;
-    _assignNewDuration(duration);
-    _startPeriodicTimer(duration);
-    _startTotalTimer(duration);
+  void run(Duration duration) {
+    if (isRunning) {
+      cancel();
+    }
+    isRunning = true;
+    _updateTotalDuration(duration);
+    _startTimer(duration);
   }
 
-  void _assignNewDuration(Duration duration) {
+  void _updateTotalDuration(Duration duration) {
     _totalDuration = duration;
   }
 
-  void _startPeriodicTimer(Duration duration) {
-    _periodicTimer = Timer.periodic(tick, (timer) {
+  void _startTimer(Duration duration) {
+    _timer = Timer.periodic(tick, (timer) {
       elapsedTime += tick;
       tickCallback?.call();
-    });
-  }
-
-  void _startTotalTimer(Duration duration) {
-    _totalTimer = Timer(_totalDuration, () {
-      cancel();
-      onEnd?.call();
+      if (elapsedTime >= _totalDuration) {
+        onEnd?.call();
+      }
     });
   }
 
@@ -58,18 +55,13 @@ class MyTimer {
   }
 
   void pause() {
-    if (_isNotRunning) return;
-    _cancelTimers();
-    _isRunning = false;
-  }
-
-  void _cancelTimers() {
-    _totalTimer.cancel();
-    _periodicTimer.cancel();
+    if (isNotRunning) return;
+    _timer.cancel();
+    isRunning = false;
   }
 
   void resume() {
-    if (_isRunning) return;
-    start(_totalDuration - elapsedTime);
+    if (isRunning) return;
+    run(_totalDuration);
   }
 }

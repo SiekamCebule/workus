@@ -1,4 +1,3 @@
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
@@ -15,7 +14,6 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
   Map<Task, bool>? _statuses;
   set statuses(Map<Task, bool> other) {
     _statuses = other;
-    print('statuses: $_statuses');
   }
 
   void syncStatuses() {
@@ -24,11 +22,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
 
   @override
   Map<Task, bool> build() {
-    print('statuses notifier\'s taskType: $taskType');
-
     List<Task> tasks = ref.watch(obtainTasksProviderByType(taskType));
-
-    print('TaskStatusesNotifier: build() with tasks $tasks');
 
     if (_statuses == null) {
       statuses = _fillWithFalse(tasks);
@@ -50,7 +44,6 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
         if (!changedTasks.contains(keptTask)) keptTask: _statuses![keptTask]!,
       for (var changedTask in changedTasks) _taskById(tasks, changedTask.id): false,
     };
-    print('TO RETURN: $rebuilded');
     return _sortStatuses(rebuilded, tasks);
   }
 
@@ -98,10 +91,11 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
   }
 
   bool isCompleted(Task task) => state[task]!;
-  bool get hasIncompletedTasks => state.values.any((status) => status == false);
+  bool get incompletedTaskExists => state.values.any((status) => status == false);
 }
 
-final taskBeforeWorkStatusesProvider = NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
+final taskBeforeWorkStatusesProvider =
+    NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
   () => TaskStatusesNotifier(taskType: TaskType.beforeSession),
 );
 
@@ -110,7 +104,8 @@ final taskDuringSmallBreakStatusesProvider =
   () => TaskStatusesNotifier(taskType: TaskType.duringSmallBreak),
 );
 
-final taskAfterWorkStatusesProvider = NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
+final taskAfterWorkStatusesProvider =
+    NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
   () => TaskStatusesNotifier(taskType: TaskType.afterSession),
 );
 
@@ -124,7 +119,6 @@ NotifierProvider<TaskStatusesNotifier, Map<Task, bool>> obtainTaskStatusesProvid
 }
 
 Map<Task, bool> obtainTaskStatusesByType(WidgetRef ref, TaskType type) {
-  print('obtainTaskStatusesBy $type');
   final provider = obtainTaskStatusesProviderByType(type);
   return ref.watch(provider);
 }

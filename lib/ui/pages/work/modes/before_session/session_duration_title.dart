@@ -9,7 +9,7 @@ class SessionDurationTitle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sessionDuration = ref.watch(sessionDurationProvider);
-    final labelForSessionDuration = labelForDuration(sessionDuration);
+    final labelForSessionDuration = labelForHMSDuration(sessionDuration);
 
     return RichText(
       text: TextSpan(

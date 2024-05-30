@@ -19,7 +19,6 @@ class TasksToComplete extends ConsumerStatefulWidget {
 class _TasksToCompleteState extends ConsumerState<TasksToComplete> {
   @override
   Widget build(BuildContext context) {
-    print('_TasksToCompleteState: build()');
     final taskStatuses = obtainTaskStatusesByType(ref, widget.tasksType);
 
     return Container(

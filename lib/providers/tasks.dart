@@ -18,7 +18,6 @@ class TasksNotifier extends Notifier<List<Task>> {
       for (var task in state)
         if (task == oldTask) newTask else task
     ];
-    print('NEW TASKS: $state');
   }
 
   void add(Task task) {

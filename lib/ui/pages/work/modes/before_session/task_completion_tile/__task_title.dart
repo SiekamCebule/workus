@@ -19,7 +19,6 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
 
   @override
   void initState() {
-    print('init state');
     controller = AnimationController(
       vsync: this,
       duration: Durations.medium1,
@@ -49,8 +48,6 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
     return AnimatedBuilder(
       animation: progress,
       builder: (context, child) {
-        print('compelted: ${widget.taskCompleted}');
-        print('lol! progress: $progress');
         return CustomPaint(
           painter: CrossOutPainter(
             progress: progress.value,

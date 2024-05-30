@@ -19,10 +19,8 @@ class TaskCompletionTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('build of task compl tile');
     final taskStatusesProvider = obtainTaskStatusesProviderByType(task.type);
     final isCompleted = ref.watch(taskStatusesProvider.notifier).isCompleted(task);
-    print('iscomp: $isCompleted');
     return ListTile(
       title: _TaskTitle(
         taskContent: task.title,

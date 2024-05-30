@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/task_statuses_notifier.dart';
 import 'package:workus/providers/tasks.dart';
 
 class TaskTileTextField extends ConsumerStatefulWidget {
@@ -41,7 +40,6 @@ class _TaskTileTextFieldState extends ConsumerState<TaskTileTextField> {
 
   @override
   Widget build(BuildContext context) {
-    print('reb');
     return TextField(
       controller: controller,
       onChanged: (newText) {
