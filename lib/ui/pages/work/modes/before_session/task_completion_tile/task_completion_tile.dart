@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/task_statuses_notifier.dart';
+import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
 import 'package:workus/ui/pages/work/modes/before_session/task_completion_tile/cross_out_painter.dart';
 
 part '__icon.dart';

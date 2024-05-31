@@ -20,7 +20,7 @@ class _ForNonZeroDuration extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.w400),
           ),
           TextSpan(
-            text: labelForHMSDuration(duration),
+            text: labelForDuration(duration, excludeSeconds: true),
             style: Theme.of(context)
                 .textTheme
                 .titleMedium!

@@ -1,70 +1,38 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
+import 'package:workus/providers/task_statuse_notifier/task_statuses_builder.dart';
 import 'package:workus/providers/tasks.dart';
 
 class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
   TaskStatusesNotifier({
+    required this.tasksProvider,
     List<Task>? tasks,
-    required this.taskType,
   });
 
-  TaskType taskType;
+  final NotifierProvider<TasksNotifier, List<Task>> tasksProvider;
 
+  final _builder = TaskStatusesBuilder();
   Map<Task, bool>? _statuses;
   set statuses(Map<Task, bool> other) {
     _statuses = other;
   }
 
-  void syncStatuses() {
+  void _syncStatuses() {
     _statuses = state;
   }
 
   @override
   Map<Task, bool> build() {
-    List<Task> tasks = ref.watch(obtainTasksProviderByType(taskType));
+    List<Task> tasks = ref.watch(tasksProvider);
 
     if (_statuses == null) {
-      statuses = _fillWithFalse(tasks);
+      statuses = _builder.filledWithFalse(tasks);
       return _statuses!;
     } else {
-      statuses = _rebuildStatuses(tasks);
+      statuses = _builder.rebuilded(_statuses!, tasks);
       return _statuses!;
     }
-  }
-
-  Map<Task, bool> _fillWithFalse(List<Task> tasks) {
-    return {for (var task in tasks) task: false};
-  }
-
-  Map<Task, bool> _rebuildStatuses(List<Task> tasks) {
-    final changedTasks = _changedTasks(tasks);
-    final rebuilded = {
-      for (var keptTask in _statuses!.keys)
-        if (!changedTasks.contains(keptTask)) keptTask: _statuses![keptTask]!,
-      for (var changedTask in changedTasks) _taskById(tasks, changedTask.id): false,
-    };
-    return _sortStatuses(rebuilded, tasks);
-  }
-
-  Map<Task, bool> _sortStatuses(Map<Task, bool> statuses, List<Task> tasksOrder) {
-    return {
-      for (var task in tasksOrder) task: statuses[task]!,
-    };
-  }
-
-  Set<Task> _changedTasks(List<Task> tasks) {
-    final changedTasks = <Task>{};
-    for (var task in _statuses!.keys) {
-      if (task.title != _taskById(tasks, task.id).title) {
-        changedTasks.add(task);
-      }
-    }
-    return changedTasks;
-  }
-
-  Task _taskById(Iterable<Task> tasks, Object id) {
-    return tasks.firstWhere((task) => task.id == id);
   }
 
   void toggle(Task task) {
@@ -72,7 +40,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
       ...state,
       task: !(state[task] ?? false),
     };
-    syncStatuses();
+    _syncStatuses();
   }
 
   void update(Task task, {required bool completed}) {
@@ -80,14 +48,14 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
       ...state,
       task: completed,
     };
-    syncStatuses();
+    _syncStatuses();
   }
 
   void fill(List<Task> tasks, {required bool completed}) {
     state = {
       for (var task in tasks) task: completed,
     };
-    syncStatuses();
+    _syncStatuses();
   }
 
   bool isCompleted(Task task) => state[task]!;
@@ -96,17 +64,17 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
 
 final taskBeforeWorkStatusesProvider =
     NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
-  () => TaskStatusesNotifier(taskType: TaskType.beforeSession),
+  () => TaskStatusesNotifier(tasksProvider: tasksBeforeWorkProvider),
 );
 
 final taskDuringSmallBreakStatusesProvider =
     NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
-  () => TaskStatusesNotifier(taskType: TaskType.duringSmallBreak),
+  () => TaskStatusesNotifier(tasksProvider: tasksDuringSmallBreakProvider),
 );
 
 final taskAfterWorkStatusesProvider =
     NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
-  () => TaskStatusesNotifier(taskType: TaskType.afterSession),
+  () => TaskStatusesNotifier(tasksProvider: tasksAfterWorkProvider),
 );
 
 NotifierProvider<TaskStatusesNotifier, Map<Task, bool>> obtainTaskStatusesProviderByType(

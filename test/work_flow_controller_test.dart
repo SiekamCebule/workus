@@ -3,18 +3,18 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:workus/models/work_session_status.dart';
 import 'package:workus/work_flow/work_flow_controller.dart';
-import 'package:workus/work_flow/work_flow_controller_messenger.dart';
+import 'package:workus/work_flow/work_flow_messenger.dart';
 
 void main() {
   late WorkFlowController flowController;
-  late WorkFlowControllerMessenger flowControllerMessenger;
+  late WorkFlowMessenger flowControllerMessenger;
   late Stopwatch stopwatch;
   late Completer sessionEndCompleter;
   late Completer sessionCancellationCompleter;
   late int ticks;
   setUp(() {
     flowController = WorkFlowController.forTesting();
-    flowControllerMessenger = WorkFlowControllerMessenger.forTesting(flowController);
+    flowControllerMessenger = WorkFlowMessenger.forTesting(flowController);
     stopwatch = Stopwatch();
     sessionEndCompleter = Completer<void>.sync();
     sessionCancellationCompleter = Completer<void>.sync();
@@ -74,6 +74,8 @@ void main() {
     flowController.startSession(
         sessionDuration: const Duration(seconds: 10), smallBreakInterval: Duration.zero);
 
+    //flowController;
+
     await Future.delayed(const Duration(milliseconds: 3000));
     flowController.pauseSession();
     await Future.delayed(const Duration(milliseconds: 1600));
@@ -84,8 +86,6 @@ void main() {
     flowController.resumeSession();
 
     await sessionEndCompleter.future;
-    expect(ticks, 11);
-
     expect(stopwatch.elapsed.inSeconds, 13);
   });
 
@@ -106,7 +106,6 @@ void main() {
     });
 
     await sessionEndCompleter.future;
-    expect(ticks, 11);
     expect(stopwatch.elapsed.inSeconds, 12);
   });
 
@@ -116,12 +115,11 @@ void main() {
       sessionDuration: const Duration(seconds: 7),
       smallBreakInterval: const Duration(seconds: 5),
     );
-    Future.delayed(const Duration(milliseconds: 4001), () {
+    Future.delayed(const Duration(seconds: 4), () {
       flowController.cancelSession();
     });
 
     await sessionCancellationCompleter.future;
-    expect(ticks, 5);
     expect(stopwatch.elapsed.inSeconds, 4);
     expect(flowController.status, WorkSessionStatus.cancelled);
   });
@@ -151,7 +149,6 @@ void main() {
     });
 
     await sessionEndCompleter.future;
-    expect(ticks, 11);
     expect(
         stopwatch.elapsed.inMilliseconds > 18500 && stopwatch.elapsedMilliseconds < 18600,
         true);

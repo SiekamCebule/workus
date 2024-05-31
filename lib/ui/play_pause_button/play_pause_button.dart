@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/models/work_session_status.dart';
-import 'package:workus/providers/task_statuses_notifier.dart';
+import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
 import 'package:workus/providers/work_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 import 'package:workus/work_flow/work_flow_controller.dart';
-import 'package:workus/work_flow/work_flow_controller_messenger.dart';
+import 'package:workus/work_flow/work_flow_messenger.dart';
 
 part '__generic_button.dart';
 part '__pause_button.dart';
@@ -32,7 +32,7 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
     }
 
     return StreamBuilder(
-      stream: WorkFlowControllerMessenger.instance.workSessionStatusStream,
+      stream: WorkFlowMessenger.instance.workSessionStatusStream,
       builder: (context, snapshot) {
         final status = snapshot.data!;
         return AnimatedSwitcher(

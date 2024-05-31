@@ -1,7 +1,7 @@
 import 'package:workus/models/task_type.dart';
 
 class Task {
-  Task({
+  const Task({
     required this.title,
     required this.type,
     required this.id,
@@ -24,17 +24,12 @@ class Task {
 
   @override
   bool operator ==(covariant Task other) {
-    assert(!_sameButOtherIds(other));
     return title == other.title && type == other.type && id == other.id;
   }
 
-  bool _sameButOtherIds(Task other) {
-    return title == other.title && type == other.type && id != other.id;
-  }
-
-  Object id;
-  String title;
-  TaskType type;
+  final Object id;
+  final String title;
+  final TaskType type;
 
   @override
   String toString() {

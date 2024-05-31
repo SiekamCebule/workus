@@ -15,25 +15,36 @@ class WorkFlowController {
       tick: _tick,
       tickCallback: () {
         _entireSessionTimerCallbackInvoked = true;
-        _tryInvokeOnTickCallbacks();
+        _maybeInvokeOnTickCallbacks();
       },
     )..onEnd = _executeEndOfSession;
     _smallBreakTimer = MyTimer(
       tick: _tick,
       tickCallback: () {
         _smallBreakTimerCallbackInvoked = true;
-        _tryInvokeOnTickCallbacks();
+        _maybeInvokeOnTickCallbacks();
       },
     )..onEnd = _executeSmallBreak;
   }
 
-  void _tryInvokeOnTickCallbacks({bool force = false}) {
-    if (_entireSessionTimerCallbackInvoked && _smallBreakTimerCallbackInvoked || force) {
+  void _maybeInvokeOnTickCallbacks({bool force = false}) {
+    if (_shouldInvokeOnTickCallbacks(force)) {
       _entireSessionTimerCallbackInvoked = false;
       _smallBreakTimerCallbackInvoked = false;
-      for (var callback in _onTickCalllbacks) {
-        callback();
-      }
+      _invokeOnTickCallbacks();
+    }
+  }
+
+  bool _shouldInvokeOnTickCallbacks(bool force) {
+    return _bothTimerCallbacksHaveInvoked || force || !_smallBreaksAreEnabled;
+  }
+
+  bool get _bothTimerCallbacksHaveInvoked =>
+      _entireSessionTimerCallbackInvoked && _smallBreakTimerCallbackInvoked;
+
+  void _invokeOnTickCallbacks() {
+    for (var callback in _onTickCalllbacks) {
+      callback();
     }
   }
 
@@ -70,7 +81,7 @@ class WorkFlowController {
     _smallBreakInterval = smallBreakInterval;
     _startEntireSessionTimerIfNonZeroDuration(sessionDuration);
     _startSmallBreakTimerIfNonZeroInterval(smallBreakInterval);
-    _tryInvokeOnTickCallbacks(force: true);
+    _maybeInvokeOnTickCallbacks(force: true);
     status = WorkSessionStatus.running;
   }
 
@@ -185,6 +196,10 @@ class WorkFlowController {
   WorkSessionStatus get status => _status;
   set status(WorkSessionStatus other) {
     _status = other;
+    _invokeOnStatusChangedCallbacks();
+  }
+
+  void _invokeOnStatusChangedCallbacks() {
     for (var callback in _onStatusChangedCallbacks) {
       callback(status);
     }

@@ -29,6 +29,7 @@ class TasksNotifier extends Notifier<List<Task>> {
   }
 
   int get length => state.length;
+  Task byId(Object id) => state.singleWhere((task) => task.id == id);
 }
 
 final tasksBeforeWorkProvider = NotifierProvider<TasksNotifier, List<Task>>(

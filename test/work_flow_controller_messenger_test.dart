@@ -7,12 +7,12 @@ import 'package:workus/work_flow/work_flow_controller_messenger.dart';
 
 void main() {
   late WorkFlowController flowController;
-  late WorkFlowControllerMessenger flowControllerMessenger;
+  late WorkFlowMessenger flowControllerMessenger;
   late Completer<void> sessionEndCompleter;
   late Completer<void> sessionCancellationCompleter;
   setUp(() {
     flowController = WorkFlowController.forTesting();
-    flowControllerMessenger = WorkFlowControllerMessenger.forTesting(flowController);
+    flowControllerMessenger = WorkFlowMessenger.forTesting(flowController);
     sessionEndCompleter = Completer.sync();
     sessionCancellationCompleter = Completer.sync();
     flowController.registerOnStatusChange((status) {
@@ -58,13 +58,13 @@ void main() {
 
   test('streaming: work session status', () async {
     final fromStream = <WorkSessionStatus>[WorkSessionStatus.nonStarted];
+    flowControllerMessenger.workSessionStatusStream.listen((status) {
+      fromStream.add(status);
+    });
     flowController.startSession(
       sessionDuration: const Duration(seconds: 10),
       smallBreakInterval: const Duration(seconds: 6),
     );
-    flowControllerMessenger.workSessionStatusStream.listen((status) {
-      fromStream.add(status);
-    });
 
     flowController.pauseSession();
     flowController.resumeSession();
@@ -107,16 +107,3 @@ void main() {
     expect(millisecondsToSmallBreak, [3000, 2000, 1000, 0, 2000, 1000]);
   });
 }
-/*
-
- print(
-          'elapsed: ${flowController.elapsedSessionTime}, time to small break: ${flowController.timeToSmallBreak}');
-
-  or
-
-
-   print(
-          'elapsed: ${flowController.elapsedSessionTime}, time to small break: ${flowController.timeToSmallBreak} (in milliseconds: ${flowController.timeToSmallBreak!.inMilliseconds})');
-
-*/
-// 

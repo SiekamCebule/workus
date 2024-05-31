@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_statuses_notifier.dart';
+import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
 import 'package:workus/ui/pages/work/modes/before_session/task_completion_tile/task_completion_tile.dart';
 
 class TasksToComplete extends ConsumerStatefulWidget {

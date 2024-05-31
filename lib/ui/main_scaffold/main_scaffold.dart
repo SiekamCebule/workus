@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_statuses_notifier.dart';
+import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
 import 'package:workus/providers/tasks.dart';
 import 'package:workus/ui/main_scaffold/main_page_view.dart';
 import 'package:workus/ui/main_scaffold/main_scaffold_navbar.dart';
