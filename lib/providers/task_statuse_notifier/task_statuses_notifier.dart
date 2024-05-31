@@ -67,9 +67,9 @@ final taskBeforeWorkStatusesProvider =
   () => TaskStatusesNotifier(tasksProvider: tasksBeforeWorkProvider),
 );
 
-final taskDuringSmallBreakStatusesProvider =
+final taskDuringShortBreakStatusesProvider =
     NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
-  () => TaskStatusesNotifier(tasksProvider: tasksDuringSmallBreakProvider),
+  () => TaskStatusesNotifier(tasksProvider: tasksDuringShortBreakProvider),
 );
 
 final taskAfterWorkStatusesProvider =
@@ -81,7 +81,7 @@ NotifierProvider<TaskStatusesNotifier, Map<Task, bool>> obtainTaskStatusesProvid
     TaskType type) {
   return switch (type) {
     TaskType.beforeSession => taskBeforeWorkStatusesProvider,
-    TaskType.duringSmallBreak => taskDuringSmallBreakStatusesProvider,
+    TaskType.duringShortBreak => taskDuringShortBreakStatusesProvider,
     TaskType.afterSession => taskAfterWorkStatusesProvider,
   };
 }

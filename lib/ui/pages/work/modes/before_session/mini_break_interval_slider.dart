@@ -10,13 +10,13 @@ class MiniBreakIntervalSlider extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DurationSlider(
-      initialMinutes: ref.watch(smallBreakIntervalProvider).inMinutes,
+      initialMinutes: ref.watch(shortBreakIntervalProvider).inMinutes,
       onChanged: (duration) {
-        ref.read(smallBreakIntervalProvider.notifier).state = duration;
+        ref.read(shortBreakIntervalProvider.notifier).state = duration;
       },
-      minMinutes: minSmallBreakDuration.inMinutes,
-      maxMinutes: maxSmallBreakDuration.inMinutes,
-      interval: smallBreakDurationInterval.inMinutes,
+      minMinutes: minShortBreakDuration.inMinutes,
+      maxMinutes: maxShortBreakDuration.inMinutes,
+      interval: shortBreakDurationInterval.inMinutes,
     );
   }
 }

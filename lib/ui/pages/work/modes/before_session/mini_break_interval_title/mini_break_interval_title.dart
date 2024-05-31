@@ -11,7 +11,7 @@ class MiniBreakIntervalTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final miniBreakInterval = ref.watch(smallBreakIntervalProvider);
+    final miniBreakInterval = ref.watch(shortBreakIntervalProvider);
 
     return miniBreakInterval == Duration.zero
         ? const _ForZeroDuration()

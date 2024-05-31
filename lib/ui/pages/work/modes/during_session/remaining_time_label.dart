@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/utils/labels.dart';
 
-import 'package:workus/work_flow/work_flow_messenger.dart';
+import 'package:workus/session_flow/work_flow_messenger.dart';
 
 class RemainingTimeLabel extends ConsumerWidget {
   const RemainingTimeLabel({super.key});

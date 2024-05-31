@@ -53,16 +53,16 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
   }
 
   void initializeTasksDuringMiniBreak() {
-    ref.read(tasksDuringSmallBreakProvider.notifier).updateAll([
+    ref.read(tasksDuringShortBreakProvider.notifier).updateAll([
       Task(
         title: 'Rozluźnić mięśnie oka',
-        type: TaskType.duringSmallBreak,
+        type: TaskType.duringShortBreak,
         id: uuidV4(),
       ),
     ]);
     ref
-        .read(taskDuringSmallBreakStatusesProvider.notifier)
-        .fill(ref.read(tasksDuringSmallBreakProvider), completed: false);
+        .read(taskDuringShortBreakStatusesProvider.notifier)
+        .fill(ref.read(tasksDuringShortBreakProvider), completed: false);
   }
 
   void initializeTasksAfterWork() {

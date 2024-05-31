@@ -7,7 +7,7 @@ import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.da
 import 'package:workus/providers/work_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 import 'package:workus/work_flow/work_flow_controller.dart';
-import 'package:workus/work_flow/work_flow_messenger.dart';
+import 'package:workus/session_flow/work_flow_messenger.dart';
 
 part '__generic_button.dart';
 part '__pause_button.dart';
@@ -58,7 +58,7 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
   }
 
   bool shouldThrowException(WorkSessionStatus? status) {
-    return status == WorkSessionStatus.miniBreak ||
+    return status == WorkSessionStatus.shortBreak ||
         status == WorkSessionStatus.ended ||
         status == WorkSessionStatus.cancelled;
   }

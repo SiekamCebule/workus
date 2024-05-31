@@ -42,9 +42,9 @@ class _PlayButton extends ConsumerWidget {
 
   void _startFromBeginning(WidgetRef ref) {
     final duration = ref.watch(sessionDurationProvider);
-    final smallBreakInterval = ref.watch(smallBreakIntervalProvider);
+    final shortBreakInterval = ref.watch(shortBreakIntervalProvider);
     WorkFlowController.instance
-        .startSession(sessionDuration: duration, smallBreakInterval: smallBreakInterval);
+        .startSession(sessionDuration: duration, shortBreakInterval: shortBreakInterval);
   }
 
   void _resume() => WorkFlowController.instance.resumeSession();

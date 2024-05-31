@@ -6,6 +6,6 @@ final sessionDurationProvider = StateProvider<Duration>(
 );
 
 // TODO: Some default interval
-final smallBreakIntervalProvider = StateProvider<Duration>(
+final shortBreakIntervalProvider = StateProvider<Duration>(
   (ref) => const Duration(minutes: 15),
 );
