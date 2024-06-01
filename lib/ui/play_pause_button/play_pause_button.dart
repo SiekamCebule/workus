@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/models/work_session_status.dart';
-import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
-import 'package:workus/providers/work_configuration.dart';
+import 'package:workus/providers/global_session_state/session_controlling_module.dart';
+import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
+import 'package:workus/providers/quotes/current_quote.dart';
+import 'package:workus/providers/quotes/quotes_provider.dart';
+import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
+import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
-import 'package:workus/work_flow/work_flow_controller.dart';
-import 'package:workus/session_flow/work_flow_messenger.dart';
 
 part '__generic_button.dart';
 part '__pause_button.dart';
@@ -23,16 +25,18 @@ class PlayPauseButton extends ConsumerStatefulWidget {
 class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
   @override
   Widget build(BuildContext context) {
-    final workStatus = WorkFlowController.instance.status;
+    final statsBroadcaster = ref.watch(sessionStatsBroadcasterProvider);
+    final statusesStream = statsBroadcaster.sessionStatuses;
 
-    if (shouldThrowException(workStatus)) {
+    if (shouldThrowException(statusesStream.value)) {
       throw Exception(
-        'The PlayPauseButton should not be tried to built when the workStatus is $workStatus',
+        'The PlayPauseButton should not be tried to built when the workStatus is ${statusesStream.value}',
       );
     }
 
     return StreamBuilder(
-      stream: WorkFlowMessenger.instance.workSessionStatusStream,
+      initialData: statusesStream.value,
+      stream: statusesStream,
       builder: (context, snapshot) {
         final status = snapshot.data!;
         return AnimatedSwitcher(
@@ -53,7 +57,7 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
   }
 
   bool shouldShowPlayButton(WorkSessionStatus status) {
-    return status == WorkSessionStatus.nonStarted ||
+    return status == WorkSessionStatus.notStarted ||
         status == WorkSessionStatus.pausedByUser;
   }
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/errors/too_many_tasks_error.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/constraints.dart';
+import 'package:workus/providers/constants/constraints.dart';
 import 'package:workus/providers/selected_tasks_type.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 import 'package:workus/ui/pages/tasks/add_task_button.dart';
 import 'package:workus/ui/pages/tasks/task_tile.dart';
 

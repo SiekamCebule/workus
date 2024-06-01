@@ -3,8 +3,8 @@ import 'package:workus/session_flow/session_timing_callbacks_registrar.dart';
 import 'package:workus/session_flow/session_timing_configuration.dart';
 import 'package:workus/session_flow/session_timing_controller.dart';
 
-class SessionUserController {
-  SessionUserController({
+class UserSessionController {
+  UserSessionController({
     required this.timingController,
     required this.statusController,
     required this.callbacksRegistrar,

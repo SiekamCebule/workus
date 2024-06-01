@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_statuse_notifier/task_statuses_builder.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_builder.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 
 class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
   TaskStatusesNotifier({

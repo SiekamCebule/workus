@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/settings.dart';
+import 'package:workus/providers/configuration/settings.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -21,8 +21,7 @@ class SettingsPage extends ConsumerWidget {
                 Expanded(
                   child: ListTile(
                     title: Text('Dźwięk alarmu'),
-                    subtitle: Text(
-                        'Jaki dźwięk ma się odtwarzać po zakończeniu sesji?'),
+                    subtitle: Text('Jaki dźwięk ma się odtwarzać po zakończeniu sesji?'),
                     leading: Icon(Icons.alarm),
                   ),
                 ),
@@ -41,8 +40,7 @@ class SettingsPage extends ConsumerWidget {
                 const Expanded(
                   child: ListTile(
                     title: Text('Pokazuj cytaty'),
-                    subtitle:
-                        Text('Motywujące cytaty pokazywane w trybie pracy'),
+                    subtitle: Text('Motywujące cytaty pokazywane w trybie pracy'),
                     leading: Icon(Icons.format_quote_rounded),
                   ),
                 ),

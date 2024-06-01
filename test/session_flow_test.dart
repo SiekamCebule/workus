@@ -8,11 +8,11 @@ import 'package:workus/session_flow/session_timing_callbacks_invoker.dart';
 import 'package:workus/session_flow/session_timing_callbacks_registrar.dart';
 import 'package:workus/session_flow/session_timing_configuration.dart';
 import 'package:workus/session_flow/session_timing_controller.dart';
-import 'package:workus/session_flow/session_user_controller.dart';
+import 'package:workus/session_flow/user_session_controller.dart';
 
 void main() {
   late SessionTimingConfiguration timingConfiguration;
-  late SessionUserController userController;
+  late UserSessionController userController;
   late SessionTimingController timingController;
   late SessionStatusController statusController;
   late SessionTimingCallbacksInvoker timingCallbacksInvoker;
@@ -40,7 +40,7 @@ void main() {
           }
         },
       );
-    userController = SessionUserController(
+    userController = UserSessionController(
         timingController: timingController,
         statusController: statusController,
         callbacksRegistrar: timingCallbacksRegistrar);
@@ -222,7 +222,7 @@ void main() {
       expect(
         statuses,
         [
-          WorkSessionStatus.nonStarted,
+          WorkSessionStatus.notStarted,
           WorkSessionStatus.running,
           WorkSessionStatus.pausedByUser,
           WorkSessionStatus.running,

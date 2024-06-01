@@ -1,5 +1,5 @@
 enum WorkSessionStatus {
-  nonStarted,
+  notStarted,
   running,
   shortBreak,
   pausedByUser,

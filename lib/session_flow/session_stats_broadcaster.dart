@@ -23,9 +23,11 @@ class SessionStatsBroadcaster {
   final _timesToShortBreak = BehaviorSubject<Duration?>();
   final _sessionEnds = BehaviorSubject<void>();
   final _sessionShortBreakStarts = BehaviorSubject<void>();
-  final _sessionStatuses = BehaviorSubject<WorkSessionStatus>();
+  final _sessionStatuses = BehaviorSubject<WorkSessionStatus>(sync: true);
 
   void _setup() {
+    _addInitialValues();
+
     callbacksRegistrar.registerOnTick(() {
       _elapsedTimes.add(timingController.elapsedSessionTime);
       _remainingTimes.add(timingController.remainingSessionTime);
@@ -40,6 +42,13 @@ class SessionStatsBroadcaster {
     statusController.registerOnChange((status) {
       _sessionStatuses.add(status);
     });
+  }
+
+  void _addInitialValues() {
+    /*_elapsedTimes.add(timingController.elapsedSessionTime);
+    _remainingTimes.add(timingController.remainingSessionTime);
+    _timesToShortBreak.add(timingController.timeToShortBreak);*/
+    _sessionStatuses.add(statusController.status);
   }
 
   void close() {

@@ -59,6 +59,7 @@ class SessionTimingController {
     _timingConfiguration = timingConfiguration;
     _tryRunningEntireSessionTimer();
     _setUpShortBreakTimer();
+    _maybeInvokeCallbacks(force: true);
   }
 
   void _tryRunningEntireSessionTimer() {

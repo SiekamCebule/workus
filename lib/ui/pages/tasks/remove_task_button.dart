@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 
 class RemoveTaskButton extends ConsumerWidget {
   const RemoveTaskButton({

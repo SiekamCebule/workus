@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/defaults.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/constants/defaults.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 import 'package:workus/utils/uuid_gen.dart';
 
 class AddTaskButton extends ConsumerWidget {

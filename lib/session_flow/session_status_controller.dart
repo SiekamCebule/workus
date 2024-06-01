@@ -1,7 +1,7 @@
 import 'package:workus/models/work_session_status.dart';
 
 class SessionStatusController {
-  var _status = WorkSessionStatus.nonStarted;
+  var _status = WorkSessionStatus.notStarted;
   final List<Function(WorkSessionStatus status)> _onChangeCallbacks = [];
 
   WorkSessionStatus get status => _status;
@@ -22,7 +22,7 @@ class SessionStatusController {
   }
 
   void start() {
-    _ensureCorrectState({WorkSessionStatus.nonStarted}, 'Starting the session');
+    _ensureCorrectState({WorkSessionStatus.notStarted}, 'Starting the session');
     status = WorkSessionStatus.running;
   }
 
