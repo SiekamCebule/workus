@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/work_configuration.dart';
+import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/utils/labels.dart';
 
 class SessionDurationTitle extends ConsumerWidget {

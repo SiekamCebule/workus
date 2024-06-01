@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_statuse_notifier/task_statuses_builder.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_builder.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 
 class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
   TaskStatusesNotifier({
@@ -67,9 +67,9 @@ final taskBeforeWorkStatusesProvider =
   () => TaskStatusesNotifier(tasksProvider: tasksBeforeWorkProvider),
 );
 
-final taskDuringSmallBreakStatusesProvider =
+final taskDuringShortBreakStatusesProvider =
     NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>(
-  () => TaskStatusesNotifier(tasksProvider: tasksDuringSmallBreakProvider),
+  () => TaskStatusesNotifier(tasksProvider: tasksDuringShortBreakProvider),
 );
 
 final taskAfterWorkStatusesProvider =
@@ -81,7 +81,7 @@ NotifierProvider<TaskStatusesNotifier, Map<Task, bool>> obtainTaskStatusesProvid
     TaskType type) {
   return switch (type) {
     TaskType.beforeSession => taskBeforeWorkStatusesProvider,
-    TaskType.duringSmallBreak => taskDuringSmallBreakStatusesProvider,
+    TaskType.duringShortBreak => taskDuringShortBreakStatusesProvider,
     TaskType.afterSession => taskAfterWorkStatusesProvider,
   };
 }

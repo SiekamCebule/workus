@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/task_statuse_notifier/task_statuses_notifier.dart';
-import 'package:workus/providers/tasks.dart';
+import 'package:workus/providers/quotes/quotes_provider.dart';
+import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
+import 'package:workus/providers/tasks_management/tasks.dart';
 import 'package:workus/ui/main_scaffold/main_page_view.dart';
 import 'package:workus/ui/main_scaffold/main_scaffold_navbar.dart';
 import 'package:workus/utils/uuid_gen.dart';
@@ -18,10 +19,11 @@ class MainScaffold extends ConsumerStatefulWidget {
 class _MainScaffoldState extends ConsumerState<MainScaffold> {
   @override
   void initState() {
-    Future.microtask(() {
+    Future.microtask(() async {
       initializeTasksBeforeWork();
       initializeTasksDuringMiniBreak();
       initializeTasksAfterWork();
+      await initializeQuotes();
     });
     super.initState();
   }
@@ -32,6 +34,29 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
       body: MainPageView(),
       bottomNavigationBar: MainScaffoldNavbar(),
     );
+  }
+
+  Future<void> initializeQuotes() async {
+    final loadQuotesFromJson = [
+      ref
+          .read(buddhistQuotesProvider.notifier)
+          .loadFromJson('assets/quotes/buddhist.json'),
+      ref
+          .read(humorousQuotesProvider.notifier)
+          .loadFromJson('assets/quotes/humorous.json'),
+      ref.read(ironicQuotesProvider.notifier).loadFromJson('assets/quotes/ironic.json'),
+      ref
+          .read(motivatingQuotesProvider.notifier)
+          .loadFromJson('assets/quotes/motivating.json'),
+    ];
+    await Future.wait(loadQuotesFromJson);
+    final initializeQuotesProvider = [
+      ref.read(quotesProvider.notifier).addAllFromProvider(buddhistQuotesProvider),
+      ref.read(quotesProvider.notifier).addAllFromProvider(ironicQuotesProvider),
+      ref.read(quotesProvider.notifier).addAllFromProvider(humorousQuotesProvider),
+      ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider),
+    ];
+    await Future.wait(initializeQuotesProvider);
   }
 
   void initializeTasksBeforeWork() {
@@ -53,16 +78,16 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
   }
 
   void initializeTasksDuringMiniBreak() {
-    ref.read(tasksDuringSmallBreakProvider.notifier).updateAll([
+    ref.read(tasksDuringShortBreakProvider.notifier).updateAll([
       Task(
         title: 'Rozluźnić mięśnie oka',
-        type: TaskType.duringSmallBreak,
+        type: TaskType.duringShortBreak,
         id: uuidV4(),
       ),
     ]);
     ref
-        .read(taskDuringSmallBreakStatusesProvider.notifier)
-        .fill(ref.read(tasksDuringSmallBreakProvider), completed: false);
+        .read(taskDuringShortBreakStatusesProvider.notifier)
+        .fill(ref.read(tasksDuringShortBreakProvider), completed: false);
   }
 
   void initializeTasksAfterWork() {

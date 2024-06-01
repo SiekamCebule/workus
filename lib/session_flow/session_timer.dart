@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class MyTimer {
-  MyTimer({
+class SessionTimer {
+  SessionTimer({
     this.tick = const Duration(seconds: 1),
-    this.tickCallback,
+    this.onTick,
     this.onEnd,
   });
 
   Duration tick;
-  VoidCallback? tickCallback;
+  VoidCallback? onTick;
   VoidCallback? onEnd;
 
   late Duration _totalDuration;
@@ -37,7 +37,7 @@ class MyTimer {
   void _startTimer(Duration duration) {
     _timer = Timer.periodic(tick, (timer) {
       elapsedTime += tick;
-      tickCallback?.call();
+      onTick?.call();
       if (elapsedTime >= _totalDuration) {
         onEnd?.call();
       }

@@ -13,7 +13,7 @@ class _PauseButton extends ConsumerWidget {
         fill: 0,
       ),
       onPressed: () {
-        WorkFlowController.instance.pauseSession();
+        ref.watch(userSessionControllerProvider).pause();
       },
     );
   }
