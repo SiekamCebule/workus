@@ -6,8 +6,8 @@ import 'package:workus/utils/labels.dart';
 part '__for_zero_duration.dart';
 part '__for_non_zero_duration.dart';
 
-class MiniBreakIntervalTitle extends ConsumerWidget {
-  const MiniBreakIntervalTitle({super.key});
+class ShortBreakIntervalTitle extends ConsumerWidget {
+  const ShortBreakIntervalTitle({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

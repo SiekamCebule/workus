@@ -9,6 +9,7 @@ import 'package:workus/providers/quotes/current_quote.dart';
 import 'package:workus/providers/quotes/quotes_provider.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/providers/configuration/work_configuration.dart';
+import 'package:workus/session_flow/session_timing_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 
 part '__generic_button.dart';

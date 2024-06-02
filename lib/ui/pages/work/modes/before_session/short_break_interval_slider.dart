@@ -4,8 +4,8 @@ import 'package:workus/providers/constants/constraints.dart';
 import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/ui/duration_slider.dart';
 
-class MiniBreakIntervalSlider extends ConsumerWidget {
-  const MiniBreakIntervalSlider({super.key});
+class ShortBreakIntervalSlider extends ConsumerWidget {
+  const ShortBreakIntervalSlider({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
 
-class RemainingTimeLabel extends ConsumerWidget {
-  const RemainingTimeLabel({super.key});
+class LargeRemainingTimeLabel extends ConsumerWidget {
+  const LargeRemainingTimeLabel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

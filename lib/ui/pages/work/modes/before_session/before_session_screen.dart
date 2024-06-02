@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/ui/pages/work/modes/before_session/mini_break_interval_slider.dart';
-import 'package:workus/ui/pages/work/modes/before_session/mini_break_interval_title/mini_break_interval_title.dart';
+import 'package:workus/providers/selected_page.dart';
+import 'package:workus/ui/pages/work/modes/before_session/short_break_interval_slider.dart';
+import 'package:workus/ui/pages/work/modes/before_session/short_break_interval_title/short_break_interval_title.dart';
 import 'package:workus/ui/pages/work/modes/before_session/session_duration_slider.dart';
 import 'package:workus/ui/pages/work/modes/before_session/session_duration_title.dart';
 import 'package:workus/ui/pages/work/tasks_to_complete.dart';
 import 'package:workus/ui/play_pause_button/play_pause_button.dart';
+import 'package:workus/ui/reusable/slideout_for_page.dart';
 
 class BeforeSessionScreen extends ConsumerWidget {
   const BeforeSessionScreen({super.key});
@@ -29,11 +31,12 @@ class BeforeSessionScreen extends ConsumerWidget {
             SessionDurationTitle(),
             SessionDurationSlider(),
             Gap(5),
-            MiniBreakIntervalTitle(),
-            MiniBreakIntervalSlider(),
+            ShortBreakIntervalTitle(),
+            ShortBreakIntervalSlider(),
             Spacer(),
-            TasksToComplete(
-              tasksType: TaskType.beforeSession,
+            SlideoutForPage(
+              page: AppPage.work,
+              child: TasksToComplete(tasksType: TaskType.beforeSession),
             ),
           ],
         ),

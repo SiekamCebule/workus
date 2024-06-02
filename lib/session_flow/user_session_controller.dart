@@ -43,6 +43,7 @@ class UserSessionController {
   }
 
   void _onShortBreakStart() {
+    print('sb');
     timingController.pause();
     statusController.startShortBreak();
   }

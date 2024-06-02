@@ -13,13 +13,13 @@ class SessionTimingCallbacksInvoker {
   }
 
   void invokeOnSessionEndCallbacks() {
-    registrar.forEachOnTick((callback) {
+    registrar.forEachOnSessionEnd((callback) {
       callback();
     });
   }
 
   void invokeOnShortBreakCallbacks() {
-    registrar.forEachOnTick((callback) {
+    registrar.forEachOnShortBreak((callback) {
       callback();
     });
   }

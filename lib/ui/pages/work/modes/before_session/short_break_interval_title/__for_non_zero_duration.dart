@@ -1,4 +1,4 @@
-part of 'mini_break_interval_title.dart';
+part of 'short_break_interval_title.dart';
 
 class _ForNonZeroDuration extends StatelessWidget {
   const _ForNonZeroDuration({

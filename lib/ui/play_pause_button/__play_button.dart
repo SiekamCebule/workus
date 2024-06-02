@@ -66,9 +66,17 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
   }
 
   void _startFromBeginning(WidgetRef ref) {
+    // TODO: Change it
+    /*
     ref
         .watch(userSessionControllerProvider)
-        .start(timingConfiguration: ref.watch(sessionTimingConfigurationProvider));
+        .start(timingConfiguration: ref.watch(sessionTimingConfigurationProvider));*/
+    ref.watch(userSessionControllerProvider).start(
+          timingConfiguration: const SessionTimingConfiguration(
+            totalDuration: Duration(minutes: 2),
+            shortBreakInterval: Duration(seconds: 10),
+          ),
+        );
   }
 
   void _resume(WidgetRef ref) => ref.watch(userSessionControllerProvider).resume();
