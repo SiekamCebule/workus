@@ -42,6 +42,12 @@ class ShakeAnimationState extends State<ShakeAnimation>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RotationTransition(
       turns: turns,

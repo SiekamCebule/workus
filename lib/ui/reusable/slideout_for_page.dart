@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/providers/selected_page.dart';
-import 'package:workus/ui/pages/work/work_page.dart';
 
 class SlideoutForPage extends ConsumerStatefulWidget {
   const SlideoutForPage({
@@ -21,7 +20,7 @@ class SlideoutContainerForPageState extends ConsumerState<SlideoutForPage> {
   @override
   Widget build(BuildContext context) {
     final offset = _shouldShow ? _forShowing : _forHiding;
-    print('offset: $offset');
+
     return AnimatedSlide(
       offset: offset,
       duration: Durations.medium4,

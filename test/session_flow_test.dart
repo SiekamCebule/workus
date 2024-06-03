@@ -33,9 +33,9 @@ void main() {
     statusController = SessionStatusController()
       ..registerOnChange(
         (status) {
-          if (status == WorkSessionStatus.ended) {
+          if (status == WorkSessionStatus.afterWork) {
             sessionEndCompleter.complete();
-          } else if (status == WorkSessionStatus.cancelled) {
+          } else if (status == WorkSessionStatus.notStarted) {
             sessionCancellationCompleter.complete();
           }
         },
@@ -137,7 +137,7 @@ void main() {
 
       await sessionCancellationCompleter.future;
       expect(stopwatch.elapsed.inSeconds, 4);
-      expect(statusController.status, WorkSessionStatus.cancelled);
+      expect(statusController.status, WorkSessionStatus.notStarted);
     });
 
     test('lapse with short breaks, pauses, and resumes', () async {
@@ -166,7 +166,7 @@ void main() {
           stopwatch.elapsed.inMilliseconds > 18500 &&
               stopwatch.elapsedMilliseconds < 18600,
           true);
-      expect(statusController.status, WorkSessionStatus.ended);
+      expect(statusController.status, WorkSessionStatus.afterWork);
     });
   });
 
@@ -228,7 +228,7 @@ void main() {
           WorkSessionStatus.running,
           WorkSessionStatus.shortBreak,
           WorkSessionStatus.running,
-          WorkSessionStatus.cancelled,
+          WorkSessionStatus.notStarted,
         ],
       );
     });

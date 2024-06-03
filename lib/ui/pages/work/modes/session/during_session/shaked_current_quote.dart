@@ -38,7 +38,7 @@ class _ShakedQuoteState extends ConsumerState<ShakedCurrentQuote> {
     final currentQuote = ref.watch(currentQuoteProvider);
     return ShakeAnimation(
       key: _shakeAnimationKey,
-      turnFactor: 0.02,
+      turnFactor: 0.015,
       shakeRounds: 5,
       entireAnimationDuration: const Duration(milliseconds: 1600),
       child: QuoteWidget(

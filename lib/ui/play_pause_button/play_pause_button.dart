@@ -8,7 +8,6 @@ import 'package:workus/providers/global_session_state/session_stats_broadcasting
 import 'package:workus/providers/quotes/current_quote.dart';
 import 'package:workus/providers/quotes/quotes_provider.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
-import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/session_flow/session_timing_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 
@@ -64,7 +63,6 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
 
   bool shouldThrowException(WorkSessionStatus? status) {
     return status == WorkSessionStatus.shortBreak ||
-        status == WorkSessionStatus.ended ||
-        status == WorkSessionStatus.cancelled;
+        status == WorkSessionStatus.afterWork;
   }
 }

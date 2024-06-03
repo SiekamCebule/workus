@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/ui/pages/work/dialogs/navigator_pop_text_button.dart';
 
-class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
-  const IncompletedTasksBeforeSessionDialog({
+class IncompletedTasksAfterWorkDialog extends ConsumerWidget {
+  const IncompletedTasksAfterWorkDialog({
     super.key,
-    required this.onStartSessionTap,
+    required this.onEndSessionTap,
   });
 
-  final VoidCallback onStartSessionTap;
+  final VoidCallback onEndSessionTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: const Text('Zacząć sesję?'),
+      title: const Text('Zakończyć sesję?'),
       content: const Text(
-        'Nie wykonano jeszcze wszystkich zadań. Czy na pewno chcesz rozpocząć pracę?',
+        'Czy na pewno chcesz zakończyć sesje mimo tego, że nie ukończyłeś jeszcze wszystkich zadań?',
       ),
       actions: [
         const NavigatorPopTextButton(
@@ -27,10 +27,10 @@ class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
-            onStartSessionTap();
+            onEndSessionTap();
           },
           child: const Text(
-            'Rozpocznij sesję',
+            'Zakończ sesję',
             textAlign: TextAlign.end,
           ),
         ),

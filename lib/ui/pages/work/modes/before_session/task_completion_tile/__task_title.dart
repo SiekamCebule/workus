@@ -42,6 +42,12 @@ class _TaskTitleState extends State<_TaskTitle> with SingleTickerProviderStateMi
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final lineColor = Theme.of(context).colorScheme.onTertiaryContainer;
     const lineHeight = 2.0;

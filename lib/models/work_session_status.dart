@@ -3,6 +3,5 @@ enum WorkSessionStatus {
   running,
   shortBreak,
   pausedByUser,
-  ended,
-  cancelled;
+  afterWork,
 }

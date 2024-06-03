@@ -21,13 +21,14 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
       ),
       onPressed: () {
         if (_sessionIsPaused) {
-          _resume(ref);
+          _resume();
         } else if (_sessionIsNotStarted) {
           _setUpRandomQuote();
           if (_incompletedTaskExists) {
             _showDialogAboutIncompleteTasksBeforeSession(context);
           } else {
-            _startFromBeginning(ref);
+            _resetTasksBeforeWork();
+            _startFromBeginning();
           }
         }
       },
@@ -59,25 +60,25 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
       context: context,
       builder: (context) {
         return IncompletedTasksBeforeSessionDialog(
-          onStartSessionTap: () => _startFromBeginning(ref),
+          onStartSessionTap: () => _startFromBeginning(),
         );
       },
     );
   }
 
-  void _startFromBeginning(WidgetRef ref) {
+  void _startFromBeginning() {
     // TODO: Change it
-    /*
-    ref
-        .watch(userSessionControllerProvider)
-        .start(timingConfiguration: ref.watch(sessionTimingConfigurationProvider));*/
     ref.watch(userSessionControllerProvider).start(
           timingConfiguration: const SessionTimingConfiguration(
-            totalDuration: Duration(minutes: 2),
-            shortBreakInterval: Duration(seconds: 10),
+            totalDuration: Duration(seconds: 20),
+            shortBreakInterval: null,
           ),
         );
   }
 
-  void _resume(WidgetRef ref) => ref.watch(userSessionControllerProvider).resume();
+  void _resume() => ref.watch(userSessionControllerProvider).resume();
+
+  void _resetTasksBeforeWork() {
+    ref.watch(taskBeforeWorkStatusesProvider.notifier).fillCurrent(completed: false);
+  }
 }
