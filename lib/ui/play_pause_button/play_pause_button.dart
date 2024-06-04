@@ -3,12 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/models/work_session_status.dart';
+import 'package:workus/providers/configuration/settings.dart';
+import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/providers/global_session_state/session_controlling_module.dart';
 import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/providers/quotes/current_quote.dart';
 import 'package:workus/providers/quotes/quotes_provider.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
-import 'package:workus/providers/configuration/work_configuration.dart';
+import 'package:workus/session_flow/session_timing_configuration.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_before_session_dialog.dart';
 
 part '__generic_button.dart';
@@ -63,7 +65,6 @@ class _PlayPauseButtonState extends ConsumerState<PlayPauseButton> {
 
   bool shouldThrowException(WorkSessionStatus? status) {
     return status == WorkSessionStatus.shortBreak ||
-        status == WorkSessionStatus.ended ||
-        status == WorkSessionStatus.cancelled;
+        status == WorkSessionStatus.afterWork;
   }
 }

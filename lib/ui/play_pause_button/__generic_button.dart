@@ -12,8 +12,8 @@ class _GenericButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 220,
-      height: 220,
+      width: 200,
+      height: 200,
       child: IconButton.outlined(onPressed: onPressed, icon: icon),
     );
   }

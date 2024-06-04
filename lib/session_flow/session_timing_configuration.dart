@@ -1,18 +1,18 @@
 class SessionTimingConfiguration {
   const SessionTimingConfiguration({
     required this.totalDuration,
-    required this.shortBreakInterval,
+    required this.shortBreaksInterval,
   });
 
   @override
   bool operator ==(covariant SessionTimingConfiguration other) {
     return totalDuration == other.totalDuration &&
-        shortBreakInterval == other.shortBreakInterval;
+        shortBreaksInterval == other.shortBreaksInterval;
   }
 
   @override
-  int get hashCode => Object.hash(totalDuration, shortBreakInterval);
+  int get hashCode => Object.hash(totalDuration, shortBreaksInterval);
 
   final Duration totalDuration;
-  final Duration? shortBreakInterval;
+  final Duration? shortBreaksInterval;
 }

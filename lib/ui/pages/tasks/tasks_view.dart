@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:workus/errors/too_many_tasks_error.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/providers/constants/constraints.dart';
@@ -25,7 +26,14 @@ class TasksView extends ConsumerWidget {
               taskNumber: i + 1 + tasks.length,
               taskType: type,
             ),
-      ],
+      ]
+          .expand(
+            ((widget) => [
+                  widget,
+                  const Gap(5),
+                ]),
+          )
+          .toList(),
     );
   }
 

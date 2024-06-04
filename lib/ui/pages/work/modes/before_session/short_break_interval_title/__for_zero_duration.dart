@@ -1,4 +1,4 @@
-part of 'mini_break_interval_title.dart';
+part of 'short_break_interval_title.dart';
 
 class _ForZeroDuration extends StatelessWidget {
   const _ForZeroDuration();
@@ -7,7 +7,8 @@ class _ForZeroDuration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Brak krótkich przerw',
-      style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400),
+      style:
+          Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400),
     );
   }
 }

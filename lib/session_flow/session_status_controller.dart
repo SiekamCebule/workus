@@ -22,7 +22,8 @@ class SessionStatusController {
   }
 
   void start() {
-    _ensureCorrectState({WorkSessionStatus.notStarted}, 'Starting the session');
+    _ensureCorrectState({WorkSessionStatus.notStarted, WorkSessionStatus.afterWork},
+        'Starting the session');
     status = WorkSessionStatus.running;
   }
 
@@ -46,9 +47,14 @@ class SessionStatusController {
     status = WorkSessionStatus.running;
   }
 
+  void changeToAfterWork() {
+    _ensureCorrectState({WorkSessionStatus.running}, 'Changing to \'after work\' status');
+    status = WorkSessionStatus.afterWork;
+  }
+
   void end() {
-    _ensureCorrectState({WorkSessionStatus.running}, 'Ending the session');
-    status = WorkSessionStatus.ended;
+    _ensureCorrectState({WorkSessionStatus.afterWork}, 'Ending the session');
+    status = WorkSessionStatus.notStarted;
   }
 
   void cancel() {
@@ -60,7 +66,7 @@ class SessionStatusController {
       },
       'Cancelling the session',
     );
-    status = WorkSessionStatus.cancelled;
+    status = WorkSessionStatus.notStarted;
   }
 
   void _ensureCorrectState(

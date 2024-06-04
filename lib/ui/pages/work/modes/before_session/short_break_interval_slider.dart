@@ -4,18 +4,18 @@ import 'package:workus/providers/constants/constraints.dart';
 import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/ui/duration_slider.dart';
 
-class MiniBreakIntervalSlider extends ConsumerWidget {
-  const MiniBreakIntervalSlider({super.key});
+class ShortBreaksIntervalSlider extends ConsumerWidget {
+  const ShortBreaksIntervalSlider({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DurationSlider(
-      initialMinutes: ref.watch(shortBreakIntervalProvider)?.inMinutes ?? 0,
+      initialMinutes: ref.watch(shortBreaksIntervalProvider)?.inMinutes ?? 0,
       onChanged: (duration) {
         if (duration == Duration.zero) {
-          ref.read(shortBreakIntervalProvider.notifier).state = null;
+          ref.read(shortBreaksIntervalProvider.notifier).state = null;
         } else {
-          ref.read(shortBreakIntervalProvider.notifier).state = duration;
+          ref.read(shortBreaksIntervalProvider.notifier).state = duration;
         }
       },
       minMinutes: minShortBreakDuration.inMinutes,

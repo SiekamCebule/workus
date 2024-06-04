@@ -8,8 +8,8 @@ class _PauseButton extends ConsumerWidget {
     return _GenericButton(
       icon: const Icon(
         Symbols.pause_rounded,
-        weight: 110,
-        size: 150,
+        weight: 150,
+        size: 110,
         fill: 0,
       ),
       onPressed: () {

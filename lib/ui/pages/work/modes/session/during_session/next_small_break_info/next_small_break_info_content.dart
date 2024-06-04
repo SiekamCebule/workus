@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:workus/ui/pages/work/modes/during_session/next_small_break_info/small_break_timer_icon.dart';
-import 'package:workus/ui/pages/work/modes/during_session/next_small_break_info/time_to_next_small_break_label.dart';
+import 'package:workus/ui/pages/work/modes/session/during_session/next_small_break_info/small_break_timer_icon.dart';
+import 'package:workus/ui/pages/work/modes/session/during_session/next_small_break_info/time_to_next_small_break_label.dart';
 
 class NextSmallBreakInfoContent extends ConsumerWidget {
   const NextSmallBreakInfoContent({

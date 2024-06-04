@@ -6,15 +6,15 @@ import 'package:workus/utils/labels.dart';
 part '__for_zero_duration.dart';
 part '__for_non_zero_duration.dart';
 
-class MiniBreakIntervalTitle extends ConsumerWidget {
-  const MiniBreakIntervalTitle({super.key});
+class ShortBreaksIntervalTitle extends ConsumerWidget {
+  const ShortBreaksIntervalTitle({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final miniBreakInterval = ref.watch(shortBreakIntervalProvider);
+    final miniBreakInterval = ref.watch(shortBreaksIntervalProvider);
 
-    return miniBreakInterval == Duration.zero
+    return miniBreakInterval == null
         ? const _ForZeroDuration()
-        : _ForNonZeroDuration(duration: miniBreakInterval!);
+        : _ForNonZeroDuration(duration: miniBreakInterval);
   }
 }

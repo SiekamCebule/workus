@@ -46,8 +46,8 @@ class SessionTimingController {
   bool _invokedShortBreakTimerOnTick = false;
 
   final SessionTimingCallbacksInvoker callbacksInvoker;
-  late final SessionTimer _entireSessionTimer;
-  late final SessionTimer? _shortBreakTimer;
+  late SessionTimer _entireSessionTimer;
+  late SessionTimer? _shortBreakTimer;
 
   late SessionTimingConfiguration _timingConfiguration;
   bool get _shortBreaksEnabled => _shortBreakTimer != null;
@@ -71,26 +71,29 @@ class SessionTimingController {
   }
 
   void _setUpShortBreakTimer() {
-    if (_timingConfiguration.shortBreakInterval == null) {
+    if (_timingConfiguration.shortBreaksInterval == null) {
       _shortBreakTimer = null;
     } else {
-      _shortBreakTimer?.run(_timingConfiguration.shortBreakInterval!);
+      _shortBreakTimer?.run(_timingConfiguration.shortBreaksInterval!);
     }
   }
 
   void pause() {
     _entireSessionTimer.pause();
     _shortBreakTimer?.pause();
+    _maybeInvokeCallbacks(force: true);
   }
 
   void resume() {
     _entireSessionTimer.resume();
     _shortBreakTimer?.resume();
+    _maybeInvokeCallbacks(force: true);
   }
 
   void cancel() {
     _entireSessionTimer.cancel();
     _shortBreakTimer?.cancel();
+    _maybeInvokeCallbacks(force: true);
   }
 
   void resetEntireSessionTimer() {
@@ -99,6 +102,17 @@ class SessionTimingController {
 
   void resetShortBreakTimer() {
     _shortBreakTimer?.elapsedTime = Duration.zero;
+  }
+
+  void startSmallBreakWithCustomInterval({
+    required Duration interval,
+  }) {
+    if (_shortBreaksEnabled) {
+      if (_shortBreakTimer!.isRunning) {
+        _shortBreakTimer!.run(interval);
+        _maybeInvokeCallbacks(force: true);
+      }
+    }
   }
 
   Duration get elapsedSessionTime => _entireSessionTimer.elapsedTime;

@@ -15,19 +15,19 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
     return _GenericButton(
       icon: const Icon(
         Symbols.play_arrow_rounded,
-        weight: 110,
-        size: 205,
+        weight: 150,
+        size: 165,
         fill: 0,
       ),
       onPressed: () {
         if (_sessionIsPaused) {
-          _resume(ref);
+          _resume();
         } else if (_sessionIsNotStarted) {
           _setUpRandomQuote();
-          if (_incompletedTaskExists) {
+          if (_shouldShowIncompletedTasksDialog) {
             _showDialogAboutIncompleteTasksBeforeSession(context);
           } else {
-            _startFromBeginning(ref);
+            _startFromBeginning();
           }
         }
       },
@@ -42,6 +42,10 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
   bool get _sessionIsNotStarted {
     return ref.read(sessionStatusControllerProvider).status ==
         WorkSessionStatus.notStarted;
+  }
+
+  bool get _shouldShowIncompletedTasksDialog {
+    return ref.read(shouldShowIncompletedTasksWarnings) && _incompletedTaskExists;
   }
 
   bool get _incompletedTaskExists {
@@ -59,17 +63,32 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
       context: context,
       builder: (context) {
         return IncompletedTasksBeforeSessionDialog(
-          onStartSessionTap: () => _startFromBeginning(ref),
+          onStartSessionTap: () => _startFromBeginning(),
         );
       },
     );
   }
 
-  void _startFromBeginning(WidgetRef ref) {
-    ref
-        .watch(userSessionControllerProvider)
-        .start(timingConfiguration: ref.watch(sessionTimingConfigurationProvider));
+  void _startFromBeginning() {
+    _resetTasksBeforeWork();
+    // TODO: Change it
+    ref.watch(userSessionControllerProvider).start(
+          timingConfiguration: SessionTimingConfiguration(
+            totalDuration: ref.watch(sessionDurationProvider),
+            shortBreaksInterval: ref.watch(shortBreaksIntervalProvider),
+          ),
+        );
+    /*ref.watch(userSessionControllerProvider).start(
+          timingConfiguration: const SessionTimingConfiguration(
+            totalDuration: Duration(seconds: 20),
+            shortBreaksInterval: null,
+          ),
+        );*/
   }
 
-  void _resume(WidgetRef ref) => ref.watch(userSessionControllerProvider).resume();
+  void _resume() => ref.watch(userSessionControllerProvider).resume();
+
+  void _resetTasksBeforeWork() {
+    ref.watch(taskBeforeWorkStatusesProvider.notifier).fillCurrent(completed: false);
+  }
 }

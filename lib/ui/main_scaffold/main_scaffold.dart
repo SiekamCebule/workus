@@ -74,7 +74,7 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
     ]);
     ref
         .read(taskBeforeWorkStatusesProvider.notifier)
-        .fill(ref.read(tasksBeforeWorkProvider), completed: false);
+        .fillWithNewTasks(ref.read(tasksBeforeWorkProvider), completed: false);
   }
 
   void initializeTasksDuringMiniBreak() {
@@ -87,7 +87,7 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
     ]);
     ref
         .read(taskDuringShortBreakStatusesProvider.notifier)
-        .fill(ref.read(tasksDuringShortBreakProvider), completed: false);
+        .fillWithNewTasks(ref.read(tasksDuringShortBreakProvider), completed: false);
   }
 
   void initializeTasksAfterWork() {
@@ -105,6 +105,6 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
     ]);
     ref
         .read(taskAfterWorkStatusesProvider.notifier)
-        .fill(ref.read(tasksAfterWorkProvider), completed: false);
+        .fillWithNewTasks(ref.read(tasksAfterWorkProvider), completed: false);
   }
 }

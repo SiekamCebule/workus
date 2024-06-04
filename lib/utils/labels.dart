@@ -7,13 +7,15 @@ String labelForDuration(Duration duration, {bool excludeSeconds = false}) {
 
   if (hours > 0) {
     parts.add('$hours godz.');
-    parts.add('${atLeastTwoDigit(minutes)} min.');
-    if (!excludeSeconds) {
+    if (minutes > 0) {
+      parts.add('${atLeastTwoDigit(minutes)} min.');
+    }
+    if (!excludeSeconds && seconds > 0) {
       parts.add('${atLeastTwoDigit(seconds)} sek.');
     }
   } else if (minutes > 0) {
     parts.add('$minutes min.');
-    if (!excludeSeconds) {
+    if (!excludeSeconds && seconds > 0) {
       parts.add('${atLeastTwoDigit(seconds)} sek.');
     }
   } else if (seconds > 0 && !excludeSeconds) {

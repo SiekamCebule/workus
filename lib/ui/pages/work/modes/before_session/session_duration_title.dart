@@ -13,6 +13,7 @@ class SessionDurationTitle extends ConsumerWidget {
         labelForDuration(sessionDuration, excludeSeconds: true);
 
     return RichText(
+      textAlign: TextAlign.left,
       text: TextSpan(
         children: [
           TextSpan(

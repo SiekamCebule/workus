@@ -15,8 +15,10 @@ class UserSessionController {
   final SessionTimingController timingController;
   final SessionStatusController statusController;
   final SessionTimingCallbacksRegistrar callbacksRegistrar;
+  late SessionTimingConfiguration _timingConfiguration;
 
   void start({required SessionTimingConfiguration timingConfiguration}) {
+    _timingConfiguration = timingConfiguration;
     timingController.start(timingConfiguration: timingConfiguration);
     statusController.start();
   }
@@ -36,10 +38,23 @@ class UserSessionController {
     statusController.cancel();
   }
 
+  void end() {
+    timingController.cancel();
+    statusController.end();
+  }
+
+  void remindShortBreak({required Duration delay}) {
+    endShortBreak();
+    timingController.startSmallBreakWithCustomInterval(interval: delay);
+  }
+
   void endShortBreak() {
     timingController.resetShortBreakTimer();
     timingController.resume();
     statusController.endShortBreak();
+    timingController.startSmallBreakWithCustomInterval(
+      interval: _timingConfiguration.shortBreaksInterval!,
+    );
   }
 
   void _onShortBreakStart() {
@@ -49,6 +64,6 @@ class UserSessionController {
 
   void _onSessionEnd() {
     timingController.cancel();
-    statusController.end();
+    statusController.changeToAfterWork();
   }
 }

@@ -33,9 +33,9 @@ void main() {
     statusController = SessionStatusController()
       ..registerOnChange(
         (status) {
-          if (status == WorkSessionStatus.ended) {
+          if (status == WorkSessionStatus.afterWork) {
             sessionEndCompleter.complete();
-          } else if (status == WorkSessionStatus.cancelled) {
+          } else if (status == WorkSessionStatus.notStarted) {
             sessionCancellationCompleter.complete();
           }
         },
@@ -56,7 +56,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
 
       timingController.start(timingConfiguration: timingConfiguration);
@@ -68,7 +68,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 8),
-        shortBreakInterval: Duration(seconds: 6),
+        shortBreaksInterval: Duration(seconds: 6),
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -85,7 +85,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -110,7 +110,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 5),
+        shortBreaksInterval: Duration(seconds: 5),
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -128,7 +128,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 7),
-        shortBreakInterval: Duration(seconds: 5),
+        shortBreaksInterval: Duration(seconds: 5),
       );
       userController.start(timingConfiguration: timingConfiguration);
       Future.delayed(const Duration(seconds: 4), () {
@@ -137,14 +137,14 @@ void main() {
 
       await sessionCancellationCompleter.future;
       expect(stopwatch.elapsed.inSeconds, 4);
-      expect(statusController.status, WorkSessionStatus.cancelled);
+      expect(statusController.status, WorkSessionStatus.notStarted);
     });
 
     test('lapse with short breaks, pauses, and resumes', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 4),
+        shortBreaksInterval: Duration(seconds: 4),
       );
       userController.start(timingConfiguration: timingConfiguration);
       statsBroadcaster.sessionShortBreakStarts.listen((_) {
@@ -166,7 +166,7 @@ void main() {
           stopwatch.elapsed.inMilliseconds > 18500 &&
               stopwatch.elapsedMilliseconds < 18600,
           true);
-      expect(statusController.status, WorkSessionStatus.ended);
+      expect(statusController.status, WorkSessionStatus.afterWork);
     });
   });
 
@@ -174,7 +174,7 @@ void main() {
     test('streaming: remaining time', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
       final remainingMilliseconds = await statsBroadcaster.remainingTimes
@@ -190,7 +190,7 @@ void main() {
     test('streaming: elapsed time', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
 
@@ -206,7 +206,7 @@ void main() {
     test('streaming: work session status', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 6),
+        shortBreaksInterval: Duration(seconds: 6),
       );
       userController.start(timingConfiguration: timingConfiguration);
       userController.pause();
@@ -228,7 +228,7 @@ void main() {
           WorkSessionStatus.running,
           WorkSessionStatus.shortBreak,
           WorkSessionStatus.running,
-          WorkSessionStatus.cancelled,
+          WorkSessionStatus.notStarted,
         ],
       );
     });
@@ -236,7 +236,7 @@ void main() {
     test('streaming: time to short break', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration(seconds: 3),
+        shortBreaksInterval: Duration(seconds: 3),
       );
       userController.start(timingConfiguration: timingConfiguration);
       statsBroadcaster.sessionShortBreakStarts.listen((_) {

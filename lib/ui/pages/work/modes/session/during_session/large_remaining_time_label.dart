@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
 
-class RemainingTimeLabel extends ConsumerWidget {
-  const RemainingTimeLabel({super.key});
+class LargeRemainingTimeLabel extends ConsumerWidget {
+  const LargeRemainingTimeLabel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +16,7 @@ class RemainingTimeLabel extends ConsumerWidget {
       builder: (context, snapshot) {
         final remainingTime = snapshot.data!;
         return AnimatedSwitcher(
-          duration: Durations.short2,
+          duration: Durations.short3,
           switchInCurve: Curves.linear,
           switchOutCurve: Curves.linear,
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -29,7 +29,7 @@ class RemainingTimeLabel extends ConsumerWidget {
             key: ValueKey(remainingTime),
             labelForDuration(remainingTime),
             style: GoogleFonts.roboto(
-              textStyle: Theme.of(context).textTheme.displayMedium,
+              textStyle: Theme.of(context).textTheme.displaySmall,
             ),
             textAlign: TextAlign.center,
           ),
