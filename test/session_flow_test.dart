@@ -56,7 +56,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
 
       timingController.start(timingConfiguration: timingConfiguration);
@@ -68,7 +68,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 8),
-        shortBreakInterval: Duration(seconds: 6),
+        shortBreaksInterval: Duration(seconds: 6),
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -85,7 +85,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -110,7 +110,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 5),
+        shortBreaksInterval: Duration(seconds: 5),
       );
 
       userController.start(timingConfiguration: timingConfiguration);
@@ -128,7 +128,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 7),
-        shortBreakInterval: Duration(seconds: 5),
+        shortBreaksInterval: Duration(seconds: 5),
       );
       userController.start(timingConfiguration: timingConfiguration);
       Future.delayed(const Duration(seconds: 4), () {
@@ -144,7 +144,7 @@ void main() {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 4),
+        shortBreaksInterval: Duration(seconds: 4),
       );
       userController.start(timingConfiguration: timingConfiguration);
       statsBroadcaster.sessionShortBreakStarts.listen((_) {
@@ -174,7 +174,7 @@ void main() {
     test('streaming: remaining time', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
       final remainingMilliseconds = await statsBroadcaster.remainingTimes
@@ -190,7 +190,7 @@ void main() {
     test('streaming: elapsed time', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration.zero,
+        shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
 
@@ -206,7 +206,7 @@ void main() {
     test('streaming: work session status', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 10),
-        shortBreakInterval: Duration(seconds: 6),
+        shortBreaksInterval: Duration(seconds: 6),
       );
       userController.start(timingConfiguration: timingConfiguration);
       userController.pause();
@@ -236,7 +236,7 @@ void main() {
     test('streaming: time to short break', () async {
       timingConfiguration = const SessionTimingConfiguration(
         totalDuration: Duration(seconds: 6),
-        shortBreakInterval: Duration(seconds: 3),
+        shortBreaksInterval: Duration(seconds: 3),
       );
       userController.start(timingConfiguration: timingConfiguration);
       statsBroadcaster.sessionShortBreakStarts.listen((_) {

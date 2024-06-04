@@ -16,7 +16,7 @@ class LargeRemainingTimeLabel extends ConsumerWidget {
       builder: (context, snapshot) {
         final remainingTime = snapshot.data!;
         return AnimatedSwitcher(
-          duration: Durations.short2,
+          duration: Durations.short3,
           switchInCurve: Curves.linear,
           switchOutCurve: Curves.linear,
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -29,7 +29,7 @@ class LargeRemainingTimeLabel extends ConsumerWidget {
             key: ValueKey(remainingTime),
             labelForDuration(remainingTime),
             style: GoogleFonts.roboto(
-              textStyle: Theme.of(context).textTheme.displayMedium,
+              textStyle: Theme.of(context).textTheme.displaySmall,
             ),
             textAlign: TextAlign.center,
           ),

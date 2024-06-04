@@ -22,7 +22,8 @@ class SessionStatusController {
   }
 
   void start() {
-    _ensureCorrectState({WorkSessionStatus.notStarted}, 'Starting the session');
+    _ensureCorrectState({WorkSessionStatus.notStarted, WorkSessionStatus.afterWork},
+        'Starting the session');
     status = WorkSessionStatus.running;
   }
 

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/models/work_session_status.dart';
+import 'package:workus/providers/configuration/settings.dart';
+import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/providers/global_session_state/session_controlling_module.dart';
 import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/providers/quotes/current_quote.dart';

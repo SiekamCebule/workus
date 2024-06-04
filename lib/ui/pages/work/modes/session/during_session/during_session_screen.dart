@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/providers/configuration/settings.dart';
 import 'package:workus/providers/configuration/work_configuration.dart';
 import 'package:workus/providers/selected_page.dart';
 import 'package:workus/ui/pages/work/modes/session/during_session/next_small_break_info/next_small_break_info_content.dart';
@@ -14,6 +15,7 @@ class DuringSessionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final smallBreaksEnabled = ref.watch(smallBreaksEnabledProvider);
+    final shouldShowQuotes = ref.watch(shouldShowQuotesProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,10 +29,8 @@ class DuringSessionScreen extends ConsumerWidget {
             const Spacer(),
             const PlayPauseButton(),
             const Spacer(),
-            const Spacer(),
-            // TODO: 'if quotesEnabled'
-            const ShakedCurrentQuote(),
-            const Spacer(),
+            if (shouldShowQuotes) const ShakedCurrentQuote(),
+            if (shouldShowQuotes) const Spacer(),
             if (smallBreaksEnabled)
               const SlideoutForPage(
                 page: AppPage.work,

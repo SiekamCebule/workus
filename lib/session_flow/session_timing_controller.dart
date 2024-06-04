@@ -71,10 +71,10 @@ class SessionTimingController {
   }
 
   void _setUpShortBreakTimer() {
-    if (_timingConfiguration.shortBreakInterval == null) {
+    if (_timingConfiguration.shortBreaksInterval == null) {
       _shortBreakTimer = null;
     } else {
-      _shortBreakTimer?.run(_timingConfiguration.shortBreakInterval!);
+      _shortBreakTimer?.run(_timingConfiguration.shortBreaksInterval!);
     }
   }
 

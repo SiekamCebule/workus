@@ -31,8 +31,8 @@ class BeforeSessionScreen extends ConsumerWidget {
             SessionDurationTitle(),
             SessionDurationSlider(),
             Gap(5),
-            ShortBreakIntervalTitle(),
-            ShortBreakIntervalSlider(),
+            ShortBreaksIntervalTitle(),
+            ShortBreaksIntervalSlider(),
             Spacer(),
             SlideoutForPage(
               page: AppPage.work,

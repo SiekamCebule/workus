@@ -53,7 +53,7 @@ class UserSessionController {
     timingController.resume();
     statusController.endShortBreak();
     timingController.startSmallBreakWithCustomInterval(
-      interval: _timingConfiguration.shortBreakInterval!,
+      interval: _timingConfiguration.shortBreaksInterval!,
     );
   }
 

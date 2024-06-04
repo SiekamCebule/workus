@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/constants/defaults.dart';
+import 'package:workus/providers/configuration/settings.dart';
 import 'package:workus/providers/global_session_state/session_controlling_module.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 
@@ -11,7 +11,7 @@ class ShortBreakRemindButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final delay = ref.watch(shortBreakRemindDelay);
+    final delay = ref.watch(shortBreakRemindDelayProvider);
     _validateDelayAndMaybeThrow(delay);
 
     final delayNumber = _delayNumber(delay);
