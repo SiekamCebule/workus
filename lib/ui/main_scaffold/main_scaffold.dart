@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
+import 'package:workus/providers/global_session_state/alarm_playing_module.dart';
 import 'package:workus/providers/quotes/quotes_provider.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/providers/tasks_management/tasks.dart';
@@ -26,6 +27,12 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
       await initializeQuotes();
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    ref.watch(alarmPlayerProvider).dispose();
+    super.dispose();
   }
 
   @override

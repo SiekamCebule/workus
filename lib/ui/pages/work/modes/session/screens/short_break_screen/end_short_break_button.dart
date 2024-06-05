@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/providers/configuration/settings.dart';
+import 'package:workus/providers/global_session_state/alarm_playing_module.dart';
 import 'package:workus/providers/global_session_state/session_controlling_module.dart';
 import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_during_short_break_dialog.dart';
@@ -46,6 +47,7 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
   }
 
   void _endShortBreak() {
+    ref.watch(alarmPlayerProvider).stop();
     ref.watch(userSessionControllerProvider).end();
     ref
         .watch(taskDuringShortBreakStatusesProvider.notifier)

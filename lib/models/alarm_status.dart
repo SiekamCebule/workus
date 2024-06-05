@@ -1,0 +1,4 @@
+enum AlarmStatus {
+  notPlaying,
+  playing,
+}

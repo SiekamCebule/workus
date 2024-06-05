@@ -15,6 +15,7 @@ class UserSessionController {
   final SessionTimingController timingController;
   final SessionStatusController statusController;
   final SessionTimingCallbacksRegistrar callbacksRegistrar;
+
   late SessionTimingConfiguration _timingConfiguration;
 
   void start({required SessionTimingConfiguration timingConfiguration}) {

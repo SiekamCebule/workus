@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/ui/pages/settings/alarm_after_work_dropdown.dart';
 import 'package:workus/ui/pages/settings/default_session_duration_dropdown.dart';
 import 'package:workus/ui/pages/settings/default_short_breaks_interval_dropdown.dart';
+import 'package:workus/ui/pages/settings/session_end_alarm_sound_dropdown.dart';
+import 'package:workus/ui/pages/settings/short_break_alarm_sound_dropdown.dart';
 import 'package:workus/ui/pages/settings/should_show_incompleted_tasks_warnings_switcher.dart';
 import 'package:workus/ui/pages/settings/should_show_quotes_switcher.dart';
 
@@ -16,16 +17,19 @@ class SettingsPage extends ConsumerWidget {
         title: const Text('Ustawienia'),
       ),
       body: const Center(
-        child: Column(
-          children: [
-            AlarmAfterWorkDropdown(),
-            Divider(),
-            ShouldShowIncompletedTasksWarningsSwitcher(),
-            ShouldShowQuotesSwitcher(),
-            Divider(),
-            DefaultSessionDurationDropdown(),
-            DefaultShortBreaksIntervalDropdown(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SessionEndAlarmSoundDropdown(),
+              ShortBreakAlarmSoundDropdown(),
+              Divider(),
+              ShouldShowIncompletedTasksWarningsSwitcher(),
+              ShouldShowQuotesSwitcher(),
+              Divider(),
+              DefaultSessionDurationDropdown(),
+              DefaultShortBreaksIntervalDropdown(),
+            ],
+          ),
         ),
       ),
     );

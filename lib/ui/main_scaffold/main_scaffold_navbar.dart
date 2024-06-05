@@ -13,8 +13,7 @@ class MainScaffoldNavbar extends ConsumerWidget {
     return NavigationBar(
       selectedIndex: screenIndex,
       onDestinationSelected: (index) {
-        ref.read(selectedPageProvider.notifier).state =
-            AppPage.fromIndex(index);
+        ref.read(selectedPageProvider.notifier).state = AppPage.fromIndex(index);
         ref.watch(pageControllerProvider.notifier).animateToPage(index);
       },
       destinations: const [

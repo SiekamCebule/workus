@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/models/alarm_sound.dart';
+import 'package:workus/providers/constants/predefined_alarm_sounds.dart';
 
 final shouldShowQuotesProvider = StateProvider<bool>(
   (ref) => true,
@@ -19,3 +21,11 @@ final defaultShortBreaksIntervalProvider = StateProvider<Duration>(
 final shortBreakRemindDelayProvider = Provider<Duration>(
   (ref) => const Duration(seconds: 12),
 );
+
+final sessionEndAlarmSoundProvider = StateProvider<AlarmSound>((ref) {
+  return ref.watch(predefinedAlarmSoundsProvider).first;
+});
+
+final shortBreakAlarmSoundProvider = StateProvider<AlarmSound>((ref) {
+  return ref.watch(predefinedAlarmSoundsProvider).last;
+});

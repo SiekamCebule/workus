@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/providers/global_session_state/alarm_playing_module.dart';
 import 'package:workus/providers/global_session_state/session_controlling_module.dart';
 import 'package:workus/session_flow/session_timing_configuration.dart';
 
@@ -20,6 +21,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
       children: [
         SimpleDialogOption(
           onPressed: () {
+            ref.watch(alarmPlayerProvider).stop();
             _extendSession(const Duration(minutes: 5));
             _closeDialog();
           },
@@ -27,6 +29,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
         ),
         SimpleDialogOption(
           onPressed: () {
+            ref.watch(alarmPlayerProvider).stop();
             _extendSession(const Duration(minutes: 15));
             _closeDialog();
           },
@@ -34,6 +37,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
         ),
         SimpleDialogOption(
           onPressed: () {
+            ref.watch(alarmPlayerProvider).stop();
             _extendSession(const Duration(minutes: 30));
             _closeDialog();
           },

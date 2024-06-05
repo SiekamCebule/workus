@@ -114,7 +114,7 @@ void main() {
       );
 
       userController.start(timingConfiguration: timingConfiguration);
-      statsBroadcaster.sessionShortBreakStarts.listen((_) {
+      statsBroadcaster.shortBreaks.listen((_) {
         Future.delayed(const Duration(seconds: 2), () {
           userController.endShortBreak();
         });
@@ -147,7 +147,7 @@ void main() {
         shortBreaksInterval: Duration(seconds: 4),
       );
       userController.start(timingConfiguration: timingConfiguration);
-      statsBroadcaster.sessionShortBreakStarts.listen((_) {
+      statsBroadcaster.shortBreaks.listen((_) {
         Future.delayed(const Duration(seconds: 3), () {
           userController.endShortBreak();
         });
@@ -239,7 +239,7 @@ void main() {
         shortBreaksInterval: Duration(seconds: 3),
       );
       userController.start(timingConfiguration: timingConfiguration);
-      statsBroadcaster.sessionShortBreakStarts.listen((_) {
+      statsBroadcaster.shortBreaks.listen((_) {
         userController.endShortBreak();
       });
 
