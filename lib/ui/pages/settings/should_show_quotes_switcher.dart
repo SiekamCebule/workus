@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/providers/configuration/saving.dart';
 import 'package:workus/providers/configuration/settings.dart';
 
 class ShouldShowQuotesSwitcher extends ConsumerWidget {
@@ -13,9 +14,9 @@ class ShouldShowQuotesSwitcher extends ConsumerWidget {
       value: showQuotes,
       onChanged: (selected) {
         ref.watch(shouldShowQuotesProvider.notifier).state = !showQuotes;
+        saveSettings(ref);
       },
-      title: const Text('Cytaty'),
-      subtitle: const Text('Czy pokazywać motywujące cytaty w trakcie sesji?'),
+      title: const Text('Pokazuj cytaty'),
       secondary: const Icon(Icons.format_quote_rounded),
     );
   }

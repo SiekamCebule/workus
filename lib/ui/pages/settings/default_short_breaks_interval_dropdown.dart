@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:workus/providers/configuration/saving.dart';
 import 'package:workus/providers/configuration/settings.dart';
+import 'package:workus/providers/constants/constraints.dart';
 
 class DefaultShortBreaksIntervalDropdown extends ConsumerStatefulWidget {
   const DefaultShortBreaksIntervalDropdown({super.key});
@@ -16,10 +18,7 @@ class _DefaultShortBreaksIntervalDropdownState
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text('Odstęp pomiędzy przerwami'),
-      subtitle: const Text(
-        'Jaki ma być domyślny odstęp pomiędzy przerwami na starcie aplikacji?',
-      ),
+      title: const Text('Domyślny odstęp pomiędzy przerwami'),
       leading: const Icon(
         Symbols.hourglass_rounded,
       ),
@@ -28,34 +27,19 @@ class _DefaultShortBreaksIntervalDropdownState
         initialSelection: ref.watch(defaultShortBreaksIntervalProvider),
         onSelected: (value) {
           ref.watch(defaultShortBreaksIntervalProvider.notifier).state = value!;
+          saveSettings(ref);
         },
-        dropdownMenuEntries: const [
-          DropdownMenuEntry(
-            value: Duration(minutes: 10),
-            label: '10 minut',
-          ),
-          DropdownMenuEntry(
-            value: Duration(minutes: 15),
-            label: '15 minut',
-          ),
-          DropdownMenuEntry(
-            value: Duration(minutes: 20),
-            label: '20 minut',
-          ),
-          DropdownMenuEntry(
-            value: Duration(minutes: 25),
-            label: '25 minut',
-          ),
-          DropdownMenuEntry(
-            value: Duration(minutes: 30),
-            label: '30 minut',
-          ),
-          DropdownMenuEntry(
-            value: Duration(minutes: 40),
-            label: '40 minut',
-          ),
-        ],
+        dropdownMenuEntries: _buildEntries(),
       ),
     );
+  }
+
+  List<DropdownMenuEntry<Duration>> _buildEntries() {
+    return defaultShortBreaksIntervalChoices.map((interval) {
+      return DropdownMenuEntry(
+        value: interval,
+        label: '${interval.inMinutes} minut',
+      );
+    }).toList();
   }
 }

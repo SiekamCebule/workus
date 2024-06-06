@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:workus/providers/configuration/saving.dart';
 import 'package:workus/providers/configuration/settings.dart';
 
 class ShouldShowIncompletedTasksWarningsSwitcher extends ConsumerWidget {
@@ -14,11 +15,9 @@ class ShouldShowIncompletedTasksWarningsSwitcher extends ConsumerWidget {
       value: showWarnings,
       onChanged: (selected) {
         ref.watch(shouldShowIncompletedTasksWarnings.notifier).state = !showWarnings;
+        saveSettings(ref);
       },
-      title: const Text('Niewykonane zadania'),
-      subtitle: const Text(
-        'Czy ostrzegać o niewykonanych zadaniach?',
-      ),
+      title: const Text('Ostrzegaj o niewykonanych zadaniach'),
       secondary: const Icon(Symbols.warning_rounded),
     );
   }

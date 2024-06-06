@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/alarm_sound.dart';
+import 'package:workus/providers/configuration/saving.dart';
 import 'package:workus/providers/configuration/settings.dart';
 import 'package:workus/providers/constants/predefined_alarm_sounds.dart';
 import 'package:workus/ui/reusable/building_dropdowns.dart';
@@ -14,8 +15,7 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
       children: [
         const Expanded(
           child: ListTile(
-            title: Text('Alarm w trakcie przerwy'),
-            subtitle: Text('Jaki dźwięk ma się odtwarzać przy rozpoczęciu przerwy?'),
+            title: Text('Alarm przerwy'),
             leading: Icon(Icons.alarm),
           ),
         ),
@@ -23,6 +23,7 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
           initialSelection: ref.watch(shortBreakAlarmSoundProvider),
           onSelected: (sound) {
             ref.watch(shortBreakAlarmSoundProvider.notifier).state = sound!;
+            saveSettings(ref);
           },
           dropdownMenuEntries: buildAlarmSoundDropdownMenuEntries(
             ref.watch(predefinedAlarmSoundsProvider).toList(),

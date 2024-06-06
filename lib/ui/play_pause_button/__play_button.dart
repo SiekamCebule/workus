@@ -80,7 +80,7 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
         );*/
     ref.watch(userSessionControllerProvider).start(
           timingConfiguration: const SessionTimingConfiguration(
-            totalDuration: Duration(seconds: 20),
+            totalDuration: Duration(seconds: 10),
             shortBreaksInterval: null,
           ),
         );
