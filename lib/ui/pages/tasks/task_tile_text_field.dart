@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
-import 'package:workus/providers/tasks_management/tasks.dart';
+import 'package:workus/app_state/tasks_management/tasks.dart';
 
 class TaskTileTextField extends ConsumerStatefulWidget {
   const TaskTileTextField({
@@ -20,14 +20,14 @@ class _TaskTileTextFieldState extends ConsumerState<TaskTileTextField> {
 
   @override
   void initState() {
-    updateTextInField();
+    _updateTextInField();
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant TaskTileTextField oldWidget) {
     if (oldWidget.task != widget.task) {
-      updateTextInField();
+      _updateTextInField();
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -42,18 +42,25 @@ class _TaskTileTextFieldState extends ConsumerState<TaskTileTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      onChanged: (newText) {
-        final type = widget.task.type;
-        final provider = obtainTasksProviderByType(type);
-        ref.read(provider.notifier).update(
-              widget.task,
-              widget.task.copyWith(title: newText),
-            );
+      onSubmitted: (value) {
+        _submitTask();
+      },
+      onTapOutside: (event) {
+        _submitTask();
       },
     );
   }
 
-  void updateTextInField() {
+  void _submitTask() {
+    final type = widget.task.type;
+    final provider = obtainTasksProviderByType(type);
+    ref.read(provider.notifier).update(
+          widget.task,
+          widget.task.copyWith(title: controller.text),
+        );
+  }
+
+  void _updateTextInField() {
     controller.text = widget.task.title;
   }
 }

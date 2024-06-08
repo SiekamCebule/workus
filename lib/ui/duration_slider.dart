@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class DurationSlider extends StatefulWidget {
   const DurationSlider({
     super.key,
-    required this.onChanged,
+    this.onChanged,
+    this.onSlideEnd,
     required this.initialMinutes,
     this.minMinutes = 0,
     required this.maxMinutes,
     required this.interval,
   });
 
-  final void Function(Duration) onChanged;
+  final void Function(Duration)? onChanged;
+  final void Function(Duration)? onSlideEnd;
   final int initialMinutes;
   final int minMinutes;
   final int maxMinutes;
@@ -31,8 +33,7 @@ class _DurationSliderState extends State<DurationSlider> {
 
   @override
   Widget build(BuildContext context) {
-    bool divisable =
-        (widget.maxMinutes - widget.minMinutes) % widget.interval == 0;
+    bool divisable = (widget.maxMinutes - widget.minMinutes) % widget.interval == 0;
     if (!divisable) {
       throw Exception(
         'You have to provide a interval which allows to divide the range perfectly, so the (max - min) % interval must be equal to 0',
@@ -45,7 +46,10 @@ class _DurationSliderState extends State<DurationSlider> {
         setState(() {
           minutes = value.round();
         });
-        widget.onChanged(Duration(minutes: minutes));
+        widget.onChanged?.call(Duration(minutes: minutes));
+      },
+      onChangeEnd: (value) {
+        widget.onSlideEnd?.call(Duration(minutes: value.round()));
       },
       min: widget.minMinutes.toDouble(),
       max: widget.maxMinutes.toDouble(),

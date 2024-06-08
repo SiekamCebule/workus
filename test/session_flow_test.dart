@@ -55,7 +55,7 @@ void main() {
     test('simple_lapse', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 6),
+        sessionDuration: Duration(seconds: 6),
         shortBreaksInterval: Duration.zero,
       );
 
@@ -67,7 +67,7 @@ void main() {
     test('timer\'s properties', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 8),
+        sessionDuration: Duration(seconds: 8),
         shortBreaksInterval: Duration(seconds: 6),
       );
 
@@ -84,7 +84,7 @@ void main() {
     test('lapse with pause and resume', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 10),
+        sessionDuration: Duration(seconds: 10),
         shortBreaksInterval: Duration.zero,
       );
 
@@ -109,7 +109,7 @@ void main() {
     test('lapse with short breaks', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 10),
+        sessionDuration: Duration(seconds: 10),
         shortBreaksInterval: Duration(seconds: 5),
       );
 
@@ -127,7 +127,7 @@ void main() {
     test('lapse with cancelling', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 7),
+        sessionDuration: Duration(seconds: 7),
         shortBreaksInterval: Duration(seconds: 5),
       );
       userController.start(timingConfiguration: timingConfiguration);
@@ -143,7 +143,7 @@ void main() {
     test('lapse with short breaks, pauses, and resumes', () async {
       stopwatch.start();
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 10),
+        sessionDuration: Duration(seconds: 10),
         shortBreaksInterval: Duration(seconds: 4),
       );
       userController.start(timingConfiguration: timingConfiguration);
@@ -173,7 +173,7 @@ void main() {
   group('SessionStatsBroadcaster', () {
     test('streaming: remaining time', () async {
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 6),
+        sessionDuration: Duration(seconds: 6),
         shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
@@ -189,7 +189,7 @@ void main() {
 
     test('streaming: elapsed time', () async {
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 6),
+        sessionDuration: Duration(seconds: 6),
         shortBreaksInterval: Duration.zero,
       );
       userController.start(timingConfiguration: timingConfiguration);
@@ -205,7 +205,7 @@ void main() {
 
     test('streaming: work session status', () async {
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 10),
+        sessionDuration: Duration(seconds: 10),
         shortBreaksInterval: Duration(seconds: 6),
       );
       userController.start(timingConfiguration: timingConfiguration);
@@ -235,7 +235,7 @@ void main() {
 
     test('streaming: time to short break', () async {
       timingConfiguration = const SessionTimingConfiguration(
-        totalDuration: Duration(seconds: 6),
+        sessionDuration: Duration(seconds: 6),
         shortBreaksInterval: Duration(seconds: 3),
       );
       userController.start(timingConfiguration: timingConfiguration);

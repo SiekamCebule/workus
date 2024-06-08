@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/selected_page.dart';
+import 'package:workus/app_state/selected_page.dart';
 
 class SlideoutForPage extends ConsumerStatefulWidget {
   const SlideoutForPage({

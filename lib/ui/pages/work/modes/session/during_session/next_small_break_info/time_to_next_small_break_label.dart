@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
+import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
 
 class TimeToNextSmallBreakLabel extends ConsumerWidget {

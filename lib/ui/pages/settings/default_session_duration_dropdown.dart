@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:workus/providers/configuration/saving.dart';
-import 'package:workus/providers/configuration/settings.dart';
-import 'package:workus/providers/configuration/work_configuration.dart';
-import 'package:workus/providers/constants/constraints.dart';
+import 'package:workus/app_state/configuration/saving.dart';
+import 'package:workus/app_state/configuration/settings.dart';
+import 'package:workus/app_state/constants/dropdown_choices.dart';
 
 class DefaultSessionDurationDropdown extends ConsumerStatefulWidget {
   const DefaultSessionDurationDropdown({super.key});
@@ -25,6 +24,7 @@ class _DefaultSessionDurationDropdownState
         Symbols.hourglass_rounded,
       ),
       trailing: DropdownMenu(
+        requestFocusOnTap: false,
         initialSelection: ref.watch(defaultSessionDurationProvider),
         onSelected: (value) {
           ref.watch(defaultSessionDurationProvider.notifier).state = value!;

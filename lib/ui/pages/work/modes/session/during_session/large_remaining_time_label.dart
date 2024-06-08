@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workus/providers/global_session_state/session_stats_broadcasting_module.dart';
+import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
 
 class LargeRemainingTimeLabel extends ConsumerWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/configuration/saving.dart';
-import 'package:workus/providers/configuration/settings.dart';
+import 'package:workus/app_state/configuration/saving.dart';
+import 'package:workus/app_state/configuration/settings.dart';
 
 class ShouldShowQuotesSwitcher extends ConsumerWidget {
   const ShouldShowQuotesSwitcher({super.key});

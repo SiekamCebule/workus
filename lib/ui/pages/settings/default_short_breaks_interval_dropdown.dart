@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:workus/providers/configuration/saving.dart';
-import 'package:workus/providers/configuration/settings.dart';
-import 'package:workus/providers/constants/constraints.dart';
+import 'package:workus/app_state/configuration/saving.dart';
+import 'package:workus/app_state/configuration/settings.dart';
+import 'package:workus/app_state/constants/dropdown_choices.dart';
 
 class DefaultShortBreaksIntervalDropdown extends ConsumerStatefulWidget {
   const DefaultShortBreaksIntervalDropdown({super.key});
@@ -24,6 +24,7 @@ class _DefaultShortBreaksIntervalDropdownState
       ),
       onTap: () {},
       trailing: DropdownMenu(
+        requestFocusOnTap: false,
         initialSelection: ref.watch(defaultShortBreaksIntervalProvider),
         onSelected: (value) {
           ref.watch(defaultShortBreaksIntervalProvider.notifier).state = value!;

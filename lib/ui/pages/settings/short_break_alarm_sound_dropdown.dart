@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/alarm_sound.dart';
-import 'package:workus/providers/configuration/saving.dart';
-import 'package:workus/providers/configuration/settings.dart';
-import 'package:workus/providers/constants/predefined_alarm_sounds.dart';
+import 'package:workus/app_state/configuration/saving.dart';
+import 'package:workus/app_state/configuration/settings.dart';
+import 'package:workus/app_state/constants/predefined_alarm_sounds.dart';
 import 'package:workus/ui/reusable/building_dropdowns.dart';
 
 class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
@@ -20,6 +20,7 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
           ),
         ),
         DropdownMenu<AlarmSound>(
+          requestFocusOnTap: false,
           initialSelection: ref.watch(shortBreakAlarmSoundProvider),
           onSelected: (sound) {
             ref.watch(shortBreakAlarmSoundProvider.notifier).state = sound!;

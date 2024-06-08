@@ -63,8 +63,8 @@ class SessionTimingController {
   }
 
   void _tryRunningEntireSessionTimer() {
-    if (_timingConfiguration.totalDuration != Duration.zero) {
-      _entireSessionTimer.run(_timingConfiguration.totalDuration);
+    if (_timingConfiguration.sessionDuration != Duration.zero) {
+      _entireSessionTimer.run(_timingConfiguration.sessionDuration);
     } else {
       throw StateError('The duration of a session must be a non-zero one');
     }

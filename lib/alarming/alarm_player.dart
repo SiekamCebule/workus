@@ -20,7 +20,7 @@ class AlarmPlayer {
     Duration? fadeDuration = const Duration(milliseconds: 3000),
   }) async {
     if (_alarmIsPlaying) {
-      stop();
+      stop(fadeDuration: null);
     }
     statusController.play();
     await _player.play(
@@ -36,17 +36,14 @@ class AlarmPlayer {
         },
       );
       await for (final volume in volumes) {
-        print('fade IN: $volume');
         await _player.setVolume(volume);
       }
     }
-    print('End playing');
   }
 
   Future<void> stop({
     Duration? fadeDuration = const Duration(milliseconds: 3000),
   }) async {
-    statusController.stop();
     if (fadeDuration != null) {
       final volumes = _fadeStreamer.startFading(
           fadeDuration: fadeDuration,
@@ -55,12 +52,11 @@ class AlarmPlayer {
           },
           reverse: true);
       await for (final volume in volumes) {
-        print('fade OUT: $volume');
         await _player.setVolume(volume);
       }
     }
-    print('STOP');
     await _player.stop();
+    statusController.stop();
   }
 
   Future<void> dispose() async {

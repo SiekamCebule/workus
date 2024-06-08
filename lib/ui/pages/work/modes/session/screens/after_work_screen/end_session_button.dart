@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/configuration/settings.dart';
-import 'package:workus/providers/global_session_state/alarm_playing_module.dart';
-import 'package:workus/providers/global_session_state/session_controlling_module.dart';
-import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
+import 'package:workus/app_state/configuration/settings.dart';
+import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
+import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
+import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/ui/pages/work/dialogs/incompleted_tasks_after_work_dialog.dart';
 
 class EndSessionButton extends ConsumerStatefulWidget {
@@ -31,7 +31,7 @@ class _SessionEndButtonState extends ConsumerState<EndSessionButton> {
   }
 
   bool get _shouldShowIncompletedTasksDialog {
-    return ref.read(shouldShowIncompletedTasksWarnings) &&
+    return ref.read(shouldShowIncompletedTasksWarningsProvider) &&
         ref.watch(taskAfterWorkStatusesProvider.notifier).incompletedTaskExists;
   }
 

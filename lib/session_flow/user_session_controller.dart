@@ -20,7 +20,12 @@ class UserSessionController {
 
   void start({required SessionTimingConfiguration timingConfiguration}) {
     _timingConfiguration = timingConfiguration;
-    timingController.start(timingConfiguration: timingConfiguration);
+    if (_timingConfiguration.sessionDuration ==
+        _timingConfiguration.shortBreaksInterval) {
+      _timingConfiguration =
+          _timingConfiguration.copyWith(shortBreaksInterval: null, assignNulls: true);
+    }
+    timingController.start(timingConfiguration: _timingConfiguration);
     statusController.start();
   }
 
@@ -44,7 +49,7 @@ class UserSessionController {
     statusController.end();
   }
 
-  void remindShortBreak({required Duration delay}) {
+  void delayShortBreak({required Duration delay}) {
     endShortBreak();
     timingController.startSmallBreakWithCustomInterval(interval: delay);
   }

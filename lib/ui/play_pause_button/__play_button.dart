@@ -45,7 +45,7 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
   }
 
   bool get _shouldShowIncompletedTasksDialog {
-    return ref.read(shouldShowIncompletedTasksWarnings) && _incompletedTaskExists;
+    return ref.read(shouldShowIncompletedTasksWarningsProvider) && _incompletedTaskExists;
   }
 
   bool get _incompletedTaskExists {
@@ -72,18 +72,18 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
   void _startFromBeginning() {
     _resetTasksBeforeWork();
     // TODO: Change it
-    /*ref.watch(userSessionControllerProvider).start(
+    ref.watch(userSessionControllerProvider).start(
           timingConfiguration: SessionTimingConfiguration(
-            totalDuration: ref.watch(sessionDurationProvider),
+            sessionDuration: ref.watch(sessionDurationProvider),
             shortBreaksInterval: ref.watch(shortBreaksIntervalProvider),
           ),
-        );*/
-    ref.watch(userSessionControllerProvider).start(
-          timingConfiguration: const SessionTimingConfiguration(
-            totalDuration: Duration(seconds: 10),
-            shortBreaksInterval: null,
-          ),
         );
+    /*ref.watch(userSessionControllerProvider).start(
+          timingConfiguration: const SessionTimingConfiguration(
+            sessionDuration: Duration(seconds: 10),
+            shortBreaksInterval: Duration(seconds: 10),
+          ),
+        );*/
   }
 
   void _resume() => ref.watch(userSessionControllerProvider).resume();

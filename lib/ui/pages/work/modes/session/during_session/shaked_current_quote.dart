@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/providers/quotes/current_quote.dart';
+import 'package:workus/app_state/quotes/current_quote.dart';
 import 'package:workus/ui/animations/shake_animation.dart';
 import 'package:workus/ui/pages/work/modes/session/during_session/quote_widget.dart';
 

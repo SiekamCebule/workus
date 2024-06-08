@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/selected_page.dart';
+import 'package:workus/app_state/selected_page.dart';
 import 'package:workus/ui/pages/work/modes/session/screens/after_work_screen/after_work_screen_app_bar.dart';
 import 'package:workus/ui/pages/work/modes/session/screens/after_work_screen/after_work_session_smile_emote_icon.dart';
 import 'package:workus/ui/pages/work/modes/session/screens/after_work_screen/end_session_button.dart';

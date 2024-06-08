@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/selected_tasks_type.dart';
+import 'package:workus/app_state/selected_tasks_type.dart';
 
 class TaskTypesSegmentedButton extends ConsumerStatefulWidget {
   const TaskTypesSegmentedButton({super.key});
@@ -11,8 +11,7 @@ class TaskTypesSegmentedButton extends ConsumerStatefulWidget {
       _TaskTypesSegmentedButtonState();
 }
 
-class _TaskTypesSegmentedButtonState
-    extends ConsumerState<TaskTypesSegmentedButton> {
+class _TaskTypesSegmentedButtonState extends ConsumerState<TaskTypesSegmentedButton> {
   @override
   Widget build(BuildContext context) {
     final selectedTaskType = ref.watch(selectedTaskTypeProvider);

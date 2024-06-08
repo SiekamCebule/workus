@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/constants/defaults.dart';
-import 'package:workus/providers/tasks_management/tasks.dart';
+import 'package:workus/app_state/constants/defaults.dart';
+import 'package:workus/app_state/tasks_management/tasks.dart';
 import 'package:workus/utils/uuid_gen.dart';
 
 class AddTaskButton extends ConsumerWidget {
@@ -25,8 +25,6 @@ class AddTaskButton extends ConsumerWidget {
   }
 
   void addTask(WidgetRef ref) {
-    debugPrint('adding the default task');
-    debugTasks(ref);
     final provider = obtainTasksProviderByType(taskType);
     final name = ref.read(defaultNewTaskName);
     ref.read(provider.notifier).add(Task(title: name, type: taskType, id: uuidV4()));

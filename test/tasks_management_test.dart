@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:workus/models/task.dart';
 import 'package:workus/models/task_type.dart';
-import 'package:workus/providers/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
-import 'package:workus/providers/tasks_management/tasks.dart';
+import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
+import 'package:workus/app_state/tasks_management/tasks.dart';
 
 @GenerateMocks([TaskStatusesNotifier])
 void main() {
