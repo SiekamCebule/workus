@@ -17,7 +17,7 @@ class AlarmPlayer {
   Future<void> play(
     AlarmSound sound, {
     double? volume,
-    Duration? fadeDuration = const Duration(milliseconds: 3000),
+    Duration? fadeDuration = const Duration(milliseconds: 1800),
   }) async {
     if (_alarmIsPlaying) {
       stop(fadeDuration: null);
@@ -42,7 +42,7 @@ class AlarmPlayer {
   }
 
   Future<void> stop({
-    Duration? fadeDuration = const Duration(milliseconds: 3000),
+    Duration? fadeDuration = const Duration(milliseconds: 1800),
   }) async {
     if (fadeDuration != null) {
       final volumes = _fadeStreamer.startFading(

@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/app_state/selected_page.dart';
-import 'package:workus/ui/pages/work/modes/before_session/short_breaks_interval_slider.dart';
-import 'package:workus/ui/pages/work/modes/before_session/short_break_interval_title/short_break_interval_title.dart';
-import 'package:workus/ui/pages/work/modes/before_session/session_duration_slider.dart';
-import 'package:workus/ui/pages/work/modes/before_session/session_duration_title.dart';
-import 'package:workus/ui/pages/work/tasks_to_complete.dart';
-import 'package:workus/ui/play_pause_button/play_pause_button.dart';
+import 'package:workus/ui/layouts/before_session/widgets/before_session_screen_app_bar.dart';
+import 'package:workus/ui/layouts/before_session/widgets/session_timing_configurator.dart';
+import 'package:workus/ui/reusable/tasks_to_complete.dart';
+import 'package:workus/ui/layouts/dynamic_work_screen/play_pause_button/play_pause_button.dart';
 import 'package:workus/ui/reusable/slideout_for_page.dart';
 
-class SmallBeforeSessionScreen extends ConsumerWidget {
+class SmallBeforeSessionScreen extends StatelessWidget {
   const SmallBeforeSessionScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Przed sesją'),
-      ),
-      body: const Center(
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      appBar: BeforeSessionScreenAppBar(),
+      body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,11 +22,7 @@ class SmallBeforeSessionScreen extends ConsumerWidget {
             Spacer(),
             PlayPauseButton(),
             Spacer(),
-            SessionDurationTitle(),
-            SessionDurationSlider(),
-            Gap(5),
-            ShortBreaksIntervalTitle(),
-            ShortBreaksIntervalSlider(),
+            SessionTimingConfigurator(),
             Spacer(),
             SlideoutForPage(
               page: AppPage.work,

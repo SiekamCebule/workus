@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/page_controller.dart';
 import 'package:workus/app_state/selected_page.dart';
-import 'package:workus/ui/pages/settings/settings_page.dart';
-import 'package:workus/ui/pages/tasks/tasks_page.dart';
-import 'package:workus/ui/pages/work/work_page.dart';
+import 'package:workus/ui/layouts/settings/adaptive_settings_screen.dart';
+import 'package:workus/ui/layouts/tasks/adaptive_tasks_screen.dart';
+import 'package:workus/ui/layouts/dynamic_work_screen/dynamic_work_screen.dart';
 
 class MainPageView extends ConsumerStatefulWidget {
   const MainPageView({super.key});
@@ -24,9 +24,9 @@ class _MainPageViewState extends ConsumerState<MainPageView> {
         ref.read(selectedPageProvider.notifier).state = AppPage.fromIndex(index);
       },
       children: const [
-        TasksPage(),
-        WorkPage(),
-        SettingsPage(),
+        AdaptiveTasksScreen(),
+        DynamicWorkScreen(),
+        AdaptiveSettingsScreen(),
       ],
     );
   }

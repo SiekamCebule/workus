@@ -17,7 +17,7 @@ final sessionTimingConfigurationProvider = Provider((ref) {
   );
 });
 
-final smallBreaksAreEnabledProvider = Provider((ref) {
+final smallBreaksAreEnabledProvider = StateProvider((ref) {
   final shortBreaksInterval = ref.watch(shortBreaksIntervalProvider);
   final sessionDuration = ref.watch(sessionDurationProvider);
   if (sessionDuration == shortBreaksInterval) {

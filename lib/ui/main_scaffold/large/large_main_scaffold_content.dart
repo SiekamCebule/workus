@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/selected_page.dart';
-import 'package:workus/ui/pages/settings/settings_page.dart';
-import 'package:workus/ui/pages/tasks/tasks_page.dart';
-import 'package:workus/ui/pages/work/work_page.dart';
+import 'package:workus/ui/layouts/settings/adaptive_settings_screen.dart';
+import 'package:workus/ui/layouts/tasks/adaptive_tasks_screen.dart';
+import 'package:workus/ui/layouts/dynamic_work_screen/dynamic_work_screen.dart';
 
 class LargeMainScaffoldContent extends ConsumerWidget {
   const LargeMainScaffoldContent({super.key});
@@ -12,9 +12,9 @@ class LargeMainScaffoldContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPage = ref.watch(selectedPageProvider);
     final pageWidget = switch (selectedPage) {
-      AppPage.tasks => const TasksPage(),
-      AppPage.work => const WorkPage(),
-      AppPage.settings => const SettingsPage(),
+      AppPage.tasks => const AdaptiveTasksScreen(),
+      AppPage.work => const DynamicWorkScreen(),
+      AppPage.settings => const AdaptiveSettingsScreen(),
     };
     return AnimatedSwitcher(
       duration: Durations.short2,

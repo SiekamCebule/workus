@@ -123,4 +123,8 @@ class SessionTimingController {
     }
     return null;
   }
+
+  bool get nextSmallBreakCanBeAwaited {
+    return remainingSessionTime > (timeToShortBreak ?? Duration.zero);
+  }
 }

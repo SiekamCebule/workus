@@ -28,7 +28,8 @@ class QuotesNotifier extends AsyncNotifier<Set<Quote>> {
     state = await AsyncValue.guard(() async {
       final quotesToAdd = await asyncQuotes;
       final currentQuotes = state.value ?? <Quote>{};
-      return currentQuotes.union(quotesToAdd);
+      final unioned = currentQuotes.union(quotesToAdd);
+      return unioned;
     });
   }
 

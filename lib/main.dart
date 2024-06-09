@@ -8,9 +8,12 @@ import 'package:workus/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await windowManager.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    WindowManager.instance.setMaximumSize(const Size(1350, 900));
+    await windowManager.ensureInitialized();
+    WindowManager.instance.setMinimizable(true);
+    WindowManager.instance.setMaximizable(false);
+    WindowManager.instance.setFullScreen(false);
+    WindowManager.instance.setMaximumSize(const Size(1100, 800));
   }
 
   runApp(const ProviderScope(child: App()));

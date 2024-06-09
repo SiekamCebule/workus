@@ -39,26 +39,23 @@ class _AppInitializer {
   }
 
   Future<void> initializeQuotes() async {
-    final loadQuotesFromJson = [
-      _ref
-          .read(buddhistQuotesProvider.notifier)
-          .loadFromJson('assets/quotes/buddhist.json'),
-      _ref
-          .read(humorousQuotesProvider.notifier)
-          .loadFromJson('assets/quotes/humorous.json'),
-      _ref.read(ironicQuotesProvider.notifier).loadFromJson('assets/quotes/ironic.json'),
-      _ref
-          .read(motivatingQuotesProvider.notifier)
-          .loadFromJson('assets/quotes/motivating.json'),
-    ];
-    await Future.wait(loadQuotesFromJson);
-    final initializeQuotesProvider = [
-      _ref.read(quotesProvider.notifier).addAllFromProvider(buddhistQuotesProvider),
-      _ref.read(quotesProvider.notifier).addAllFromProvider(ironicQuotesProvider),
-      _ref.read(quotesProvider.notifier).addAllFromProvider(humorousQuotesProvider),
-      _ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider),
-    ];
-    await Future.wait(initializeQuotesProvider);
+    await _ref
+        .read(buddhistQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/buddhist.json');
+    await _ref
+        .read(humorousQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/humorous.json');
+    await _ref
+        .read(ironicQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/ironic.json');
+    await _ref
+        .read(motivatingQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/motivating.json');
+
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(buddhistQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(ironicQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(humorousQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider);
   }
 
   void initializeTasksBeforeWork() {
