@@ -32,11 +32,12 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return switch (LayoutType.fromWidth(constraints.maxWidth)) {
+        return const SmallMainScaffold();
+        /*return switch (LayoutType.fromConstraints(constraints)) {
           LayoutType.small => const SmallMainScaffold(),
           LayoutType.medium => const SmallMainScaffold(),
           LayoutType.large => const LargeMainScaffold(),
-        };
+        };*/
       },
     );
   }

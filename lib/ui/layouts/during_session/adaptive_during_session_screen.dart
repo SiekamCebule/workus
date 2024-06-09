@@ -63,7 +63,8 @@ class _AdaptiveDuringSessionScreenState
   }
 
   Widget _appropiatePlayPauseButton(BoxConstraints constraints) {
-    return LayoutType.fromWidth(constraints.maxWidth) == LayoutType.medium
+    final type = LayoutType.fromConstraints(constraints);
+    return type == LayoutType.horizontalTablet || type == LayoutType.verticalTablet
         ? const PlayPauseButtonForTablets()
         : const PlayPauseButton();
   }

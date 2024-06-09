@@ -16,7 +16,7 @@ class AdaptiveSettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final layoutType = LayoutType.fromWidth(constraints.maxWidth);
+        final layoutType = LayoutType.fromConstraints(constraints);
         return Scaffold(
           appBar: AppBar(
             title: const Text('Ustawienia'),
@@ -27,7 +27,7 @@ class AdaptiveSettingsScreen extends StatelessWidget {
                 const Gap(5),
                 const ShouldShowIncompletedTasksWarningsSwitcher(),
                 const ShouldShowQuotesSwitcher(),
-                if (layoutType case LayoutType.large)
+                if (layoutType case LayoutType.desktop)
                   const ShouldExtendNavigationRailSwitcher(),
                 const Divider(),
                 const DefaultSessionDurationDropdown(),
