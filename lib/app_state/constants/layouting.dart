@@ -15,12 +15,30 @@ enum LayoutType {
       return LayoutType.verticalPhone;
     } else if (width < 900 && height < 470) {
       return LayoutType.horizontalPhone;
-    } else if (width < 1400 && height < 900) {
+    } else if (width < 900 && height < 1400) {
       return LayoutType.verticalTablet;
-    } else if (width < 90 && height < 1400) {
+    } else if (width < 1400 && height < 900) {
       return LayoutType.horizontalTablet;
     } else {
       return LayoutType.desktop;
     }
+  }
+}
+
+bool shouldShowNavigationRail(LayoutType type) {
+  if (type == LayoutType.horizontalTablet ||
+      type == LayoutType.horizontalPhone ||
+      type == LayoutType.desktop) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool shouldShowLargePlayPauseButton(LayoutType type) {
+  if (type case LayoutType.horizontalTablet || LayoutType.verticalTablet) {
+    return true;
+  } else {
+    return false;
   }
 }

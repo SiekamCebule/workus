@@ -9,7 +9,7 @@ class _VerticalTablet extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Spacer(),
-        PlayPauseButtonForTablets(),
+        LargePlayPauseButton(),
         Spacer(),
         SessionTimingConfigurator(),
         Spacer(),

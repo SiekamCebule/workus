@@ -13,7 +13,7 @@ void main() async {
     WindowManager.instance.setMinimizable(true);
     WindowManager.instance.setMaximizable(false);
     WindowManager.instance.setFullScreen(false);
-    WindowManager.instance.setMaximumSize(const Size(1100, 800));
+    WindowManager.instance.setMaximumSize(const Size(1150, 850));
   }
 
   runApp(const ProviderScope(child: App()));

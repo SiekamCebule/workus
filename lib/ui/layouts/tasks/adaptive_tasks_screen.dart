@@ -16,7 +16,7 @@ class AdaptiveTasksScreen extends StatelessWidget {
       builder: (context, constraints) {
         final content = switch (LayoutType.fromConstraints(constraints)) {
           _ => ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+              constraints: const BoxConstraints(maxWidth: 500),
               child: const _Universal(),
             ),
         };

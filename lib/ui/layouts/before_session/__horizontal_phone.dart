@@ -39,8 +39,8 @@ class _TasksToCompleteWidget extends StatelessWidget {
           child: OverflowBox(
             maxHeight: double.infinity,
             child: TasksToComplete(
-              topPadding: 6,
-              bottomPadding: 6,
+              topPadding: 20,
+              bottomPadding: 20,
               tasksType: TaskType.beforeSession,
             ),
           ),

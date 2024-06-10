@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/constants/navigation.dart';
+import 'package:workus/app_state/constants/platform.dart';
 import 'package:workus/app_state/selected_page.dart';
 
 class MainScaffoldNavigationRail extends ConsumerStatefulWidget {
@@ -13,24 +14,23 @@ class MainScaffoldNavigationRail extends ConsumerStatefulWidget {
 }
 
 class _MainScaffoldNavigationRailState extends ConsumerState<MainScaffoldNavigationRail> {
-  bool _extended = false;
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
-    final shouldExtendNavigationRail = ref.watch(shouldExtendNavigationRailProvider);
     return MouseRegion(
       onEnter: (event) {
         setState(() {
-          _extended = true;
+          _hovered = true;
         });
       },
       onExit: (event) {
         setState(() {
-          _extended = false;
+          _hovered = false;
         });
       },
       child: NavigationRail(
-        extended: shouldExtendNavigationRail ? _extended : false,
+        extended: _railShouldBeExtended,
         minExtendedWidth: 160,
         backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
         indicatorColor: Theme.of(context).colorScheme.secondaryContainer,
@@ -42,5 +42,18 @@ class _MainScaffoldNavigationRailState extends ConsumerState<MainScaffoldNavigat
         },
       ),
     );
+  }
+
+  bool get _railShouldBeExtended {
+    final enableExtendEffect = ref.watch(enableNavigationRailExtendEffectProvider);
+    final extendRail = ref.watch(extendNavigationRailProvider);
+
+    if (platformIsDesktop && enableExtendEffect) {
+      return _hovered;
+    } else if (!platformIsDesktop && extendRail) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

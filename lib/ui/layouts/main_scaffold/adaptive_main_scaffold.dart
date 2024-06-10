@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/constants/layouting.dart';
 import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
 import 'package:workus/app_state/initialize.dart';
-import 'package:workus/ui/layouts/main_scaffold/large_main_scaffold.dart';
-import 'package:workus/ui/layouts/main_scaffold/small_main_scaffold.dart';
+import 'package:workus/ui/layouts/main_scaffold/navigation_rail_scaffold.dart';
+import 'package:workus/ui/layouts/main_scaffold/page_view_scaffold.dart';
 
 class AdaptiveMainScaffold extends ConsumerStatefulWidget {
   const AdaptiveMainScaffold({super.key});
@@ -32,12 +32,15 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return const SmallMainScaffold();
-        /*return switch (LayoutType.fromConstraints(constraints)) {
-          LayoutType.small => const SmallMainScaffold(),
-          LayoutType.medium => const SmallMainScaffold(),
-          LayoutType.large => const LargeMainScaffold(),
-        };*/
+        return switch (LayoutType.fromConstraints(constraints)) {
+          LayoutType.verticalPhone ||
+          LayoutType.verticalTablet =>
+            const PageViewScaffold(),
+          LayoutType.horizontalPhone ||
+          LayoutType.horizontalTablet ||
+          LayoutType.desktop =>
+            const NavigationRailScaffold(),
+        };
       },
     );
   }

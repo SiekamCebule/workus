@@ -4,21 +4,20 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 
-class ShouldExtendNavigationRailSwitcher extends ConsumerWidget {
-  const ShouldExtendNavigationRailSwitcher({super.key});
+class ExtendNavigationRailSwitcher extends ConsumerWidget {
+  const ExtendNavigationRailSwitcher({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final extendNavigationRail = ref.watch(shouldExtendNavigationRailProvider);
+    final extendNavigationRail = ref.watch(extendNavigationRailProvider);
 
     return SwitchListTile(
       value: extendNavigationRail,
       onChanged: (selected) {
-        ref.watch(shouldExtendNavigationRailProvider.notifier).state =
-            !extendNavigationRail;
+        ref.watch(extendNavigationRailProvider.notifier).state = !extendNavigationRail;
         saveSettings(ref);
       },
-      title: const Text('Efekt rozwijania nawigacji'),
+      title: const Text('Rozwiń nawigację'),
       secondary: const Icon(Symbols.visibility),
     );
   }

@@ -1,7 +1,7 @@
 part of 'adaptive_before_session_screen.dart';
 
-class _Desktop extends StatelessWidget {
-  const _Desktop();
+class _LargeHorizontal extends StatelessWidget {
+  const _LargeHorizontal();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _Desktop extends StatelessWidget {
             Spacer(
               flex: 1,
             ),
-            PlayPauseButton(),
+            LargePlayPauseButton(),
             Spacer(
               flex: 2,
             ),

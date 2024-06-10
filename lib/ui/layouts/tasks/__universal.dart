@@ -5,21 +5,17 @@ class _Universal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: IntrinsicHeight(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Spacer(flex: 1),
-            TaskTypesSegmentedButton(),
-            Gap(15),
-            Expanded(
-              flex: 4,
-              child: TasksView(),
-            ),
-          ],
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Spacer(flex: 1),
+        TaskTypesSegmentedButton(),
+        Gap(15),
+        Expanded(
+          flex: 4,
+          child: TasksView(),
         ),
-      ),
+      ],
     );
   }
 }

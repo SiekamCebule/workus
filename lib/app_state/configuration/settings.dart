@@ -10,7 +10,8 @@ final shouldShowIncompletedTasksWarningsProvider = StateProvider<bool>(
   (ref) => true,
 );
 
-final shouldExtendNavigationRailProvider = StateProvider<bool>((ref) => false);
+final enableNavigationRailExtendEffectProvider = StateProvider<bool>((ref) => false);
+final extendNavigationRailProvider = StateProvider<bool>((ref) => false);
 
 final defaultSessionDurationProvider = StateProvider<Duration>(
   (ref) {

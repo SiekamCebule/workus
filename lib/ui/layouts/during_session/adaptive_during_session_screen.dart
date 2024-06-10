@@ -5,67 +5,31 @@ import 'package:workus/app_state/configuration/work_configuration.dart';
 import 'package:workus/app_state/constants/layouting.dart';
 import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
 import 'package:workus/app_state/selected_page.dart';
-import 'package:workus/ui/layouts/before_session/widgets/play_pause_button_for_tablets.dart';
+import 'package:workus/ui/layouts/before_session/widgets/large_play_pause_button.dart';
 import 'package:workus/ui/layouts/during_session/widgets/during_session_screen_app_bar.dart';
 import 'package:workus/ui/layouts/during_session/widgets/large_remaining_time_label.dart';
 import 'package:workus/ui/layouts/during_session/widgets/next_small_break_info/next_small_break_info_content.dart';
+import 'package:workus/ui/layouts/during_session/widgets/remaining_time_texts_column.dart';
 import 'package:workus/ui/layouts/during_session/widgets/shaked_current_quote.dart';
 import 'package:workus/ui/layouts/dynamic_work_screen/play_pause_button/play_pause_button.dart';
 import 'package:workus/ui/reusable/slideout_for_page.dart';
 
-class AdaptiveDuringSessionScreen extends ConsumerStatefulWidget {
+part '__horizontal_phone.dart';
+part '__except_horizontal_phone.dart';
+
+class AdaptiveDuringSessionScreen extends ConsumerWidget {
   const AdaptiveDuringSessionScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() {
-    return _AdaptiveDuringSessionScreenState();
-  }
-}
-
-class _AdaptiveDuringSessionScreenState
-    extends ConsumerState<AdaptiveDuringSessionScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final shouldShowQuotes = ref.watch(shouldShowQuotesProvider);
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Scaffold(
-          appBar: const DuringSessionScreenAppBar(),
-          body: Center(
-            child: Column(
-              children: [
-                const Spacer(),
-                const LargeRemainingTimeLabel(),
-                const Spacer(),
-                _appropiatePlayPauseButton(constraints),
-                const Spacer(),
-                if (shouldShowQuotes) const IntrinsicWidth(child: ShakedCurrentQuote()),
-                if (shouldShowQuotes) const Spacer(),
-                if (_shouldShowNextSmallBreakInfo)
-                  const SlideoutForPage(
-                    page: AppPage.work,
-                    child: NextSmallBreakInfoContent(),
-                  ),
-              ],
-            ),
-          ),
-        );
+        final layoutType = LayoutType.fromConstraints(constraints);
+        return switch (layoutType) {
+          LayoutType.horizontalPhone => const _HorizontalPhone(),
+          _ => const _ExceptHorizontalPhone(),
+        };
       },
     );
-  }
-
-  bool get _shouldShowNextSmallBreakInfo {
-    final smallBreaksAreEnabled = ref.watch(smallBreaksAreEnabledProvider);
-    final nextSmallBreakCanBeAwaited =
-        ref.watch(sessionTimingControllerProvider).nextSmallBreakCanBeAwaited;
-    return smallBreaksAreEnabled && nextSmallBreakCanBeAwaited;
-  }
-
-  Widget _appropiatePlayPauseButton(BoxConstraints constraints) {
-    final type = LayoutType.fromConstraints(constraints);
-    return type == LayoutType.horizontalTablet || type == LayoutType.verticalTablet
-        ? const PlayPauseButtonForTablets()
-        : const PlayPauseButton();
   }
 }
