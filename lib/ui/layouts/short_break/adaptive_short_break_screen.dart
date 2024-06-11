@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/app_state/selected_page.dart';
@@ -7,7 +6,7 @@ import 'package:workus/ui/layouts/short_break/widgets/end_short_break_button.dar
 import 'package:workus/ui/layouts/short_break/widgets/short_break_main_caption.dart';
 import 'package:workus/ui/layouts/short_break/widgets/delay_short_break_button.dart';
 import 'package:workus/ui/layouts/short_break/widgets/short_break_screen_app_bar.dart';
-import 'package:workus/ui/layouts/short_break/widgets/short_break_screen_calm_emote_icon.dart';
+import 'package:workus/ui/layouts/short_break/widgets/short_break_screen_timer_icon.dart';
 import 'package:workus/ui/reusable/tasks_to_complete.dart';
 import 'package:workus/ui/reusable/slideout_for_page.dart';
 
@@ -24,7 +23,7 @@ class AdaptiveShortBreakScreen extends StatelessWidget {
             Spacer(
               flex: 4,
             ),
-            ShortBreakScreenCalmEmoteIcon(),
+            ShortBreakScreenTimerIcon(),
             Gap(30),
             ShortBreakMainCaption(),
             Gap(30),

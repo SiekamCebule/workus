@@ -8,9 +8,9 @@ class SmallBreakTimerIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       Symbols.timer,
+      size: 50,
       weight: 300,
       color: Theme.of(context).colorScheme.primary,
-      size: 50,
     );
   }
 }

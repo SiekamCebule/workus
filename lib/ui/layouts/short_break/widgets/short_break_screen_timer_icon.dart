@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-class ShortBreakScreenCalmEmoteIcon extends StatelessWidget {
-  const ShortBreakScreenCalmEmoteIcon({super.key});
+class ShortBreakScreenTimerIcon extends StatelessWidget {
+  const ShortBreakScreenTimerIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Icon(
-      Symbols.sentiment_calm,
+      Symbols.timer,
       size: 100,
-      color: Theme.of(context).colorScheme.secondary,
+      weight: 300,
+      color: Theme.of(context).colorScheme.primary,
     );
   }
 }

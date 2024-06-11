@@ -14,6 +14,7 @@ class __HorizontalPhoneState extends ConsumerState<_HorizontalPhone> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        final layoutType = LayoutType.fromConstraints(constraints);
         return Scaffold(
           appBar: const DuringSessionScreenAppBar(),
           body: Column(
@@ -22,13 +23,31 @@ class __HorizontalPhoneState extends ConsumerState<_HorizontalPhone> {
                 child: Row(
                   children: [
                     const Spacer(),
-                    const RemainingTimeTextsColumn(),
+                    Expanded(
+                      flex: 6,
+                      child: Column(
+                        children: [
+                          const Spacer(
+                            flex: 5,
+                          ),
+                          RemainingTimeLabel(
+                            textStyle:
+                                textStyleForRemainingTimeLabel(layoutType, context),
+                          ),
+                          if (shouldShowQuotes)
+                            const Spacer(
+                              flex: 7,
+                            ),
+                          if (shouldShowQuotes) const ShakedCurrentQuote(),
+                          const Spacer(
+                            flex: 5,
+                          ),
+                        ],
+                      ),
+                    ),
                     const Spacer(),
                     const PlayPauseButton(),
                     const Spacer(),
-                    if (shouldShowQuotes)
-                      const IntrinsicWidth(child: ShakedCurrentQuote()),
-                    if (shouldShowQuotes) const Spacer(),
                   ],
                 ),
               ),

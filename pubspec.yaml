@@ -12,6 +12,7 @@ dependencies:
   flex_seed_scheme: ^1.5.0
   flutter:
     sdk: flutter
+  flutter_local_notifications: ^17.1.2
   flutter_ringtone_player: ^4.0.0+3
   flutter_riverpod: ^2.5.1
   gap: ^3.0.1

@@ -10,10 +10,9 @@ import 'package:workus/ui/layouts/dynamic_work_screen/play_pause_button/play_pau
 import 'package:workus/ui/reusable/slideout_for_page.dart';
 import 'package:workus/ui/reusable/tasks_to_complete.dart';
 
-part '__vertical_phone.dart';
 part '__horizontal_phone.dart';
-part '__vertical_tablet.dart';
 part '__large_horizontal.dart';
+part '__vertical.dart';
 
 class AdaptiveBeforeSessionScreen extends StatelessWidget {
   const AdaptiveBeforeSessionScreen({super.key});
@@ -23,10 +22,11 @@ class AdaptiveBeforeSessionScreen extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final content = switch (LayoutType.fromConstraints(constraints)) {
-          LayoutType.verticalPhone => const _VerticalPhone(),
+          LayoutType.verticalPhone => const _Vertical(),
           LayoutType.horizontalPhone => const _HorizontalPhone(),
-          LayoutType.verticalTablet => const _VerticalTablet(),
+          LayoutType.verticalTablet => const _Vertical(),
           LayoutType.horizontalTablet => const _LargeHorizontal(),
+          LayoutType.foldSquare => const _Vertical(),
           LayoutType.desktop => const _LargeHorizontal(),
         };
         return Scaffold(

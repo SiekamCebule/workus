@@ -14,6 +14,7 @@ class __ExceptHorizontalPhoneState extends ConsumerState<_ExceptHorizontalPhone>
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        final layoutType = LayoutType.fromConstraints(constraints);
         return Scaffold(
           appBar: const DuringSessionScreenAppBar(),
           body: Center(
@@ -25,7 +26,9 @@ class __ExceptHorizontalPhoneState extends ConsumerState<_ExceptHorizontalPhone>
                     child: Column(
                       children: [
                         const Spacer(),
-                        const LargeRemainingTimeLabel(),
+                        RemainingTimeLabel(
+                          textStyle: textStyleForRemainingTimeLabel(layoutType, context),
+                        ),
                         const Spacer(),
                         _appropiatePlayPauseButton(constraints),
                         const Spacer(),

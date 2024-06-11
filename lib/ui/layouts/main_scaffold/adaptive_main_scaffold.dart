@@ -32,10 +32,13 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return switch (LayoutType.fromConstraints(constraints)) {
+        final layoutType = LayoutType.fromConstraints(constraints);
+        print(layoutType);
+        return switch (layoutType) {
           LayoutType.verticalPhone ||
           LayoutType.verticalTablet =>
             const PageViewScaffold(),
+          LayoutType.foldSquare ||
           LayoutType.horizontalPhone ||
           LayoutType.horizontalTablet ||
           LayoutType.desktop =>

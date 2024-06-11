@@ -4,8 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
 
-class LargeRemainingTimeLabel extends ConsumerWidget {
-  const LargeRemainingTimeLabel({super.key});
+class RemainingTimeLabel extends ConsumerWidget {
+  const RemainingTimeLabel({
+    super.key,
+    required this.textStyle,
+  });
+
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +34,7 @@ class LargeRemainingTimeLabel extends ConsumerWidget {
             key: ValueKey(remainingTime),
             labelForDuration(remainingTime),
             style: GoogleFonts.roboto(
-              textStyle: Theme.of(context).textTheme.displaySmall,
+              textStyle: textStyle,
             ),
             textAlign: TextAlign.center,
           ),

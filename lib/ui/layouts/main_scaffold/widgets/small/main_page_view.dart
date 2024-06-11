@@ -17,6 +17,11 @@ class _MainPageViewState extends ConsumerState<MainPageView> {
   @override
   Widget build(BuildContext context) {
     final controller = ref.watch(pageControllerProvider);
+    Future.microtask(() {
+      final selected = ref.watch(selectedPageProvider);
+      controller.jumpToPage(selected.index);
+    });
+
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,

@@ -7,9 +7,8 @@ import 'package:workus/app_state/global_session_state/session_controlling_module
 import 'package:workus/app_state/selected_page.dart';
 import 'package:workus/ui/layouts/before_session/widgets/large_play_pause_button.dart';
 import 'package:workus/ui/layouts/during_session/widgets/during_session_screen_app_bar.dart';
-import 'package:workus/ui/layouts/during_session/widgets/large_remaining_time_label.dart';
+import 'package:workus/ui/layouts/during_session/widgets/remaining_time_label.dart';
 import 'package:workus/ui/layouts/during_session/widgets/next_small_break_info/next_small_break_info_content.dart';
-import 'package:workus/ui/layouts/during_session/widgets/remaining_time_texts_column.dart';
 import 'package:workus/ui/layouts/during_session/widgets/shaked_current_quote.dart';
 import 'package:workus/ui/layouts/dynamic_work_screen/play_pause_button/play_pause_button.dart';
 import 'package:workus/ui/reusable/slideout_for_page.dart';

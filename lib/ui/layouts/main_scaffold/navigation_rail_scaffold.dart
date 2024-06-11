@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:workus/ui/main_scaffold/large/large_main_scaffold_content.dart';
-import 'package:workus/ui/main_scaffold/large/main_scaffold_navigation_rail.dart';
+import 'package:workus/ui/layouts/main_scaffold/widgets/large/large_main_scaffold_content.dart';
+import 'package:workus/ui/layouts/main_scaffold/widgets/large/main_scaffold_navigation_rail.dart';
 
 class NavigationRailScaffold extends StatelessWidget {
   const NavigationRailScaffold({super.key});
