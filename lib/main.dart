@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:workus/app.dart';
-import 'package:workus/app_state/notifications.dart';
+import 'package:workus/app_state/notifications/notifications.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

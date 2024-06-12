@@ -1,6 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/configuration/default_session_timing_configuration_guard.dart';
 import 'package:workus/app_state/configuration/loading.dart';
+import 'package:workus/app_state/global_session_state/notificating_module.dart';
+import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
+import 'package:workus/app_state/notifications/notifications_sender.dart';
 import 'package:workus/app_state/quotes/quotes_provider.dart';
 import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/app_state/tasks_management/tasks.dart';
@@ -24,13 +27,14 @@ class _AppInitializer {
 
   Future<void> initialize(WidgetRef ref) async {
     _ref = ref;
-    initializeTasksBeforeWork();
-    initializeTasksDuringMiniBreak();
-    initializeTasksAfterWork();
-    await initializeQuotes();
+    _initializeTasksBeforeWork();
+    _initializeTasksDuringMiniBreak();
+    _initializeTasksAfterWork();
+    await _initializeQuotes();
     await loadSettings(_ref);
     defaultSessionTimingConfigurationGuard.run(_ref);
     _ref.read(appIsInitializedProvider.notifier).state = true;
+    setUpNotificationsSender();
   }
 
   Future<void> dispose() async {
@@ -38,7 +42,18 @@ class _AppInitializer {
     _ref.read(appIsInitializedProvider.notifier).state = false;
   }
 
-  Future<void> initializeQuotes() async {
+  void setUpNotificationsSender() {
+    final statsBroadcaster = _ref.read(sessionStatsBroadcasterProvider);
+    _ref
+        .read(notificationsSenderProvider)
+        .setUpForSessionEnds(statsBroadcaster.sessionEnds);
+    _ref
+        .read(notificationsSenderProvider)
+        .setUpForShortBreaks(statsBroadcaster.shortBreaks);
+    _ref.read(notificationsSenderProvider).setUpForTicks(statsBroadcaster.ticks);
+  }
+
+  Future<void> _initializeQuotes() async {
     await _ref
         .read(buddhistQuotesProvider.notifier)
         .loadFromJson('assets/quotes/buddhist.json');
@@ -58,7 +73,7 @@ class _AppInitializer {
     await _ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider);
   }
 
-  void initializeTasksBeforeWork() {
+  void _initializeTasksBeforeWork() {
     _ref.read(tasksBeforeWorkProvider.notifier).updateAll([
       Task(
         title: 'Zrobić 10 przysiadów',
@@ -76,7 +91,7 @@ class _AppInitializer {
         .fillWithNewTasks(_ref.read(tasksBeforeWorkProvider), completed: false);
   }
 
-  void initializeTasksDuringMiniBreak() {
+  void _initializeTasksDuringMiniBreak() {
     _ref.read(tasksDuringShortBreakProvider.notifier).updateAll([
       Task(
         title: 'Rozluźnić mięśnie oka',
@@ -89,7 +104,7 @@ class _AppInitializer {
         .fillWithNewTasks(_ref.read(tasksDuringShortBreakProvider), completed: false);
   }
 
-  void initializeTasksAfterWork() {
+  void _initializeTasksAfterWork() {
     _ref.read(tasksAfterWorkProvider.notifier).updateAll([
       Task(
         title: 'Uśmiechnąć się',

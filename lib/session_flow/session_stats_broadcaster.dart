@@ -18,6 +18,7 @@ class SessionStatsBroadcaster {
   final SessionTimingController timingController;
   final SessionStatusController statusController;
 
+  final _ticks = BehaviorSubject<void>();
   final _elapsedTimes = BehaviorSubject<Duration>();
   final _remainingTimes = BehaviorSubject<Duration>();
   final _timesToShortBreak = BehaviorSubject<Duration?>();
@@ -29,6 +30,7 @@ class SessionStatsBroadcaster {
     _addInitialValues();
 
     callbacksRegistrar.registerOnTick(() {
+      _ticks.add(null);
       _elapsedTimes.add(timingController.elapsedSessionTime);
       _remainingTimes.add(timingController.remainingSessionTime);
       _timesToShortBreak.add(timingController.timeToShortBreak);
@@ -60,6 +62,7 @@ class SessionStatsBroadcaster {
     _sessionStatuses.close();
   }
 
+  ValueStream<void> get ticks => _ticks.stream;
   ValueStream<Duration> get elapsedTimes => _elapsedTimes.stream;
   ValueStream<Duration> get remainingTimes => _remainingTimes.stream;
   ValueStream<Duration?> get timesToShortBreak => _timesToShortBreak.stream;
