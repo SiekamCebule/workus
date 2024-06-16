@@ -11,7 +11,6 @@ class LargeMainScaffoldContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPage = ref.watch(selectedPageProvider);
-    print('selected (large): $selectedPage');
     final pageWidget = switch (selectedPage) {
       AppPage.tasks => const AdaptiveTasksScreen(),
       AppPage.work => const DynamicWorkScreen(),

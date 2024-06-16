@@ -2,8 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/configuration/default_session_timing_configuration_guard.dart';
 import 'package:workus/app_state/configuration/loading.dart';
 import 'package:workus/app_state/global_session_state/notificating_module.dart';
-import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
-import 'package:workus/app_state/notifications/notifications_sender.dart';
+import 'package:workus/app_state/notifications/notification_responses_handling.dart';
 import 'package:workus/app_state/quotes/quotes_provider.dart';
 import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/app_state/tasks_management/tasks.dart';
@@ -34,43 +33,8 @@ class _AppInitializer {
     await loadSettings(_ref);
     defaultSessionTimingConfigurationGuard.run(_ref);
     _ref.read(appIsInitializedProvider.notifier).state = true;
-    setUpNotificationsSender();
-  }
-
-  Future<void> dispose() async {
-    defaultSessionTimingConfigurationGuard.stop();
-    _ref.read(appIsInitializedProvider.notifier).state = false;
-  }
-
-  void setUpNotificationsSender() {
-    final statsBroadcaster = _ref.read(sessionStatsBroadcasterProvider);
-    _ref
-        .read(notificationsSenderProvider)
-        .setUpForSessionEnds(statsBroadcaster.sessionEnds);
-    _ref
-        .read(notificationsSenderProvider)
-        .setUpForShortBreaks(statsBroadcaster.shortBreaks);
-    _ref.read(notificationsSenderProvider).setUpForTicks(statsBroadcaster.ticks);
-  }
-
-  Future<void> _initializeQuotes() async {
-    await _ref
-        .read(buddhistQuotesProvider.notifier)
-        .loadFromJson('assets/quotes/buddhist.json');
-    await _ref
-        .read(humorousQuotesProvider.notifier)
-        .loadFromJson('assets/quotes/humorous.json');
-    await _ref
-        .read(ironicQuotesProvider.notifier)
-        .loadFromJson('assets/quotes/ironic.json');
-    await _ref
-        .read(motivatingQuotesProvider.notifier)
-        .loadFromJson('assets/quotes/motivating.json');
-
-    await _ref.read(quotesProvider.notifier).addAllFromProvider(buddhistQuotesProvider);
-    await _ref.read(quotesProvider.notifier).addAllFromProvider(ironicQuotesProvider);
-    await _ref.read(quotesProvider.notifier).addAllFromProvider(humorousQuotesProvider);
-    await _ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider);
+    _setUpNotificationHandling();
+    _setUpNotificationsSender();
   }
 
   void _initializeTasksBeforeWork() {
@@ -120,6 +84,42 @@ class _AppInitializer {
     _ref
         .read(taskAfterWorkStatusesProvider.notifier)
         .fillWithNewTasks(_ref.read(tasksAfterWorkProvider), completed: false);
+  }
+
+  Future<void> _initializeQuotes() async {
+    await _ref
+        .read(buddhistQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/buddhist.json');
+    await _ref
+        .read(humorousQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/humorous.json');
+    await _ref
+        .read(ironicQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/ironic.json');
+    await _ref
+        .read(motivatingQuotesProvider.notifier)
+        .loadFromJson('assets/quotes/motivating.json');
+
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(buddhistQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(ironicQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(humorousQuotesProvider);
+    await _ref.read(quotesProvider.notifier).addAllFromProvider(motivatingQuotesProvider);
+  }
+
+  void _setUpNotificationHandling() {
+    notificationResponseCallbacksRegistrar.register((responseDetails) {
+      handleNotificationReponse(responseDetails, _ref);
+    });
+  }
+
+  void _setUpNotificationsSender() {
+    _ref.read(notificationsSenderProvider).setUp(_ref);
+  }
+
+  Future<void> dispose() async {
+    defaultSessionTimingConfigurationGuard.stop();
+    _ref.read(appIsInitializedProvider.notifier).state = false;
+    _ref.read(notificationsSenderProvider).tearDown();
   }
 
   bool get appIsInitialized => _ref.watch(appIsInitializedProvider);

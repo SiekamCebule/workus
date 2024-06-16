@@ -1,0 +1,28 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/generic/unary_callbacks_invoker.dart';
+import 'package:workus/generic/unary_callbacks_registrar.dart';
+import 'package:workus/session_flow/controlling.dart';
+
+final notificationResponseCallbacksRegistrar =
+    UnaryCallbacksRegistrar<NotificationResponse>();
+final notificationResponseCallbacksInvoker = UnaryCallbacksInvoker<NotificationResponse>(
+  registrar: notificationResponseCallbacksRegistrar,
+);
+
+void handleNotificationReponse(NotificationResponse details, WidgetRef ref) {
+  final actionId = details.actionId;
+
+  print('ACTION ID IS $actionId');
+
+  if (actionId != null) {
+    switch (actionId) {
+      case 'end_session':
+        endSession(ref);
+      case 'end_short_break':
+        endShortBreak(ref);
+      case 'cancel_session':
+        cancelSession(ref);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-class OnChangeCallbacksRegistrar<T> {
+class UnaryCallbacksRegistrar<T> {
   final _callbacks = <Function(T value)>[];
 
   void register(Function(T value) callback) {

@@ -1,10 +1,10 @@
 import 'package:workus/models/alarm_status.dart';
-import 'package:workus/generic/on_change_callbacks_invoker.dart';
+import 'package:workus/generic/unary_callbacks_invoker.dart';
 
 class AlarmStatusController {
   AlarmStatusController({required this.callbacksInvoker});
 
-  OnChangeCallbacksInvoker<AlarmStatus> callbacksInvoker;
+  UnaryCallbacksInvoker<AlarmStatus> callbacksInvoker;
   var _status = AlarmStatus.notPlaying;
 
   void play() {

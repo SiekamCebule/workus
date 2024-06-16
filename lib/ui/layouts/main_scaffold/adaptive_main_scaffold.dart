@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/constants/layouting.dart';
 import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
 import 'package:workus/app_state/initialize.dart';
+import 'package:workus/app_state/notifications/notifications.dart';
 import 'package:workus/ui/layouts/main_scaffold/navigation_rail_scaffold.dart';
 import 'package:workus/ui/layouts/main_scaffold/page_view_scaffold.dart';
 
@@ -18,6 +19,7 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
   void initState() {
     Future.microtask(() async {
       await initializeAppState(ref);
+      maybeRequestForNotificationsPermissions();
     });
     super.initState();
   }

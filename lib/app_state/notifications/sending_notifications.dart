@@ -1,16 +1,18 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:workus/app_state/notifications/notifications.dart';
+import 'package:workus/utils/labels.dart';
 
-Future<void> sendSessionEndNotification() async {
+Future<void> showSessionEndNotification() async {
   const androidDetails = AndroidNotificationDetails(
-    'channel id',
-    'channel name',
+    'session_end',
+    'Session end',
     importance: Importance.high,
     priority: Priority.high,
     actions: [
       AndroidNotificationAction(
         'end_session',
         'Zakończ sesję',
+        showsUserInterface: true,
       ),
     ],
   );
@@ -36,16 +38,17 @@ Future<void> sendSessionEndNotification() async {
   );
 }
 
-Future<void> sendShortBreakNotification() async {
+Future<void> showShortBreakNotification() async {
   const androidDetails = AndroidNotificationDetails(
-    'channel id',
-    'channel name',
+    'short_break',
+    'Short break',
     importance: Importance.high,
     priority: Priority.high,
     actions: [
       AndroidNotificationAction(
         'end_short_break',
         'Zakończ przerwę',
+        showsUserInterface: true,
       ),
     ],
   );
@@ -61,9 +64,9 @@ Future<void> sendShortBreakNotification() async {
   );
 
   await notificationsPlugin.show(
-    NotificationIds.afterWork,
+    NotificationIds.shortBreak,
     'Czas na przerwę',
-    'Naładuj baterię, a potem do dzieła!',
+    'Naładuj baterie, a potem do dzieła!',
     const NotificationDetails(
       android: androidDetails,
       linux: linuxDetails,
@@ -71,21 +74,24 @@ Future<void> sendShortBreakNotification() async {
   );
 }
 
-Future<void> sendAfterTickNotification() async {
+Future<void> showAfterTickNotification(Duration remainingTime) async {
   const androidDetails = AndroidNotificationDetails(
-    'channel id',
-    'channel name',
-    importance: Importance.high,
-    priority: Priority.high,
+    'tick',
+    'Tick',
+    importance: Importance.low,
+    priority: Priority.low,
     actions: [
       AndroidNotificationAction(
         'cancel_session',
         'Anuluj sesję',
+        showsUserInterface: true,
       ),
     ],
   );
   const linuxDetails = LinuxNotificationDetails(
-    urgency: LinuxNotificationUrgency.normal,
+    transient: true,
+    resident: true,
+    urgency: LinuxNotificationUrgency.low,
     category: LinuxNotificationCategory.imReceived,
     actions: [
       LinuxNotificationAction(
@@ -95,13 +101,22 @@ Future<void> sendAfterTickNotification() async {
     ],
   );
 
+  final hours = atLeastTwoDigit(remainingTime.inHours);
+  final minutes = atLeastTwoDigit(remainingTime.inMinutes.remainder(60));
+  final seconds = atLeastTwoDigit(remainingTime.inSeconds.remainder(60));
+  final remainingTimeString = '$hours:$minutes:$seconds';
+
   await notificationsPlugin.show(
-    NotificationIds.afterWork,
+    NotificationIds.afterTick,
     'Skup się!',
-    'Zostało X czasu do końca sesji',
+    'Do końca: $remainingTimeString',
     const NotificationDetails(
       android: androidDetails,
       linux: linuxDetails,
     ),
   );
+}
+
+Future<void> cancelNotification(int notificationId) async {
+  await notificationsPlugin.cancel(notificationId);
 }

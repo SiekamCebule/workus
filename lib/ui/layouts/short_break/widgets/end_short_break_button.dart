@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/configuration/settings.dart';
-import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
-import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
 import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
+import 'package:workus/session_flow/controlling.dart';
 import 'package:workus/ui/dialogs/incompleted_tasks_during_short_break_dialog.dart';
 
 class EndShortBreakButton extends ConsumerStatefulWidget {
@@ -23,7 +22,7 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
         if (_shouldShowIncompletedTasksDialog) {
           _showIncompletedTasksDialog(context);
         } else {
-          _endShortBreak();
+          endShortBreak(ref);
         }
       },
       child: const Text('Jestem gotów'),
@@ -32,7 +31,7 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
 
   bool get _shouldShowIncompletedTasksDialog {
     return ref.read(shouldShowIncompletedTasksWarningsProvider) &&
-        ref.watch(taskAfterWorkStatusesProvider.notifier).incompletedTaskExists;
+        ref.watch(taskDuringShortBreakStatusesProvider.notifier).incompletedTaskExists;
   }
 
   Future<void> _showIncompletedTasksDialog(BuildContext context) async {
@@ -40,17 +39,9 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
       context: context,
       builder: (context) {
         return IncompletedTasksDuringShortBreakDialog(onEndShortBreakTap: () {
-          _endShortBreak();
+          endShortBreak(ref);
         });
       },
     );
-  }
-
-  void _endShortBreak() {
-    ref.watch(alarmPlayerProvider).stop();
-    ref.watch(userSessionControllerProvider).endShortBreak();
-    ref
-        .watch(taskDuringShortBreakStatusesProvider.notifier)
-        .fillCurrent(completed: false);
   }
 }

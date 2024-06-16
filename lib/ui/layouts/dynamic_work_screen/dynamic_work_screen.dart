@@ -75,7 +75,6 @@ class _WorkPageState extends ConsumerState<DynamicWorkScreen> {
   void _setupSessionEndAlarming() {
     _shortBreaksSubscription =
         ref.watch(sessionStatsBroadcasterProvider).sessionEnds.listen((_) {
-      print('SESSION END');
       ref.watch(alarmPlayerProvider).play(ref.watch(
             sessionEndAlarmSoundProvider,
           ));
@@ -85,7 +84,6 @@ class _WorkPageState extends ConsumerState<DynamicWorkScreen> {
   void _setupShortBreakAlarming() {
     _sessionEndsSubscription =
         ref.watch(sessionStatsBroadcasterProvider).shortBreaks.listen((_) {
-      print('SHORT BREAK');
       ref.watch(alarmPlayerProvider).play(
             ref.watch(shortBreakAlarmSoundProvider),
             volume: 0.5,
