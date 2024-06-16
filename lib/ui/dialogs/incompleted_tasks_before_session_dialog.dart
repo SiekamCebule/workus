@@ -25,6 +25,7 @@ class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
           ),
         ),
         TextButton(
+          key: const ValueKey('start_session_despite_incompleted_tasks_button'),
           onPressed: () {
             Navigator.of(context).pop();
             onStartSessionTap();

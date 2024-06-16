@@ -21,11 +21,14 @@ void handler(NotificationResponse responseDetails) {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  notificationsPlugin.initialize(
+  await notificationsPlugin.initialize(
     notificationsPluginInitializationSettings,
     //onDidReceiveBackgroundNotificationResponse: backgroundHandler,
     onDidReceiveNotificationResponse: handler,
   );
+  await notificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestNotificationsPermission();
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     await windowManager.ensureInitialized();

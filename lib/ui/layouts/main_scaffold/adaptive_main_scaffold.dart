@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workus/alarming/alarm_player.dart';
 import 'package:workus/app_state/constants/layouting.dart';
 import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
 import 'package:workus/app_state/initialize.dart';
@@ -15,18 +16,26 @@ class AdaptiveMainScaffold extends ConsumerStatefulWidget {
 }
 
 class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
+  late AlarmPlayer _alarmPlayer;
+
   @override
   void initState() {
+    print('Main scaffold init state');
     Future.microtask(() async {
+      print('MICROTASK');
       await initializeAppState(ref);
       maybeRequestForNotificationsPermissions();
+      _alarmPlayer = ref.read(alarmPlayerProvider);
+      print('ALARM PLAYER IS $_alarmPlayer');
     });
     super.initState();
   }
 
   @override
   void dispose() {
-    ref.watch(alarmPlayerProvider).dispose();
+    Future.microtask(() async {
+      await _alarmPlayer.dispose();
+    });
     super.dispose();
   }
 
