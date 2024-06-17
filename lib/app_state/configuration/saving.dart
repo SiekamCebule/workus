@@ -8,9 +8,44 @@ class SettingsSaver {
 
   SettingsSaver(this._ref, this._prefs);
 
+  static Future<void> save(WidgetRef ref) async {
+    final prefs = await SharedPreferences.getInstance();
+    final settingsSaver = SettingsSaver(ref, prefs);
+    await settingsSaver._saveAllSettings();
+  }
+
+  Future<void> _saveAllSettings() async {
+    _saveLanguage();
+    _saveShowQuotes();
+    _saveShowIncompletedTasksWarnings();
+    _saveEnableNavigationRailExtendEffect();
+    _saveExtendNavigationRail();
+    _saveShowNotifications();
+    _saveEnableAlarms();
+    _saveDefaultSessionDuration();
+    _saveDefaultShortBreakInterval();
+    _saveShortBreakRemindDelay();
+    _saveSessionEndAlarmSound();
+    _saveShortBreakAlarmSound();
+  }
+
   void _saveBoolSetting(StateProvider<bool> provider, String key) {
     final value = _ref.read(provider);
     _prefs.setBool(key, value);
+  }
+
+  void _saveLanguage() {
+    final lang = _ref.read(languageProvider);
+    _prefs.setString('language', lang.code);
+  }
+
+  void _saveShowQuotes() {
+    _saveBoolSetting(shouldShowQuotesProvider, 'should_show_quotes');
+  }
+
+  void _saveShowIncompletedTasksWarnings() {
+    _saveBoolSetting(shouldShowIncompletedTasksWarningsProvider,
+        'should_show_incompleted_tasks_warnings');
   }
 
   void _saveEnableNavigationRailExtendEffect() {
@@ -19,37 +54,15 @@ class SettingsSaver {
   }
 
   void _saveExtendNavigationRail() {
-    _saveBoolSetting(extendNavigationRailProvider, 'extend_navigation_rail');
+    _saveBoolSetting(shouldExtendNavigationRailProvider, 'should_extend_navigation_rail');
   }
 
-  void _saveShowQuotes() {
-    _saveBoolSetting(shouldShowQuotesProvider, 'show_quotes');
+  void _saveShowNotifications() {
+    _saveBoolSetting(shouldShowNotificationsProvider, 'should_show_notifications');
   }
 
-  void _saveShowIncompletedTasksWarnings() {
-    _saveBoolSetting(
-        shouldShowIncompletedTasksWarningsProvider, 'show_incompleted_tasks_warnings');
-  }
-
-  void _saveShortBreakAlarmSound() {
-    final shortBreakAlarm = _ref.read(shortBreakAlarmSoundProvider);
-    _prefs.setString('short_break_alarm_sound', shortBreakAlarm.id);
-  }
-
-  void _saveSessionEndAlarmSound() {
-    final sessionEndAlarm = _ref.read(sessionEndAlarmSoundProvider);
-    _prefs.setString('session_end_alarm_sound', sessionEndAlarm.id);
-  }
-
-  void _saveShortBreakRemindDelay() {
-    final shortBreakRemindDelay = _ref.read(defaultShortBreaksIntervalProvider);
-    _prefs.setInt('short_break_remind_delay_in_minutes', shortBreakRemindDelay.inMinutes);
-  }
-
-  void _saveDefaultShortBreakInterval() {
-    final defaultShortBreakInterval = _ref.read(defaultShortBreaksIntervalProvider);
-    _prefs.setInt(
-        'default_short_breaks_interval_in_minutes', defaultShortBreakInterval.inMinutes);
+  void _saveEnableAlarms() {
+    _saveBoolSetting(enableAlarmsProvider, 'enable_alarms');
   }
 
   void _saveDefaultSessionDuration() {
@@ -58,22 +71,25 @@ class SettingsSaver {
         'default_session_duration_in_minutes', defaultSessionDuration.inMinutes);
   }
 
-  Future<void> _saveAllSettings() async {
-    _saveShowQuotes();
-    _saveShowIncompletedTasksWarnings();
-    _saveDefaultSessionDuration();
-    _saveDefaultShortBreakInterval();
-    _saveShortBreakRemindDelay();
-    _saveSessionEndAlarmSound();
-    _saveShortBreakAlarmSound();
-    _saveEnableNavigationRailExtendEffect();
-    _saveExtendNavigationRail();
+  void _saveDefaultShortBreakInterval() {
+    final defaultShortBreakInterval = _ref.read(defaultShortBreaksIntervalProvider);
+    _prefs.setInt(
+        'default_short_breaks_interval_in_minutes', defaultShortBreakInterval.inMinutes);
   }
 
-  static Future<void> save(WidgetRef ref) async {
-    final prefs = await SharedPreferences.getInstance();
-    final settingsSaver = SettingsSaver(ref, prefs);
-    await settingsSaver._saveAllSettings();
+  void _saveShortBreakRemindDelay() {
+    final shortBreakRemindDelay = _ref.read(defaultShortBreaksIntervalProvider);
+    _prefs.setInt('short_break_remind_delay_in_minutes', shortBreakRemindDelay.inMinutes);
+  }
+
+  void _saveSessionEndAlarmSound() {
+    final sessionEndAlarm = _ref.read(sessionEndAlarmSoundProvider);
+    _prefs.setString('session_end_alarm_sound', sessionEndAlarm!.id);
+  }
+
+  void _saveShortBreakAlarmSound() {
+    final shortBreakAlarm = _ref.read(shortBreakAlarmSoundProvider);
+    _prefs.setString('short_break_alarm_sound', shortBreakAlarm!.id);
   }
 }
 

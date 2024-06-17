@@ -5,18 +5,20 @@ import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/constants/predefined_alarm_sounds.dart';
 import 'package:workus/ui/reusable/building_dropdowns.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SessionEndAlarmSoundDropdown extends ConsumerWidget {
   const SessionEndAlarmSoundDropdown({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(languageProvider);
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: ListTile(
-            title: Text('Alarm zakończenia'),
-            leading: Icon(Icons.alarm),
+            title: Text(AppLocalizations.of(context)!.endAlarm),
+            leading: const Icon(Icons.alarm),
           ),
         ),
         DropdownMenu<AlarmSound>(
@@ -27,7 +29,7 @@ class SessionEndAlarmSoundDropdown extends ConsumerWidget {
             saveSettings(ref);
           },
           dropdownMenuEntries: buildAlarmSoundDropdownMenuEntries(
-            ref.watch(predefinedAlarmSoundsProvider).toList(),
+            ref.watch(predefinedAlarmSoundsProvider(context)).toList(),
           ),
         )
       ],

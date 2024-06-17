@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AfterWorkScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AfterWorkScreenAppBar({super.key});
@@ -6,7 +7,7 @@ class AfterWorkScreenAppBar extends StatelessWidget implements PreferredSizeWidg
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Praca, praca, i po pracy...'),
+      title: Text(AppLocalizations.of(context)!.jobWellDone),
     );
   }
 

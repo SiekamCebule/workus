@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShouldShowIncompletedTasksWarningsSwitcher extends ConsumerWidget {
   const ShouldShowIncompletedTasksWarningsSwitcher({super.key});
@@ -18,7 +19,7 @@ class ShouldShowIncompletedTasksWarningsSwitcher extends ConsumerWidget {
             !showWarnings;
         saveSettings(ref);
       },
-      title: const Text('Ostrzegaj o niewykonanych zadaniach'),
+      title: Text(AppLocalizations.of(context)!.warnOnUncompletedTasks),
       secondary: const Icon(Symbols.warning_rounded),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/ui/dialogs/delay_short_break_simple_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DelayShortBreakButton extends ConsumerWidget {
   const DelayShortBreakButton({
@@ -13,7 +14,7 @@ class DelayShortBreakButton extends ConsumerWidget {
       onPressed: () {
         showDelayShortBreakSimpleDialog(context);
       },
-      child: const Text('Odłóż przerwę'),
+      child: Text(AppLocalizations.of(context)!.delayBreak),
     );
   }
 }

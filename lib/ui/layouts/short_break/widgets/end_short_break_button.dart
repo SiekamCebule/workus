@@ -4,6 +4,7 @@ import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
 import 'package:workus/session_flow/controlling.dart';
 import 'package:workus/ui/dialogs/incompleted_tasks_during_short_break_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EndShortBreakButton extends ConsumerStatefulWidget {
   const EndShortBreakButton({super.key});
@@ -25,7 +26,7 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
           endShortBreak(ref);
         }
       },
-      child: const Text('Jestem gotów'),
+      child: Text(AppLocalizations.of(context)!.iAmReady),
     );
   }
 

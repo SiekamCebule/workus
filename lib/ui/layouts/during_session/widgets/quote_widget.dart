@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:workus/models/quote.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuoteWidget extends ConsumerWidget {
   const QuoteWidget({
@@ -26,7 +27,7 @@ class QuoteWidget extends ConsumerWidget {
         const Gap(4),
         IntrinsicWidth(
           child: Text(
-            '~ ${quote.author ?? 'Autor nieznany'}',
+            '~ ${quote.author ?? AppLocalizations.of(context)!.authorUnknown}',
             style: authorTextStyle(context),
             textAlign: TextAlign.right,
           ),

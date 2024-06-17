@@ -1,0 +1,97 @@
+{
+    "@@locale": "fr",
+    "beforeSession": "Avant la session",
+    "sessionWillLast": "La session durera",
+    "shortBreakEvery": "Pause courte toutes les",
+    "tasks": "Tâches",
+    "work": "Travail",
+    "noShortBreaks": "Pas de pauses courtes",
+    "beforeWork": "Avant le travail",
+    "duringBreaks": "Pendant les pauses",
+    "afterWork": "Après le travail",
+    "settings": "Paramètres",
+    "warnOnUncompletedTasks": "Avertir des tâches incomplètes",
+    "showQuotes": "Afficher les citations",
+    "showNotifications": "Afficher les notifications",
+    "playAlarms": "Jouer les alarmes",
+    "expandNavigation": "Étendre la navigation",
+    "navigationExpandEffect": "Effet d'extension de la navigation",
+    "defaultSessionTime": "Temps de session par défaut",
+    "defaultBreakInterval": "Intervalle par défaut entre les pauses",
+    "endAlarm": "Alarme de fin",
+    "breakAlarm": "Alarme de pause",
+    "startSession": "Commencer la session?",
+    "startSessionWarning": "Toutes les tâches ne sont pas encore terminées. Êtes-vous sûr de vouloir commencer le travail?",
+    "startSessionConfirm": "Commencer la session",
+    "goBack": "Retourner",
+    "breakIn": "Pause dans",
+    "timeForShortBreak": "Il est temps de faire une pause courte :)",
+    "timeForBreak": "Il est temps de faire une pause",
+    "chargeBatteries": "Rechargez les batteries, puis au travail!",
+    "cancelSession": "Annuler la session",
+    "takeABreak": "Prenez une pause et détendez-vous...",
+    "delayBreak": "Reporter la pause",
+    "iAmReady": "Je suis prêt",
+    "delayBreakBy": "Reporter la pause de combien?",
+    "minutes": "{minutes, plural, one {minute} few {minutes} many {minutes} other {minutes}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Reprendre la session?",
+    "endBreakWarning": "Voulez-vous terminer la pause même si toutes les tâches ne sont pas encore terminées?",
+    "endBreak": "Terminer la pause",
+    "goodJob": "Bon travail!",
+    "extendSession": "Prolonger la session",
+    "endSession": "Terminer la session",
+    "extendSessionBy": "Prolonger la session de combien?",
+    "jobWellDone": "Travail accompli...",
+    "focus": "Concentrez-vous ;)",
+    "authorUnknown": "Auteur inconnu",
+    "taskExplanationTitle": "Qu'en est-il des tâches dans Workus?",
+    "taskExplanationText": "Avec cette fenêtre, vous pouvez ajouter des tâches que vous souhaitez accomplir avant de commencer votre travail, pendant les pauses courtes et après vos sessions. Cela vous aide à prendre soin de votre santé en vous rappelant, par exemple, de donner une pause à vos yeux après une période de travail intensif devant l'ordinateur. Vous pouvez ajouter des tâches librement, sans dépasser trois tâches par catégorie.",
+    "endSessionConfirm": "Terminer la session?",
+    "endSessionWarning": "Êtes-vous sûr de vouloir terminer la session alors que toutes les tâches ne sont pas encore terminées?",
+    "understood": "Compris!",
+    "addTask": "Ajouter une tâche {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} h",
+    "durationMinutes": "{minutes} min",
+    "durationSeconds": "{seconds} sec",
+    "durationZeroMinutes": "0 min",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Félicitations pour votre persévérance",
+    "workEnd": "Fin du travail",
+    "remains": "Restes",
+    "irishFolk": "Folk irlandais",
+    "spanishGuitar": "Guitare espagnole"
+}

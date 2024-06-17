@@ -34,7 +34,7 @@ class _MainScaffoldNavigationRailState extends ConsumerState<MainScaffoldNavigat
         minExtendedWidth: 160,
         backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
         indicatorColor: Theme.of(context).colorScheme.secondaryContainer,
-        destinations: navigationRailDestinations,
+        destinations: navigationRailDestinations(context),
         selectedIndex: ref.watch(selectedPageProvider).index,
         onDestinationSelected: (destinationIndex) {
           ref.watch(selectedPageProvider.notifier).state =
@@ -46,7 +46,7 @@ class _MainScaffoldNavigationRailState extends ConsumerState<MainScaffoldNavigat
 
   bool get _railShouldBeExtended {
     final enableExtendEffect = ref.watch(enableNavigationRailExtendEffectProvider);
-    final extendRail = ref.watch(extendNavigationRailProvider);
+    final extendRail = ref.watch(shouldExtendNavigationRailProvider);
 
     if (platformIsDesktop && enableExtendEffect) {
       return _hovered;

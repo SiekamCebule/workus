@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/ui/dialogs/navigator_pop_text_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IncompletedTasksDuringShortBreakDialog extends ConsumerWidget {
   const IncompletedTasksDuringShortBreakDialog({
@@ -13,14 +14,14 @@ class IncompletedTasksDuringShortBreakDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: const Text('Przejść spowrotem do sesji?'),
-      content: const Text(
-        'Czy chcesz zakończyć przerwę mimo, że nie wykonałeś jeszcze wszystkich zadań?',
+      title: Text(AppLocalizations.of(context)!.resumeSession),
+      content: Text(
+        AppLocalizations.of(context)!.endBreakWarning,
       ),
       actions: [
-        const NavigatorPopTextButton(
+        NavigatorPopTextButton(
           child: Text(
-            'Wróć',
+            AppLocalizations.of(context)!.goBack,
             textAlign: TextAlign.end,
           ),
         ),
@@ -29,8 +30,8 @@ class IncompletedTasksDuringShortBreakDialog extends ConsumerWidget {
             Navigator.of(context).pop();
             onEndShortBreakTap();
           },
-          child: const Text(
-            'Zakończ przerwę',
+          child: Text(
+            AppLocalizations.of(context)!.endBreak,
             textAlign: TextAlign.end,
           ),
         ),

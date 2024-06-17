@@ -13,10 +13,13 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_local_notifications: ^17.1.2
+  flutter_localizations:
+    sdk: flutter
   flutter_ringtone_player: ^4.0.0+3
   flutter_riverpod: ^2.5.1
   gap: ^3.0.1
   google_fonts: ^6.2.1
+  intl: any
   lottie: ^3.1.2
   material_symbols_icons: ^4.2744.0
   media_kit: ^1.1.10+1
@@ -32,8 +35,10 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/lottie_animations/
     - assets/quotes/
     - assets/alarm_sounds/
+    - assets/fonts/

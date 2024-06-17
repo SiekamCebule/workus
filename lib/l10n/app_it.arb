@@ -1,0 +1,97 @@
+{
+    "@@locale": "it",
+    "beforeSession": "Ante sessionem",
+    "sessionWillLast": "Sessio durabit",
+    "shortBreakEvery": "Brevis pausa omni",
+    "tasks": "Munera",
+    "work": "Labor",
+    "noShortBreaks": "Nullae breves pausa",
+    "beforeWork": "Ante laborem",
+    "duringBreaks": "Inter pausas",
+    "afterWork": "Post laborem",
+    "settings": "Occasus",
+    "warnOnUncompletedTasks": "Mone de muneribus incompletis",
+    "showQuotes": "Monstra dicta",
+    "showNotifications": "Monstra notificationes",
+    "playAlarms": "Tocca alarmas",
+    "expandNavigation": "Expande navigationem",
+    "navigationExpandEffect": "Effectus expansionis navigationis",
+    "defaultSessionTime": "Tempus sessionis defaltum",
+    "defaultBreakInterval": "Intervallum defaltum inter pausas",
+    "endAlarm": "Finis alarma",
+    "breakAlarm": "Pausa alarma",
+    "startSession": "Incipe sessionem?",
+    "startSessionWarning": "Nondum omnia munera completa sunt. Certus es quod vis incipere laborem?",
+    "startSessionConfirm": "Incipe sessionem",
+    "goBack": "Redi",
+    "breakIn": "Pausa in",
+    "timeForShortBreak": "Tempus est pro brevi pausa :)",
+    "timeForBreak": "Tempus est pro pausa",
+    "chargeBatteries": "Replebantur batteriae, et deinde ad opus!",
+    "cancelSession": "Cancellare sessionem",
+    "takeABreak": "Recede paulisper ab labore et relaxa...",
+    "delayBreak": "Differ pausa",
+    "iAmReady": "Paratus sum",
+    "delayBreakBy": "Quot differre pausam?",
+    "minutes": "{minutes, plural, one {minuta} few {minutae} many {minutarum} other {minutae}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Resume sessionem?",
+    "endBreakWarning": "Visne finire pausam cum adhuc omnia munera non sunt completa?",
+    "endBreak": "Finire pausam",
+    "goodJob": "Bene factum!",
+    "extendSession": "Prolunga sessionem",
+    "endSession": "Finire sessionem",
+    "extendSessionBy": "Quot prolunga sessionem?",
+    "jobWellDone": "Labor, labor, et finis labor...",
+    "focus": "Concentratio ;)",
+    "authorUnknown": "Auctor ignotus",
+    "taskExplanationTitle": "Quid de muneribus in Workus?",
+    "taskExplanationText": "Hac fenestra uti potes ad munera addenda quae vis complere ante laborem, inter breves pausas, et post sessiones tuas. Hoc modo potes curare de tua salute, meminens ut oculis tuis pausam dares post tempus intensae laboris ante computatrum. Munera addere potes arbitratu tuo, non excedens tria munera per categoriam.",
+    "endSessionConfirm": "Finire sessionem?",
+    "endSessionWarning": "Certus es quod vis finire sessionem cum adhuc omnia munera non sint completa?",
+    "understood": "Intellectum!",
+    "addTask": "Addere munus {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} ore",
+    "durationMinutes": "{minutes} min",
+    "durationSeconds": "{seconds} sec",
+    "durationZeroMinutes": "0 min",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Congratulazioni per la perseveranza",
+    "workEnd": "Fine del lavoro",
+    "remains": "Resti",
+    "irishFolk": "Folk irlandese",
+    "spanishGuitar": "Chitarra spagnola"
+}

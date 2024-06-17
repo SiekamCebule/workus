@@ -20,19 +20,6 @@ class QuotesNotifier extends AsyncNotifier<Set<Quote>> {
     });
   }
 
-  Future<void> addAllFromProvider(
-    AsyncNotifierProvider<QuotesNotifier, Set<Quote>> provider,
-  ) async {
-    final asyncQuotes = ref.read(provider.future);
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      final quotesToAdd = await asyncQuotes;
-      final currentQuotes = state.value ?? <Quote>{};
-      final unioned = currentQuotes.union(quotesToAdd);
-      return unioned;
-    });
-  }
-
   void addAll(Set<Quote> quotes) {
     state = state.whenData((existingQuotes) {
       return {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/ui/dialogs/extend_session_simple_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExtendSessionButton extends ConsumerWidget {
   const ExtendSessionButton({super.key});
@@ -11,7 +12,7 @@ class ExtendSessionButton extends ConsumerWidget {
       onPressed: () {
         showExtendSessionSimpleDialog(context);
       },
-      child: const Text('Przedłuż sesję'),
+      child: Text(AppLocalizations.of(context)!.endSession),
     );
   }
 }

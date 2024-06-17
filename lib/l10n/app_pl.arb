@@ -1,0 +1,97 @@
+{
+    "@@locale": "pl",
+    "beforeSession": "Przed sesją",
+    "sessionWillLast": "Sesja potrwa",
+    "shortBreakEvery": "Krótka przerwa co",
+    "tasks": "Zadania",
+    "work": "Praca",
+    "noShortBreaks": "Brak krótkich przerw",
+    "beforeWork": "Przed pracą",
+    "duringBreaks": "Podczas przerw",
+    "afterWork": "Po pracy",
+    "settings": "Ustawienia",
+    "warnOnUncompletedTasks": "Ostrzegaj o niewykonanych zadaniach",
+    "showQuotes": "Pokazuj cytaty",
+    "showNotifications": "Pokazuj powiadomienia",
+    "playAlarms": "Odtwarzaj alarmy",
+    "expandNavigation": "Rozwiń nawigację",
+    "navigationExpandEffect": "Efekt rozwijania nawigacji",
+    "defaultSessionTime": "Domyślny czas sesji",
+    "defaultBreakInterval": "Domyślny odstęp pomiędzy przerwami",
+    "endAlarm": "Alarm zakończenia",
+    "breakAlarm": "Alarm przerwy",
+    "startSession": "Zacząć sesję?",
+    "startSessionWarning": "Nie wykonano jeszcze wszystkich zadań. Czy na pewno chcesz rozpocząć pracę?",
+    "startSessionConfirm": "Rozpocznij sesję",
+    "goBack": "Wróć",
+    "breakIn": "Przerwa za",
+    "timeForShortBreak": "Czas na krótką przerwę :)",
+    "timeForBreak": "Czas na przerwę",
+    "chargeBatteries": "Naładuj baterie, a potem do dzieła!",
+    "cancelSession": "Anuluj sesję",
+    "takeABreak": "Odejdź na chwilę od pracy i odpręż się...",
+    "delayBreak": "Odłóż przerwę",
+    "iAmReady": "Jestem gotów",
+    "delayBreakBy": "O ile opóźnić przerwę?",
+    "minutes": "{minutes, plural, one {minuta} few {minuty} many {minut} other {minuty}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Przejść spowrotem do sesji?",
+    "endBreakWarning": "Czy chcesz zakończyć przerwę mimo, że nie wykonałeś jeszcze wszystkich zadań?",
+    "endBreak": "Zakończ przerwę",
+    "goodJob": "Dobra robota!",
+    "extendSession": "Przedłuż sesję",
+    "endSession": "Zakończ sesję",
+    "extendSessionBy": "O ile przedłużyć sesję?",
+    "jobWellDone": "Praca, praca, i po pracy...",
+    "focus": "Skup się ;)",
+    "authorUnknown": "Autor nieznany",
+    "taskExplanationTitle": "O co chodzi z zadaniami w Workus?",
+    "taskExplanationText": "Używając tego okna możesz dodać zadania, które chcesz wykonać zanim rozpoczniesz swoją pracę, w czasie krótkich przerw, i po zakończeniu swoich sesji. Dzięki temu możesz zadbać o swoje zdrowie, gdyż będziesz pamiętać, aby na przykład dać odpocząć swoim oczom po okresie intensywnej pracy przed komputerem. Zadania możesz dodawać dowolnie według uznania, nie przekraczając trzech zadań na kategorię.",
+    "endSessionConfirm": "Zakończyć sesję?",
+    "endSessionWarning": "Czy na pewno chcesz zakończyć sesję mimo tego, że nie ukończyłeś jeszcze wszystkich zadań?",
+    "understood": "Zrozumiano!",
+    "addTask": "Dodaj zadanie {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} godz.",
+    "durationMinutes": "{minutes} min.",
+    "durationSeconds": "{seconds} sek.",
+    "durationZeroMinutes": "0 min.",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Gratulujemy wytrwałości",
+    "workEnd": "Koniec pracy",
+    "remains": "Pozostało",
+    "irishFolk": "Irlandzki folk",
+    "spanishGuitar": "Hiszpańska gitara"
+}

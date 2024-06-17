@@ -13,8 +13,6 @@ final notificationResponseCallbacksInvoker = UnaryCallbacksInvoker<NotificationR
 void handleNotificationReponse(NotificationResponse details, WidgetRef ref) {
   final actionId = details.actionId;
 
-  print('ACTION ID IS $actionId');
-
   if (actionId != null) {
     switch (actionId) {
       case 'end_session':

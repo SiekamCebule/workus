@@ -8,4 +8,9 @@ class AlarmSound {
   final String id;
   final String filePath;
   final String name;
+
+  @override
+  String toString() {
+    return '$name ($id)';
+  }
 }

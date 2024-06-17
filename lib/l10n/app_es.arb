@@ -1,0 +1,97 @@
+{
+    "@@locale": "es",
+    "beforeSession": "Antes de la sesión",
+    "sessionWillLast": "La sesión durará",
+    "shortBreakEvery": "Pausa corta cada",
+    "tasks": "Tareas",
+    "work": "Trabajo",
+    "noShortBreaks": "Sin pausas cortas",
+    "beforeWork": "Antes del trabajo",
+    "duringBreaks": "Durante las pausas",
+    "afterWork": "Después del trabajo",
+    "settings": "Ajustes",
+    "warnOnUncompletedTasks": "Advertir sobre tareas incompletas",
+    "showQuotes": "Mostrar citas",
+    "showNotifications": "Mostrar notificaciones",
+    "playAlarms": "Reproducir alarmas",
+    "expandNavigation": "Expandir navegación",
+    "navigationExpandEffect": "Efecto de expansión de navegación",
+    "defaultSessionTime": "Tiempo de sesión predeterminado",
+    "defaultBreakInterval": "Intervalo predeterminado entre pausas",
+    "endAlarm": "Alarma de finalización",
+    "breakAlarm": "Alarma de pausa",
+    "startSession": "¿Empezar sesión?",
+    "startSessionWarning": "Aún no se han completado todas las tareas. ¿Seguro que quieres empezar a trabajar?",
+    "startSessionConfirm": "Empezar sesión",
+    "goBack": "Volver",
+    "breakIn": "Pausa en",
+    "timeForShortBreak": "Es tiempo de una pausa corta :)",
+    "timeForBreak": "Es tiempo de una pausa",
+    "chargeBatteries": "Recarga las baterías y luego ¡manos a la obra!",
+    "cancelSession": "Cancelar sesión",
+    "takeABreak": "Toma un descanso y relájate...",
+    "delayBreak": "Retrasar pausa",
+    "iAmReady": "Estoy listo",
+    "delayBreakBy": "¿Cuánto retrasar la pausa?",
+    "minutes": "{minutes, plural, one {minuto} few {minutos} many {minutos} other {minutos}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "¿Reanudar sesión?",
+    "endBreakWarning": "¿Quieres terminar la pausa aunque no hayas completado todas las tareas?",
+    "endBreak": "Terminar pausa",
+    "goodJob": "¡Buen trabajo!",
+    "extendSession": "Extender sesión",
+    "endSession": "Terminar sesión",
+    "extendSessionBy": "¿Cuánto extender la sesión?",
+    "jobWellDone": "Trabajo hecho...",
+    "focus": "Concéntrate ;)",
+    "authorUnknown": "Autor desconocido",
+    "taskExplanationTitle": "¿Qué son las tareas en Workus?",
+    "taskExplanationText": "Usando esta ventana puedes agregar tareas que deseas completar antes de comenzar tu trabajo, durante las pausas cortas, y después de tus sesiones. Esto te ayuda a cuidar tu salud al recordar, por ejemplo, dar un descanso a tus ojos después de un periodo de trabajo intensivo frente a la computadora. Puedes agregar tareas libremente, no superando las tres tareas por categoría.",
+    "endSessionConfirm": "¿Terminar sesión?",
+    "endSessionWarning": "¿Seguro que quieres terminar la sesión aunque no hayas completado todas las tareas?",
+    "understood": "¡Entendido!",
+    "addTask": "Agregar tarea {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} hrs",
+    "durationMinutes": "{minutes} min.",
+    "durationSeconds": "{seconds} seg.",
+    "durationZeroMinutes": "0 min.",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Felicitaciones por tu perseverancia",
+    "workEnd": "Fin del trabajo",
+    "remains": "Restos",
+    "irishFolk": "Folk irlandés",
+    "spanishGuitar": "Guitarra española"
+}

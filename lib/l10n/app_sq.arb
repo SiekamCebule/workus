@@ -1,0 +1,97 @@
+{
+    "@@locale": "sq",
+    "beforeSession": "Para sesionit",
+    "sessionWillLast": "Seanca do të zgjasë",
+    "shortBreakEvery": "Pauzë e shkurtër çdo",
+    "tasks": "Detyra",
+    "work": "Puna",
+    "noShortBreaks": "Pa pauza të shkurtra",
+    "beforeWork": "Para punës",
+    "duringBreaks": "Gjatë pauzave",
+    "afterWork": "Pas punës",
+    "settings": "Cilësimet",
+    "warnOnUncompletedTasks": "Paralajmëro për detyra të papërfunduara",
+    "showQuotes": "Shfaq citime",
+    "showNotifications": "Shfaq njoftime",
+    "playAlarms": "Luaj alarmet",
+    "expandNavigation": "Zgjero navigimin",
+    "navigationExpandEffect": "Efekti i zgjerimit të navigimit",
+    "defaultSessionTime": "Koha e sesionit të paracaktuar",
+    "defaultBreakInterval": "Intervali i paracaktuar midis pauzave",
+    "endAlarm": "Alarmin e përfundimit",
+    "breakAlarm": "Alarmin e pauzës",
+    "startSession": "Fillo seancën?",
+    "startSessionWarning": "Ende nuk janë përfunduar të gjitha detyrat. A je i sigurt se do të fillosh punën?",
+    "startSessionConfirm": "Fillo seancën",
+    "goBack": "Kthehu",
+    "breakIn": "Pauza në",
+    "timeForShortBreak": "Është koha për një pauzë të shkurtër :)",
+    "timeForBreak": "Është koha për një pauzë",
+    "chargeBatteries": "Ngarkoni bateritë, dhe pastaj në punë!",
+    "cancelSession": "Anulo seancën",
+    "takeABreak": "Ndalo një çast nga puna dhe relaksohu...",
+    "delayBreak": "Shty pauzën",
+    "iAmReady": "Jam gati",
+    "delayBreakBy": "Sa të shtyhet pauza?",
+    "minutes": "{minutes, plural, one {minutë} few {minuta} many {minutash} other {minuta}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Rifillo seancën?",
+    "endBreakWarning": "A dëshiron të përfundosh pauzën edhe pse nuk i ke përfunduar të gjitha detyrat?",
+    "endBreak": "Përfundo pauzën",
+    "goodJob": "Punë e mirë!",
+    "extendSession": "Zgjat seancën",
+    "endSession": "Përfundo seancën",
+    "extendSessionBy": "Sa të zgjatet seanca?",
+    "jobWellDone": "Punë e kryer...",
+    "focus": "Përqendrohu ;)",
+    "authorUnknown": "Autori i panjohur",
+    "taskExplanationTitle": "Çfarë është puna në Workus?",
+    "taskExplanationText": "Duke përdorur këtë dritare mund të shtoni detyra që dëshironi të përfundoni para se të filloni punën tuaj, gjatë pauzave të shkurtra dhe pas përfundimit të sesioneve tuaja. Kjo ju ndihmon të kujdeseni për shëndetin tuaj duke ju kujtuar, për shembull, t'u jepni syve tuaj një pushim pas një periudhe intensive pune para kompjuterit. Ju mund të shtoni detyra lirshëm, pa tejkaluar tre detyra për kategori.",
+    "endSessionConfirm": "Përfundo seancën?",
+    "endSessionWarning": "A je i sigurt se dëshiron të përfundosh seancën megjithëse nuk i ke përfunduar të gjitha detyrat?",
+    "understood": "Kuptova!",
+    "addTask": "Shto detyrën {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} orë",
+    "durationMinutes": "{minutes} min",
+    "durationSeconds": "{seconds} sek",
+    "durationZeroMinutes": "0 min",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Urime për këmbënguljen",
+    "workEnd": "Fund i punës",
+    "remains": "Mbetje",
+    "irishFolk": "Folk irlandez",
+    "spanishGuitar": "Kitarë spanjolle"
+}

@@ -1,43 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:workus/app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workus/app_state/notifications/notification_responses_handling.dart';
-import 'package:workus/app_state/notifications/notifications.dart';
-import 'package:workus/app_state/selected_page.dart';
+import 'package:workus/app_state/configuration/work_configuration.dart';
+import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
 import 'package:workus/ui/dialogs/incompleted_tasks_before_session_dialog.dart';
 import 'package:workus/ui/layouts/before_session/widgets/large_play_pause_button.dart';
 import 'package:workus/ui/layouts/during_session/widgets/remaining_time_label.dart';
 import 'package:workus/ui/layouts/dynamic_work_screen/play_pause_button/play_pause_button.dart';
 
 void main() {
+  setUp(() => GoogleFonts.config.allowRuntimeFetching = true);
+
   testWidgets('appropriate_text_content', (tester) async {
     await tester.runAsync(() async {
       WidgetsFlutterBinding.ensureInitialized();
       SharedPreferences.setMockInitialValues({});
-      /*await notificationsPlugin.initialize(
-        notificationsPluginInitializationSettings,
-        onDidReceiveNotificationResponse: (details) {
-          notificationResponseCallbacksInvoker.invoke(details);
-        },
-      );*/
-
-      /*await notificationsPlugin
-          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();*/
-
-      /*if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-        await windowManager.ensureInitialized();
-        WindowManager.instance.setMinimizable(true);
-        WindowManager.instance.setMaximizable(false);
-        WindowManager.instance.setFullScreen(false);
-        WindowManager.instance.setMaximumSize(const Size(1150, 850));
-      }*/
 
       final container = ProviderContainer();
 
@@ -48,9 +28,8 @@ void main() {
         ),
       );
       await tester.pump();
-      await Future.delayed(const Duration(seconds: 3));
 
-      print('selected page is ${container.read(selectedPageProvider)}');
+      await Future.delayed(const Duration(milliseconds: 200));
 
       var playPauseButtonFinder = find.byType(PlayPauseButton);
       if (playPauseButtonFinder.allCandidates.isEmpty) {
@@ -63,19 +42,40 @@ void main() {
 
       final dialogFinder = find.byType(IncompletedTasksBeforeSessionDialog);
       expect(dialogFinder, findsOneWidget);
+
       final startSessionButtonFinder =
           find.byKey(const ValueKey('start_session_despite_incompleted_tasks_button'));
       expect(startSessionButtonFinder, findsOneWidget);
 
+      container.read(sessionDurationProvider.notifier).state =
+          const Duration(seconds: 10);
+      container.read(shortBreaksIntervalProvider.notifier).state =
+          const Duration(seconds: 7);
+
       await tester.tap(startSessionButtonFinder);
       await tester.pumpAndSettle();
-      final remainingTimeLabelFinder = find.byType(RemainingTimeLabel);
-      expect(remainingTimeLabelFinder, findsOneWidget);
+      expect(find.byType(RemainingTimeLabel), findsOneWidget);
 
-      final textFinder = find.textContaining('sek.');
-      expect(textFinder, findsOneWidget);
+      final texts = <String>[];
+      for (int i = 0; i < 8; i++) {
+        final remainingTime =
+            container.read(sessionTimingControllerProvider).remainingSessionTime;
+        final remainingTimeLabelFinder = find.byKey(ValueKey(remainingTime));
+        texts.add(tester.widget<Text>(remainingTimeLabelFinder).data!);
+        await Future.delayed(const Duration(seconds: 1));
+        await tester.pump();
+      }
 
-      print(tester.widget<Text>(textFinder).data);
+      expect(texts, [
+        '10 sek.',
+        '9 sek.',
+        '8 sek.',
+        '7 sek.',
+        '6 sek.',
+        '5 sek.',
+        '4 sek.',
+        '3 sek.',
+      ]);
     });
   });
 }

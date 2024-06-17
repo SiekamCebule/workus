@@ -1,0 +1,97 @@
+{
+    "@@locale": "de",
+    "beforeSession": "Vor der Sitzung",
+    "sessionWillLast": "Die Sitzung dauert",
+    "shortBreakEvery": "Kurze Pause alle",
+    "tasks": "Aufgaben",
+    "work": "Arbeit",
+    "noShortBreaks": "Keine kurzen Pausen",
+    "beforeWork": "Vor der Arbeit",
+    "duringBreaks": "Während der Pausen",
+    "afterWork": "Nach der Arbeit",
+    "settings": "Einstellungen",
+    "warnOnUncompletedTasks": "Über unvollständige Aufgaben warnen",
+    "showQuotes": "Zitate anzeigen",
+    "showNotifications": "Benachrichtigungen anzeigen",
+    "playAlarms": "Alarme abspielen",
+    "expandNavigation": "Navigation erweitern",
+    "navigationExpandEffect": "Erweiterungseffekt der Navigation",
+    "defaultSessionTime": "Standard-Sitzungszeit",
+    "defaultBreakInterval": "Standardpauseintervall",
+    "endAlarm": "Endalarm",
+    "breakAlarm": "Pausalarm",
+    "startSession": "Sitzung starten?",
+    "startSessionWarning": "Noch nicht alle Aufgaben wurden erledigt. Bist du sicher, dass du mit der Arbeit beginnen möchtest?",
+    "startSessionConfirm": "Sitzung starten",
+    "goBack": "Zurück",
+    "breakIn": "Pause in",
+    "timeForShortBreak": "Zeit für eine kurze Pause :)",
+    "timeForBreak": "Zeit für eine Pause",
+    "chargeBatteries": "Lade die Batterien auf und dann an die Arbeit!",
+    "cancelSession": "Sitzung abbrechen",
+    "takeABreak": "Mach eine Pause und entspanne dich...",
+    "delayBreak": "Pause verschieben",
+    "iAmReady": "Ich bin bereit",
+    "delayBreakBy": "Um wie viel die Pause verschieben?",
+    "minutes": "{minutes, plural, one {Minute} few {Minuten} many {Minuten} other {Minuten}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Sitzung fortsetzen?",
+    "endBreakWarning": "Möchtest du die Pause beenden, obwohl du noch nicht alle Aufgaben erledigt hast?",
+    "endBreak": "Pause beenden",
+    "goodJob": "Gute Arbeit!",
+    "extendSession": "Sitzung verlängern",
+    "endSession": "Sitzung beenden",
+    "extendSessionBy": "Um wie viel die Sitzung verlängern?",
+    "jobWellDone": "Arbeit erledigt...",
+    "focus": "Konzentriere dich ;)",
+    "authorUnknown": "Autor unbekannt",
+    "taskExplanationTitle": "Worum geht es bei den Aufgaben in Workus?",
+    "taskExplanationText": "Mit diesem Fenster kannst du Aufgaben hinzufügen, die du vor Beginn deiner Arbeit, während kurzer Pausen und nach deinen Sitzungen erledigen möchtest. Dies hilft dir, auf deine Gesundheit zu achten, indem du zum Beispiel daran erinnert wirst, deinen Augen nach intensiver Arbeit am Computer eine Pause zu gönnen. Du kannst Aufgaben nach Belieben hinzufügen, wobei du drei Aufgaben pro Kategorie nicht überschreiten solltest.",
+    "endSessionConfirm": "Sitzung beenden?",
+    "endSessionWarning": "Bist du sicher, dass du die Sitzung beenden möchtest, obwohl du noch nicht alle Aufgaben erledigt hast?",
+    "understood": "Verstanden!",
+    "addTask": "Aufgabe hinzufügen {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} Std.",
+    "durationMinutes": "{minutes} Min.",
+    "durationSeconds": "{seconds} Sek.",
+    "durationZeroMinutes": "0 Min.",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Arbeitsende",
+    "workEnd": "Wir gratulieren zur Ausdauer",
+    "remains": "Überreste",
+    "irishFolk": "Irische Volksmusik",
+    "spanishGuitar": "Spanische Gitarre"
+}

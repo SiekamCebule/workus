@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:workus/app_state/notifications/notifications.dart';
 import 'package:workus/utils/labels.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Future<void> showSessionEndNotification() async {
-  const androidDetails = AndroidNotificationDetails(
+Future<void> showSessionEndNotification(BuildContext context) async {
+  final androidDetails = AndroidNotificationDetails(
     'session_end',
     'Session end',
     importance: Importance.high,
@@ -11,35 +13,35 @@ Future<void> showSessionEndNotification() async {
     actions: [
       AndroidNotificationAction(
         'end_session',
-        'Zakończ sesję',
+        AppLocalizations.of(context)!.endSessionConfirm,
         showsUserInterface: true,
       ),
     ],
   );
-  const linuxDetails = LinuxNotificationDetails(
+  final linuxDetails = LinuxNotificationDetails(
     urgency: LinuxNotificationUrgency.normal,
     category: LinuxNotificationCategory.imReceived,
     actions: [
       LinuxNotificationAction(
         key: 'end_session',
-        label: 'Zakończ sesję',
+        label: AppLocalizations.of(context)!.endSessionConfirm,
       ),
     ],
   );
 
   await notificationsPlugin.show(
     NotificationIds.afterWork,
-    'Koniec pracy',
-    'Gratulujemy wytrwałości',
-    const NotificationDetails(
+    AppLocalizations.of(context)!.workEnd,
+    AppLocalizations.of(context)!.congratulationsAfterWork,
+    NotificationDetails(
       android: androidDetails,
       linux: linuxDetails,
     ),
   );
 }
 
-Future<void> showShortBreakNotification() async {
-  const androidDetails = AndroidNotificationDetails(
+Future<void> showShortBreakNotification(BuildContext context) async {
+  final androidDetails = AndroidNotificationDetails(
     'short_break',
     'Short break',
     importance: Importance.high,
@@ -47,35 +49,36 @@ Future<void> showShortBreakNotification() async {
     actions: [
       AndroidNotificationAction(
         'end_short_break',
-        'Zakończ przerwę',
+        AppLocalizations.of(context)!.endBreak,
         showsUserInterface: true,
       ),
     ],
   );
-  const linuxDetails = LinuxNotificationDetails(
+  final linuxDetails = LinuxNotificationDetails(
     urgency: LinuxNotificationUrgency.normal,
     category: LinuxNotificationCategory.imReceived,
     actions: [
       LinuxNotificationAction(
         key: 'end_short_break',
-        label: 'Zakończ przerwę',
+        label: AppLocalizations.of(context)!.endBreak,
       ),
     ],
   );
 
   await notificationsPlugin.show(
     NotificationIds.shortBreak,
-    'Czas na przerwę',
-    'Naładuj baterie, a potem do dzieła!',
-    const NotificationDetails(
+    AppLocalizations.of(context)!.timeForBreak,
+    AppLocalizations.of(context)!.chargeBatteries,
+    NotificationDetails(
       android: androidDetails,
       linux: linuxDetails,
     ),
   );
 }
 
-Future<void> showAfterTickNotification(Duration remainingTime) async {
-  const androidDetails = AndroidNotificationDetails(
+Future<void> showAfterTickNotification(
+    BuildContext context, Duration remainingTime) async {
+  final androidDetails = AndroidNotificationDetails(
     'tick',
     'Tick',
     importance: Importance.low,
@@ -83,12 +86,12 @@ Future<void> showAfterTickNotification(Duration remainingTime) async {
     actions: [
       AndroidNotificationAction(
         'cancel_session',
-        'Anuluj sesję',
+        AppLocalizations.of(context)!.cancelSession,
         showsUserInterface: true,
       ),
     ],
   );
-  const linuxDetails = LinuxNotificationDetails(
+  final linuxDetails = LinuxNotificationDetails(
     transient: true,
     resident: true,
     urgency: LinuxNotificationUrgency.low,
@@ -96,7 +99,7 @@ Future<void> showAfterTickNotification(Duration remainingTime) async {
     actions: [
       LinuxNotificationAction(
         key: 'cancel_session',
-        label: 'Anuluj sesję',
+        label: AppLocalizations.of(context)!.cancelSession,
       ),
     ],
   );
@@ -108,9 +111,9 @@ Future<void> showAfterTickNotification(Duration remainingTime) async {
 
   await notificationsPlugin.show(
     NotificationIds.afterTick,
-    'Skup się!',
-    'Do końca: $remainingTimeString',
-    const NotificationDetails(
+    AppLocalizations.of(context)!.focus,
+    '${AppLocalizations.of(context)!.remains}: $remainingTimeString',
+    NotificationDetails(
       android: androidDetails,
       linux: linuxDetails,
     ),

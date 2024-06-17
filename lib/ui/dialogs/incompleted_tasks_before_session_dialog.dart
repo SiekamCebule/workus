@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/ui/dialogs/navigator_pop_text_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
   const IncompletedTasksBeforeSessionDialog({
@@ -13,14 +14,14 @@ class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: const Text('Zacząć sesję?'),
-      content: const Text(
-        'Nie wykonano jeszcze wszystkich zadań. Czy na pewno chcesz rozpocząć pracę?',
+      title: Text(AppLocalizations.of(context)!.startSession),
+      content: Text(
+        AppLocalizations.of(context)!.startSessionWarning,
       ),
       actions: [
-        const NavigatorPopTextButton(
+        NavigatorPopTextButton(
           child: Text(
-            'Wróć',
+            AppLocalizations.of(context)!.goBack,
             textAlign: TextAlign.end,
           ),
         ),
@@ -30,8 +31,8 @@ class IncompletedTasksBeforeSessionDialog extends ConsumerWidget {
             Navigator.of(context).pop();
             onStartSessionTap();
           },
-          child: const Text(
-            'Rozpocznij sesję',
+          child: Text(
+            AppLocalizations.of(context)!.startSessionConfirm,
             textAlign: TextAlign.end,
           ),
         ),

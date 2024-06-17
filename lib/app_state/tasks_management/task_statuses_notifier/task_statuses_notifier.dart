@@ -58,7 +58,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
     _syncStatuses();
   }
 
-  void fillCurrent({required bool completed}) {
+  void fillEvery({required bool completed}) {
     state = {
       for (var task in state.keys) task: completed,
     };

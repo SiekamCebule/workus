@@ -75,17 +75,21 @@ class _WorkPageState extends ConsumerState<DynamicWorkScreen> {
   void _setupSessionEndAlarming() {
     _shortBreaksSubscription =
         ref.watch(sessionStatsBroadcasterProvider).sessionEnds.listen((_) {
-      ref.watch(alarmPlayerProvider).play(ref.watch(
-            sessionEndAlarmSoundProvider,
-          ));
+      ref.watch(alarmPlayerProvider).widgetRef = ref;
+      ref.watch(alarmPlayerProvider).play(
+            ref.watch(
+              sessionEndAlarmSoundProvider,
+            )!,
+          );
     });
   }
 
   void _setupShortBreakAlarming() {
     _sessionEndsSubscription =
         ref.watch(sessionStatsBroadcasterProvider).shortBreaks.listen((_) {
+      ref.watch(alarmPlayerProvider).widgetRef = ref;
       ref.watch(alarmPlayerProvider).play(
-            ref.watch(shortBreakAlarmSoundProvider),
+            ref.watch(shortBreakAlarmSoundProvider)!,
             volume: 0.5,
           );
     });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
 import 'package:workus/utils/labels.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TimeToNextSmallBreakLabel extends ConsumerWidget {
   const TimeToNextSmallBreakLabel({super.key});
@@ -20,13 +21,13 @@ class TimeToNextSmallBreakLabel extends ConsumerWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: 'Przerwa za ',
+                text: '${AppLocalizations.of(context)!.breakIn} ',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w400,
                     ),
               ),
               TextSpan(
-                text: labelForDuration(timeToSmallBreak),
+                text: labelForDuration(context, timeToSmallBreak),
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w600,
                     ),

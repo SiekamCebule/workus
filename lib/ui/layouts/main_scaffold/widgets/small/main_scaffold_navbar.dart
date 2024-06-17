@@ -16,7 +16,7 @@ class MainScaffoldNavbar extends ConsumerWidget {
         ref.read(selectedPageProvider.notifier).state = AppPage.fromIndex(index);
         ref.watch(pageControllerProvider.notifier).animateToPage(index);
       },
-      destinations: navbarDestinations,
+      destinations: navbarDestinations(context),
     );
   }
 }

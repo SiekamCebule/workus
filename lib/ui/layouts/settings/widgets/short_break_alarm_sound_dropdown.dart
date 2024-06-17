@@ -5,21 +5,26 @@ import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/constants/predefined_alarm_sounds.dart';
 import 'package:workus/ui/reusable/building_dropdowns.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
   const ShortBreakAlarmSoundDropdown({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final lang = ref.watch(languageProvider);
+    print('LANG: $lang');
+    print('initialSeleciton of Dropdown: ${ref.watch(shortBreakAlarmSoundProvider)}');
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: ListTile(
-            title: Text('Alarm przerwy'),
-            leading: Icon(Icons.alarm),
+            title: Text(AppLocalizations.of(context)!.breakAlarm),
+            leading: const Icon(Icons.alarm),
           ),
         ),
         DropdownMenu<AlarmSound>(
+          key: ValueKey(lang),
           requestFocusOnTap: false,
           initialSelection: ref.watch(shortBreakAlarmSoundProvider),
           onSelected: (sound) {
@@ -27,7 +32,7 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
             saveSettings(ref);
           },
           dropdownMenuEntries: buildAlarmSoundDropdownMenuEntries(
-            ref.watch(predefinedAlarmSoundsProvider).toList(),
+            ref.watch(predefinedAlarmSoundsProvider(context)).toList(),
           ),
         )
       ],

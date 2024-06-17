@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class NavigationRailExtendEffectSwitcher extends ConsumerWidget {
-  const NavigationRailExtendEffectSwitcher({super.key});
+class ShouldNavigationRailExtendEffectSwitcher extends ConsumerWidget {
+  const ShouldNavigationRailExtendEffectSwitcher({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +19,7 @@ class NavigationRailExtendEffectSwitcher extends ConsumerWidget {
             !extendNavigationRail;
         saveSettings(ref);
       },
-      title: const Text('Efekt rozwijania nawigacji'),
+      title: Text(AppLocalizations.of(context)!.navigationExpandEffect),
       secondary: const Icon(Symbols.visibility),
     );
   }

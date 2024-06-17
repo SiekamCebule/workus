@@ -4,14 +4,16 @@ import 'package:workus/alarming/alarm_status_controller.dart';
 import 'package:workus/models/alarm_sound.dart';
 import 'package:workus/models/alarm_status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part '__fade_controller.dart';
+part '__my_audio_player.dart';
 
 class AlarmPlayer {
   AlarmPlayer({required this.statusController});
 
   final AlarmStatusController statusController;
-  final _player = AudioPlayer()..setReleaseMode(ReleaseMode.loop);
+  final _player = _MyAudioPlayer();
   final _fadeStreamer = _FadeVolumeStreamer();
 
   Future<void> play(
@@ -23,7 +25,7 @@ class AlarmPlayer {
       stop(fadeDuration: null);
     }
     statusController.play();
-    await _player.play(
+    await _player.get?.play(
       AssetSource(sound.filePath),
       mode: PlayerMode.mediaPlayer,
       volume: 0,
@@ -36,7 +38,7 @@ class AlarmPlayer {
         },
       );
       await for (final volume in volumes) {
-        await _player.setVolume(volume);
+        await _player.get?.setVolume(volume);
       }
     }
   }
@@ -52,16 +54,20 @@ class AlarmPlayer {
           },
           reverse: true);
       await for (final volume in volumes) {
-        await _player.setVolume(volume);
+        await _player.get?.setVolume(volume);
       }
     }
-    await _player.stop();
+    await _player.get?.stop();
     statusController.stop();
   }
 
   Future<void> dispose() async {
-    await _player.release();
-    await _player.dispose();
+    await _player.get?.release();
+    await _player.get?.dispose();
+  }
+
+  set widgetRef(WidgetRef ref) {
+    _player.ref = ref;
   }
 
   bool get _alarmIsPlaying => statusController.status == AlarmStatus.playing;

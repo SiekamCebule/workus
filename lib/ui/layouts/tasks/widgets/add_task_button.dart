@@ -5,6 +5,7 @@ import 'package:workus/models/task_type.dart';
 import 'package:workus/app_state/constants/defaults.dart';
 import 'package:workus/app_state/tasks_management/tasks.dart';
 import 'package:workus/utils/uuid_gen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTaskButton extends ConsumerWidget {
   const AddTaskButton({
@@ -20,7 +21,7 @@ class AddTaskButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
       onPressed: () => addTask(ref),
-      child: Text('Dodaj zadanie #$taskNumber'),
+      child: Text(AppLocalizations.of(context)!.addTask(taskNumber)),
     );
   }
 

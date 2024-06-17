@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:workus/app_state/configuration/saving.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/constants/dropdown_choices.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DefaultSessionDurationDropdown extends ConsumerStatefulWidget {
   const DefaultSessionDurationDropdown({super.key});
@@ -19,7 +20,7 @@ class _DefaultSessionDurationDropdownState
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text('Domyślny czas sesji'),
+      title: Text(AppLocalizations.of(context)!.defaultSessionTime),
       leading: const Icon(
         Symbols.hourglass_rounded,
       ),
@@ -40,7 +41,8 @@ class _DefaultSessionDurationDropdownState
     return defaultSessionDurationChoices.map((interval) {
       return DropdownMenuEntry(
         value: interval,
-        label: '${interval.inMinutes} minut',
+        label:
+            '${interval.inMinutes} ${AppLocalizations.of(context)!.minutes(interval.inMinutes)}',
       );
     }).toList();
   }

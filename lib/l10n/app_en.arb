@@ -1,0 +1,97 @@
+{
+    "@@locale": "en",
+    "beforeSession": "Before session",
+    "sessionWillLast": "Session will last",
+    "shortBreakEvery": "Short break every",
+    "tasks": "Tasks",
+    "work": "Work",
+    "noShortBreaks": "No short breaks",
+    "beforeWork": "Before work",
+    "duringBreaks": "During breaks",
+    "afterWork": "After work",
+    "settings": "Settings",
+    "warnOnUncompletedTasks": "Warn about uncompleted tasks",
+    "showQuotes": "Show quotes",
+    "showNotifications": "Show notifications",
+    "playAlarms": "Play alarms",
+    "expandNavigation": "Expand navigation",
+    "navigationExpandEffect": "Navigation expand effect",
+    "defaultSessionTime": "Default session time",
+    "defaultBreakInterval": "Default break interval",
+    "endAlarm": "End alarm",
+    "breakAlarm": "Break alarm",
+    "startSession": "Start session?",
+    "startSessionWarning": "Not all tasks have been completed yet. Are you sure you want to start working?",
+    "startSessionConfirm": "Start session",
+    "goBack": "Go back",
+    "breakIn": "Break in",
+    "timeForShortBreak": "Time for a short break :)",
+    "timeForBreak": "Time for a break",
+    "chargeBatteries": "Charge your batteries and then get to work!",
+    "cancelSession": "Cancel session",
+    "takeABreak": "Step away from work and relax...",
+    "delayBreak": "Delay break",
+    "iAmReady": "I am ready",
+    "delayBreakBy": "Delay break by how much?",
+    "minutes": "{minutes, plural, one {minute} few {minutes} many {minutes} other {minutes}}",
+    "@minutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "resumeSession": "Resume session?",
+    "endBreakWarning": "Do you want to end the break even though you haven't completed all tasks?",
+    "endBreak": "End break",
+    "goodJob": "Good job!",
+    "extendSession": "Extend session",
+    "endSession": "End session",
+    "extendSessionBy": "Extend session by how much?",
+    "jobWellDone": "Work, work, and then it's done...",
+    "focus": "Focus ;)",
+    "authorUnknown": "Author unknown",
+    "taskExplanationTitle": "What's with the tasks in Workus?",
+    "taskExplanationText": "Using this window, you can add tasks that you want to complete before you start working, during short breaks, and after your sessions. This way you can take care of your health, as you will remember to, for example, rest your eyes after a period of intense work in front of the computer. You can add tasks freely as you see fit, not exceeding three tasks per category.",
+    "endSessionConfirm": "End session?",
+    "endSessionWarning": "Are you sure you want to end the session even though you haven't completed all tasks yet?",
+    "understood": "Understood!",
+    "addTask": "Add task {number}",
+    "@addTask": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "durationHours": "{hours} hrs",
+    "durationMinutes": "{minutes} mins",
+    "durationSeconds": "{seconds} secs",
+    "durationZeroMinutes": "0 mins",
+    "@durationHours": {
+        "description": "Label for hours",
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "@durationMinutes": {
+        "description": "Label for minutes",
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "@durationSeconds": {
+        "description": "Label for seconds",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "@durationZeroMinutes": {
+        "description": "Label for zero minutes"
+    },
+    "congratulationsAfterWork": "Congratulations on your perseverance",
+    "workEnd": "End of work",
+    "remains": "Remains",
+    "irishFolk": "Irish folk",
+    "spanishGuitar": "Spanish guitar"
+}

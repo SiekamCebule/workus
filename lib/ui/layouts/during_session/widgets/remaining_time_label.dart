@@ -32,7 +32,7 @@ class RemainingTimeLabel extends ConsumerWidget {
           },
           child: Text(
             key: ValueKey(remainingTime),
-            labelForDuration(remainingTime),
+            labelForDuration(context, remainingTime),
             style: GoogleFonts.roboto(
               textStyle: textStyle,
             ),

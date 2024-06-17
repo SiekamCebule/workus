@@ -14,6 +14,7 @@ const notificationsPluginInitializationSettings = InitializationSettings(
 );
 
 Future<bool?> maybeRequestForNotificationsPermissions() async {
+  print('ask for permissions');
   return notificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.requestNotificationsPermission();

@@ -4,6 +4,7 @@ import 'package:workus/app_state/configuration/work_configuration.dart';
 import 'package:workus/app_state/global_session_state/alarm_playing_module.dart';
 import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
 import 'package:workus/session_flow/session_timing_configuration.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExtendSessionSimpleDialog extends ConsumerStatefulWidget {
   const ExtendSessionSimpleDialog({super.key});
@@ -18,7 +19,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
-      title: const Text('O ile przedłużyć sesję?'),
+      title: Text(AppLocalizations.of(context)!.extendSessionBy),
       children: [
         SimpleDialogOption(
           onPressed: () {
@@ -26,7 +27,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
             _extendSession(const Duration(minutes: 5));
             _closeDialog();
           },
-          child: const Text('5 minut'),
+          child: Text('5 ${AppLocalizations.of(context)!.minutes(5)}'),
         ),
         SimpleDialogOption(
           onPressed: () {
@@ -34,7 +35,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
             _extendSession(const Duration(minutes: 15));
             _closeDialog();
           },
-          child: const Text('15 minut'),
+          child: Text('15 ${AppLocalizations.of(context)!.minutes(15)}'),
         ),
         SimpleDialogOption(
           onPressed: () {
@@ -42,7 +43,7 @@ class _ExtendSessionSimpleDialogState extends ConsumerState<ExtendSessionSimpleD
             _extendSession(const Duration(minutes: 30));
             _closeDialog();
           },
-          child: const Text('30 minut'),
+          child: Text('30 ${AppLocalizations.of(context)!.minutes(30)}'),
         ),
       ],
     );

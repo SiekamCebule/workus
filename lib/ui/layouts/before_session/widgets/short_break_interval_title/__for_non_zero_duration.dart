@@ -13,14 +13,14 @@ class _ForNonZeroDuration extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Krótka przerwa co ',
+            text: '${AppLocalizations.of(context)!.shortBreakEvery} ',
             style: Theme.of(context)
                 .textTheme
                 .titleMedium!
                 .copyWith(fontWeight: FontWeight.w400),
           ),
           TextSpan(
-            text: labelForDuration(duration, excludeSeconds: true),
+            text: labelForDuration(context, duration, excludeSeconds: true),
             style: Theme.of(context)
                 .textTheme
                 .titleMedium!

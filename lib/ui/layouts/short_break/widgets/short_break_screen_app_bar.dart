@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShortBreakScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ShortBreakScreenAppBar({super.key});
@@ -6,7 +7,7 @@ class ShortBreakScreenAppBar extends StatelessWidget implements PreferredSizeWid
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Czas na krótką przerwę :)'),
+      title: Text(AppLocalizations.of(context)!.timeForShortBreak),
     );
   }
 

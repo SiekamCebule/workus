@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BeforeSessionScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BeforeSessionScreenAppBar({super.key});
@@ -6,7 +7,7 @@ class BeforeSessionScreenAppBar extends StatelessWidget implements PreferredSize
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Przed sesją'),
+      title: Text(AppLocalizations.of(context)!.beforeSession),
     );
   }
 

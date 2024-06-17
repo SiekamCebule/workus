@@ -8,23 +8,15 @@ import 'package:workus/app.dart';
 import 'package:workus/app_state/notifications/notification_responses_handling.dart';
 import 'package:workus/app_state/notifications/notifications.dart';
 
-void backgroundHandler(NotificationResponse responseDetails) {
-  print('bg');
-  notificationResponseCallbacksInvoker.invoke(responseDetails);
-}
-
-void handler(NotificationResponse responseDetails) {
-  print('nrml');
-  notificationResponseCallbacksInvoker.invoke(responseDetails);
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await notificationsPlugin.initialize(
     notificationsPluginInitializationSettings,
     //onDidReceiveBackgroundNotificationResponse: backgroundHandler,
-    onDidReceiveNotificationResponse: handler,
+    onDidReceiveNotificationResponse: (NotificationResponse responseDetails) {
+      notificationResponseCallbacksInvoker.invoke(responseDetails);
+    },
   );
   await notificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()

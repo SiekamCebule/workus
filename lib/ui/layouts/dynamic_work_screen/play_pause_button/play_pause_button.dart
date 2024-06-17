@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:workus/app_state/configuration/work_configuration.dart';
 import 'package:workus/models/task_type.dart';
 import 'package:workus/models/work_session_status.dart';
 import 'package:workus/app_state/configuration/settings.dart';

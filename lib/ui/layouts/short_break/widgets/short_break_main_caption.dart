@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShortBreakMainCaption extends StatelessWidget {
   const ShortBreakMainCaption({super.key});
@@ -8,7 +9,7 @@ class ShortBreakMainCaption extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 60.0),
       child: Text(
-        'Odejdź na chwilę od pracy i odpręż się...',
+        AppLocalizations.of(context)!.takeABreak,
         style: Theme.of(context).textTheme.bodyLarge,
       ),
     );

@@ -6,7 +6,7 @@ class _ForZeroDuration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Brak krótkich przerw',
+      AppLocalizations.of(context)!.noShortBreaks,
       style:
           Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400),
     );

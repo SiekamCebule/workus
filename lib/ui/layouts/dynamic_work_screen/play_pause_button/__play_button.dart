@@ -89,6 +89,6 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
   void _resume() => ref.watch(userSessionControllerProvider).resume();
 
   void _resetTasksBeforeWork() {
-    ref.watch(taskBeforeWorkStatusesProvider.notifier).fillCurrent(completed: false);
+    ref.watch(taskBeforeWorkStatusesProvider.notifier).fillEvery(completed: false);
   }
 }
