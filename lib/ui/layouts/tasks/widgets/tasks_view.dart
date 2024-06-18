@@ -18,24 +18,16 @@ class TasksView extends ConsumerWidget {
     final tasks = obtainTasksByType(ref, type);
     final avaiableSlots = maxTasksCountInCategory - tasks.length;
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          ..._buildTaskTiles(tasks, ref),
-          if (avaiableSlots > 0)
-            for (var i = 0; i < avaiableSlots; i++)
-              AddTaskButton(
-                taskNumber: i + 1 + tasks.length,
-                taskType: type,
-              ),
-        ]
-            .expand(
-              ((widget) => [
-                    widget,
-                    const Gap(5),
-                  ]),
-            )
-            .toList(),
-      ),
+      child: Column(children: [
+        ..._buildTaskTiles(tasks, ref),
+        const Gap(5),
+        if (avaiableSlots > 0)
+          AddTaskButton(
+            taskNumber: maxTasksCountInCategory - avaiableSlots + 1,
+            taskType: type,
+          ),
+        const Gap(5)
+      ]),
     );
   }
 

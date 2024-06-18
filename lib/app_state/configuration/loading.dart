@@ -31,7 +31,6 @@ class SettingsLoader {
     _loadEnableAlarms();
     _loadDefaultSessionDuration();
     _loadDefaultShortBreakInterval();
-    _loadShortBreakRemindDelay();
     _loadSessionEndAlarmSound();
     _loadShortBreakAlarmSound();
   }
@@ -97,11 +96,6 @@ class SettingsLoader {
   void _loadDefaultShortBreakInterval() {
     _loadDurationSetting(defaultShortBreaksIntervalProvider,
         'default_short_breaks_interval_in_minutes', 40);
-  }
-
-  void _loadShortBreakRemindDelay() {
-    _loadDurationSetting(
-        defaultShortBreaksIntervalProvider, 'short_break_remind_delay_in_minutes', 5);
   }
 
   void _loadSessionEndAlarmSound() {

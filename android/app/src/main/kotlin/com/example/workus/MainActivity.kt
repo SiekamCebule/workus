@@ -1,4 +1,4 @@
-package com.example.workus
+package com.konrad.workus
 
 import io.flutter.embedding.android.FlutterActivity
 

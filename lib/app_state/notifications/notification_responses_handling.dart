@@ -10,17 +10,18 @@ final notificationResponseCallbacksInvoker = UnaryCallbacksInvoker<NotificationR
   registrar: notificationResponseCallbacksRegistrar,
 );
 
-void handleNotificationReponse(NotificationResponse details, WidgetRef ref) {
+Future<void> handleNotificationReponse(
+    NotificationResponse details, WidgetRef ref) async {
   final actionId = details.actionId;
 
   if (actionId != null) {
     switch (actionId) {
       case 'end_session':
-        endSession(ref);
+        await endSession(ref);
       case 'end_short_break':
-        endShortBreak(ref);
+        await endShortBreak(ref);
       case 'cancel_session':
-        cancelSession(ref);
+        await cancelSession(ref);
     }
   }
 }

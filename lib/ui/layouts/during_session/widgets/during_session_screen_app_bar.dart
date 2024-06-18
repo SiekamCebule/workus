@@ -8,7 +8,7 @@ class DuringSessionScreenAppBar extends StatelessWidget implements PreferredSize
   @override
   Widget build(BuildContext context) {
     return DuringSessionsAppBar(
-      title: AppLocalizations.of(context)!.timeForShortBreak,
+      title: AppLocalizations.of(context)!.focus,
     );
   }
 

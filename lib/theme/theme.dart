@@ -15,7 +15,7 @@ final lightThemeProvider = Provider(
 final lightColorSchemeProvider = Provider<ColorScheme>(
   (ref) {
     final scheme = ColorScheme.fromSeed(
-      seedColor: Colors.yellow,
+      seedColor: Colors.yellow[400]!,
       brightness: Brightness.light,
       dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
     );

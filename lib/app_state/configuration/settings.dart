@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/constants/app_language.dart';
 import 'package:workus/models/alarm_sound.dart';
-import 'package:workus/app_state/constants/predefined_alarm_sounds.dart';
 
 final languageProvider = StateProvider<AppLanguage>(
   (ref) => AppLanguage.english,

@@ -26,13 +26,16 @@ class TaskCompletionTile extends ConsumerWidget {
         taskContent: task.title,
         taskCompleted: isCompleted,
       ),
-      trailing: IconButton.filledTonal(
-        onPressed: () {
-          ref.watch(taskStatusesProvider.notifier).toggle(task);
-        },
-        icon: _Icon(
-          task: task,
-          completed: isCompleted,
+      trailing: Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: IconButton.filledTonal(
+          onPressed: () {
+            ref.watch(taskStatusesProvider.notifier).toggle(task);
+          },
+          icon: _Icon(
+            task: task,
+            completed: isCompleted,
+          ),
         ),
       ),
     );

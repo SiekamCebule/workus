@@ -37,9 +37,9 @@ class _AppInitializer {
     _initializeTasksBeforeWork();
     _initializeTasksDuringMiniBreak();
     _initializeTasksAfterWork();
-    await _initializeQuotes();
     if (!_context.mounted) return;
     await loadSettings(_context, _ref);
+    await _initializeQuotes();
     defaultSessionTimingConfigurationGuard.run(_ref);
     _ref.read(appIsInitializedProvider.notifier).state = true;
     if (Platform.environment.containsKey('FLUTTER_TEST')) {
@@ -102,6 +102,7 @@ class _AppInitializer {
 
   Future<void> _initializeQuotes() async {
     final selectedLangCode = _ref.read(languageProvider).code;
+    print('INITIALIZE QUOTES, LANG: $selectedLangCode');
     await _ref
         .read(quotesProvider.notifier)
         .loadFromJson('assets/quotes/$selectedLangCode.json');

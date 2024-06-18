@@ -19,11 +19,11 @@ class _SessionEndButtonState extends ConsumerState<EndSessionButton> {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {
+      onPressed: () async {
         if (_shouldShowIncompletedTasksDialog) {
           _showIncompletedTasksDialog(context);
         } else {
-          endSession(ref);
+          await endSession(ref);
         }
       },
       child: Text(AppLocalizations.of(context)!.endSession),
@@ -39,8 +39,8 @@ class _SessionEndButtonState extends ConsumerState<EndSessionButton> {
     await showDialog(
       context: context,
       builder: (context) {
-        return IncompletedTasksAfterWorkDialog(onEndSessionTap: () {
-          endSession(ref);
+        return IncompletedTasksAfterWorkDialog(onEndSessionTap: () async {
+          await endSession(ref);
         });
       },
     );

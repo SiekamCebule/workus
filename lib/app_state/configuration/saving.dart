@@ -24,7 +24,6 @@ class SettingsSaver {
     _saveEnableAlarms();
     _saveDefaultSessionDuration();
     _saveDefaultShortBreakInterval();
-    _saveShortBreakRemindDelay();
     _saveSessionEndAlarmSound();
     _saveShortBreakAlarmSound();
   }
@@ -75,11 +74,6 @@ class SettingsSaver {
     final defaultShortBreakInterval = _ref.read(defaultShortBreaksIntervalProvider);
     _prefs.setInt(
         'default_short_breaks_interval_in_minutes', defaultShortBreakInterval.inMinutes);
-  }
-
-  void _saveShortBreakRemindDelay() {
-    final shortBreakRemindDelay = _ref.read(defaultShortBreaksIntervalProvider);
-    _prefs.setInt('short_break_remind_delay_in_minutes', shortBreakRemindDelay.inMinutes);
   }
 
   void _saveSessionEndAlarmSound() {

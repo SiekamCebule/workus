@@ -17,9 +17,20 @@ class TaskTileTextField extends ConsumerStatefulWidget {
 
 class _TaskTileTextFieldState extends ConsumerState<TaskTileTextField> {
   final controller = TextEditingController();
+  var textLength = 0;
 
   @override
   void initState() {
+    controller.addListener(() {
+      int lengthDifference = (controller.text.length - textLength).abs();
+      textLength = controller.text.length;
+      if (lengthDifference > 2) {
+        Future.microtask(() async {
+          _submitTask();
+        });
+      }
+    });
+
     _updateTextInField();
     super.initState();
   }

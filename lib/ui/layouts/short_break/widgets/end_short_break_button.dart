@@ -19,11 +19,11 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {
+      onPressed: () async {
         if (_shouldShowIncompletedTasksDialog) {
           _showIncompletedTasksDialog(context);
         } else {
-          endShortBreak(ref);
+          await endShortBreak(ref);
         }
       },
       child: Text(AppLocalizations.of(context)!.iAmReady),
@@ -39,8 +39,8 @@ class _EndShortBreakButtonState extends ConsumerState<EndShortBreakButton> {
     await showDialog(
       context: context,
       builder: (context) {
-        return IncompletedTasksDuringShortBreakDialog(onEndShortBreakTap: () {
-          endShortBreak(ref);
+        return IncompletedTasksDuringShortBreakDialog(onEndShortBreakTap: () async {
+          await endShortBreak(ref);
         });
       },
     );

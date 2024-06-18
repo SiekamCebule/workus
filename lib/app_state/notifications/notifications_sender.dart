@@ -28,8 +28,8 @@ class NotificationsSender {
     _sessionEndsSubscription = sessionEnds.listen((_) async {
       if (!_ref.read(shouldShowNotificationsProvider)) return;
       await showSessionEndNotification(_context);
-      await cancelNotification(NotificationIds.shortBreak);
-      await cancelNotification(NotificationIds.afterTick);
+      //await cancelNotification(NotificationIds.shortBreak);
+      //await cancelNotification(NotificationIds.afterTick);
     });
   }
 
@@ -38,7 +38,7 @@ class NotificationsSender {
     _sessionEndsSubscription = shortBreaks.listen((_) async {
       if (!_ref.read(shouldShowNotificationsProvider)) return;
       await showShortBreakNotification(_context);
-      await cancelNotification(NotificationIds.afterTick);
+      //await cancelNotification(NotificationIds.afterTick);
     });
   }
 

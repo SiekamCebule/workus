@@ -123,3 +123,9 @@ Future<void> showAfterTickNotification(
 Future<void> cancelNotification(int notificationId) async {
   await notificationsPlugin.cancel(notificationId);
 }
+
+Future<void> cancelAllNotifications() async {
+  await cancelNotification(NotificationIds.afterTick);
+  await cancelNotification(NotificationIds.shortBreak);
+  await cancelNotification(NotificationIds.afterWork);
+}

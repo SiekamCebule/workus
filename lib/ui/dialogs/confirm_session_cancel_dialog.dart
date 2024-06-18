@@ -26,9 +26,9 @@ class _ConfirmSessionCancelDialogState extends ConsumerState<ConfirmSessionCance
           ),
         ),
         TextButton(
-          onPressed: () {
+          onPressed: () async {
             Navigator.of(context).pop();
-            cancelSession(ref);
+            await cancelSession(ref);
           },
           child: Text(
             AppLocalizations.of(context)!.cancelSessionConfirm,
