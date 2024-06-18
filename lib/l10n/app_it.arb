@@ -28,7 +28,8 @@
     "timeForShortBreak": "Tempus est pro brevi pausa :)",
     "timeForBreak": "Tempus est pro pausa",
     "chargeBatteries": "Replebantur batteriae, et deinde ad opus!",
-    "cancelSession": "Cancellare sessionem",
+    "cancelSessionConfirm": "Annulla la sessione",
+    "cancelSessionQuestion": "Annullare la sessione?",
     "takeABreak": "Recede paulisper ab labore et relaxa...",
     "delayBreak": "Differ pausa",
     "iAmReady": "Paratus sum",
@@ -93,5 +94,6 @@
     "workEnd": "Fine del lavoro",
     "remains": "Resti",
     "irishFolk": "Folk irlandese",
-    "spanishGuitar": "Chitarra spagnola"
+    "spanishGuitar": "Chitarra spagnola",
+    "language": "Lingua"
 }

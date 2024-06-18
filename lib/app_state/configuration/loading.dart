@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:media_kit/generated/libmpv/bindings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/constants/app_language.dart';
@@ -10,16 +9,15 @@ import 'package:workus/app_state/constants/predefined_alarm_sounds.dart';
 import 'package:workus/models/alarm_sound.dart';
 
 class SettingsLoader {
-  final BuildContext _context;
   final WidgetRef _ref;
   final SharedPreferences _prefs;
 
-  SettingsLoader(this._ref, this._context, this._prefs);
+  SettingsLoader(this._ref, this._prefs);
 
   static Future<void> load(BuildContext context, WidgetRef ref) async {
     final prefs = await SharedPreferences.getInstance();
     if (!context.mounted) return;
-    final settingsLoader = SettingsLoader(ref, context, prefs);
+    final settingsLoader = SettingsLoader(ref, prefs);
     await settingsLoader._loadAllSettings();
   }
 
@@ -53,7 +51,7 @@ class SettingsLoader {
       StateProvider<AlarmSound?> provider, String key, String defaultId) {
     final alarmId = _prefs.getString(key) ?? defaultId;
     _ref.read(provider.notifier).state =
-        _ref.read(predefinedAlarmSoundsProvider(_context)).singleWhere(
+        _ref.read(predefinedAlarmSoundsProvider).singleWhere(
               (sound) => sound.id == alarmId,
             );
   }
@@ -120,6 +118,6 @@ class SettingsLoader {
 Future<void> loadSettings(BuildContext context, WidgetRef ref) async {
   final prefs = await SharedPreferences.getInstance();
   if (!context.mounted) return;
-  final settingsLoader = SettingsLoader(ref, context, prefs);
+  final settingsLoader = SettingsLoader(ref, prefs);
   await settingsLoader._loadAllSettings();
 }

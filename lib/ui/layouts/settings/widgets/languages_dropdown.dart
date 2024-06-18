@@ -12,16 +12,15 @@ class LanguagesDropdown extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
-      title: Text(AppLocalizations.of(context)!.defaultBreakInterval),
+      title: Text(AppLocalizations.of(context)!.language),
       leading: const Icon(
         Symbols.language,
       ),
-      onTap: () {},
       trailing: DropdownMenu(
         requestFocusOnTap: false,
-        initialSelection: ref.watch(languageProvider),
+        initialSelection: ref.read(languageProvider),
         onSelected: (selectedLanguage) {
-          ref.watch(languageProvider.notifier).state = selectedLanguage!;
+          ref.read(languageProvider.notifier).state = selectedLanguage!;
           saveSettings(ref);
         },
         dropdownMenuEntries: _buildEntries(),

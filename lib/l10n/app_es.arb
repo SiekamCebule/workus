@@ -28,7 +28,8 @@
     "timeForShortBreak": "Es tiempo de una pausa corta :)",
     "timeForBreak": "Es tiempo de una pausa",
     "chargeBatteries": "Recarga las baterías y luego ¡manos a la obra!",
-    "cancelSession": "Cancelar sesión",
+    "cancelSessionConfirm": "Cancelar la sesión",
+    "cancelSessionQuestion": "¿Cancelar la sesión?",
     "takeABreak": "Toma un descanso y relájate...",
     "delayBreak": "Retrasar pausa",
     "iAmReady": "Estoy listo",
@@ -93,5 +94,6 @@
     "workEnd": "Fin del trabajo",
     "remains": "Restos",
     "irishFolk": "Folk irlandés",
-    "spanishGuitar": "Guitarra española"
+    "spanishGuitar": "Guitarra española",
+    "language": "Idioma"
 }

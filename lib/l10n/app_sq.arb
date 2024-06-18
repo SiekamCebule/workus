@@ -28,7 +28,8 @@
     "timeForShortBreak": "Është koha për një pauzë të shkurtër :)",
     "timeForBreak": "Është koha për një pauzë",
     "chargeBatteries": "Ngarkoni bateritë, dhe pastaj në punë!",
-    "cancelSession": "Anulo seancën",
+    "cancelSessionConfirm": "Anulo sesionin",
+    "cancelSessionQuestion": "Anulo sesionin?",
     "takeABreak": "Ndalo një çast nga puna dhe relaksohu...",
     "delayBreak": "Shty pauzën",
     "iAmReady": "Jam gati",
@@ -93,5 +94,6 @@
     "workEnd": "Fund i punës",
     "remains": "Mbetje",
     "irishFolk": "Folk irlandez",
-    "spanishGuitar": "Kitarë spanjolle"
+    "spanishGuitar": "Kitarë spanjolle",
+    "language": "Gjuhë"
 }

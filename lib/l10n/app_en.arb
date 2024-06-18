@@ -28,7 +28,8 @@
     "timeForShortBreak": "Time for a short break :)",
     "timeForBreak": "Time for a break",
     "chargeBatteries": "Charge your batteries and then get to work!",
-    "cancelSession": "Cancel session",
+    "cancelSessionQuestion": "Cancel session?",
+    "cancelSessionConfirm": "Cancel session",
     "takeABreak": "Step away from work and relax...",
     "delayBreak": "Delay break",
     "iAmReady": "I am ready",
@@ -93,5 +94,6 @@
     "workEnd": "End of work",
     "remains": "Remains",
     "irishFolk": "Irish folk",
-    "spanishGuitar": "Spanish guitar"
+    "spanishGuitar": "Spanish guitar",
+    "language": "Language"
 }

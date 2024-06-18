@@ -22,6 +22,7 @@ class SessionEndAlarmSoundDropdown extends ConsumerWidget {
           ),
         ),
         DropdownMenu<AlarmSound>(
+          key: ValueKey(ref.read(languageProvider)),
           requestFocusOnTap: false,
           initialSelection: ref.watch(sessionEndAlarmSoundProvider),
           onSelected: (sound) {
@@ -29,7 +30,8 @@ class SessionEndAlarmSoundDropdown extends ConsumerWidget {
             saveSettings(ref);
           },
           dropdownMenuEntries: buildAlarmSoundDropdownMenuEntries(
-            ref.watch(predefinedAlarmSoundsProvider(context)).toList(),
+            ref.read(predefinedAlarmSoundsProvider),
+            context,
           ),
         )
       ],

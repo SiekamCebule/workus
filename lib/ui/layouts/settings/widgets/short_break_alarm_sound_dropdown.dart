@@ -12,9 +12,6 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lang = ref.watch(languageProvider);
-    print('LANG: $lang');
-    print('initialSeleciton of Dropdown: ${ref.watch(shortBreakAlarmSoundProvider)}');
     return Row(
       children: [
         Expanded(
@@ -24,7 +21,7 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
           ),
         ),
         DropdownMenu<AlarmSound>(
-          key: ValueKey(lang),
+          key: ValueKey(ref.read(languageProvider)),
           requestFocusOnTap: false,
           initialSelection: ref.watch(shortBreakAlarmSoundProvider),
           onSelected: (sound) {
@@ -32,7 +29,8 @@ class ShortBreakAlarmSoundDropdown extends ConsumerWidget {
             saveSettings(ref);
           },
           dropdownMenuEntries: buildAlarmSoundDropdownMenuEntries(
-            ref.watch(predefinedAlarmSoundsProvider(context)).toList(),
+            ref.read(predefinedAlarmSoundsProvider),
+            context,
           ),
         )
       ],

@@ -23,8 +23,8 @@ class _DefaultShortBreaksIntervalDropdownState
       leading: const Icon(
         Symbols.hourglass_rounded,
       ),
-      onTap: () {},
       trailing: DropdownMenu(
+        key: ValueKey(ref.read(languageProvider)),
         requestFocusOnTap: false,
         initialSelection: ref.watch(defaultShortBreaksIntervalProvider),
         onSelected: (value) {

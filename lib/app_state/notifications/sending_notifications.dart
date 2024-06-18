@@ -86,7 +86,7 @@ Future<void> showAfterTickNotification(
     actions: [
       AndroidNotificationAction(
         'cancel_session',
-        AppLocalizations.of(context)!.cancelSession,
+        AppLocalizations.of(context)!.cancelSessionConfirm,
         showsUserInterface: true,
       ),
     ],
@@ -99,7 +99,7 @@ Future<void> showAfterTickNotification(
     actions: [
       LinuxNotificationAction(
         key: 'cancel_session',
-        label: AppLocalizations.of(context)!.cancelSession,
+        label: AppLocalizations.of(context)!.cancelSessionConfirm,
       ),
     ],
   );

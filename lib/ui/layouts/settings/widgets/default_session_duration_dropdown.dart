@@ -25,6 +25,7 @@ class _DefaultSessionDurationDropdownState
         Symbols.hourglass_rounded,
       ),
       trailing: DropdownMenu(
+        key: ValueKey(ref.read(languageProvider)),
         requestFocusOnTap: false,
         initialSelection: ref.watch(defaultSessionDurationProvider),
         onSelected: (value) {
@@ -33,7 +34,6 @@ class _DefaultSessionDurationDropdownState
         },
         dropdownMenuEntries: _buildEntries(),
       ),
-      onTap: () {},
     );
   }
 
