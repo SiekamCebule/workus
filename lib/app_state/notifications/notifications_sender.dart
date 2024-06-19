@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workus/app_state/configuration/settings.dart';
 import 'package:workus/app_state/global_session_state/session_controlling_module.dart';
 import 'package:workus/app_state/global_session_state/session_stats_broadcasting_module.dart';
-import 'package:workus/app_state/notifications/notifications.dart';
 import 'package:workus/app_state/notifications/sending_notifications.dart';
 
 class NotificationsSender {

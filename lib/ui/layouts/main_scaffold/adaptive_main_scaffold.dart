@@ -61,7 +61,7 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final layoutType = LayoutType.fromConstraints(constraints);
-        print(layoutType);
+        debugPrint('layoutType: $layoutType');
         return switch (layoutType) {
           LayoutType.verticalPhone ||
           LayoutType.verticalTablet =>

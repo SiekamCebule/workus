@@ -102,7 +102,6 @@ class _AppInitializer {
 
   Future<void> _initializeQuotes() async {
     final selectedLangCode = _ref.read(languageProvider).code;
-    print('INITIALIZE QUOTES, LANG: $selectedLangCode');
     await _ref
         .read(quotesProvider.notifier)
         .loadFromJson('assets/quotes/$selectedLangCode.json');

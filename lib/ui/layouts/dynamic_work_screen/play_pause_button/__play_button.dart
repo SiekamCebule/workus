@@ -71,19 +71,18 @@ class _PlayButtonState extends ConsumerState<_PlayButton> {
 
   void _startFromBeginning() {
     _resetTasksBeforeWork();
-    // TODO: Change it
-    // ref.watch(userSessionControllerProvider).start(
-    //       timingConfiguration: SessionTimingConfiguration(
-    //         sessionDuration: ref.watch(sessionDurationProvider),
-    //         shortBreaksInterval: ref.watch(shortBreaksIntervalProvider),
-    //       ),
-    //     );
     ref.watch(userSessionControllerProvider).start(
-          timingConfiguration: const SessionTimingConfiguration(
-            sessionDuration: Duration(seconds: 10),
-            shortBreaksInterval: Duration(seconds: 7),
+          timingConfiguration: SessionTimingConfiguration(
+            sessionDuration: ref.watch(sessionDurationProvider),
+            shortBreaksInterval: ref.watch(shortBreaksIntervalProvider),
           ),
         );
+    // ref.watch(userSessionControllerProvider).start(
+    //       timingConfiguration: const SessionTimingConfiguration(
+    //         sessionDuration: Duration(seconds: 10),
+    //         shortBreaksInterval: Duration(seconds: 7),
+    //       ),
+    //     );
   }
 
   void _resume() => ref.watch(userSessionControllerProvider).resume();
