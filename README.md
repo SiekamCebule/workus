@@ -1,7 +1,10 @@
-
 # workus
-
 A simple and modern timer-like application for keeping focused during the work. The app has been written in Flutter.
+
+![image](https://github.com/SiekamCebule/workus/assets/61906978/edccd45a-1390-4d18-a28e-dced12354253)
+![image](https://github.com/SiekamCebule/workus/assets/61906978/6802a0e5-e323-40f5-ad1c-6ff5194469cd)
+![image](https://github.com/SiekamCebule/workus/assets/61906978/474e8631-120f-4973-81f5-1976d625a52a)
+
 ## Features
 - Motivational quotes (which are locateed in *data/flutter_assets/assets/quotes* folder)
 - Short breaks during the work, every regular time interval
@@ -21,6 +24,8 @@ A simple and modern timer-like application for keeping focused during the work. 
 - Customization options in settings
 - PUSH notifications for short breaks, session ends and the ones about remaining session time
 - Two alarm sounds to choose
+- Modern user interface
+- Responsive and adaptive layout
 
 ## Running
 1. Download the folder from "Releases" section
@@ -29,7 +34,6 @@ A simple and modern timer-like application for keeping focused during the work. 
 4. Enjoy the app!
 ## Acknowledgements
 - ChatGPT for fantastic quotes and help during the development
-
 
 ## Supported platforms
 Currently, workus supports only two platforms:
