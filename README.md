@@ -38,7 +38,7 @@ A simple and modern timer-like application for keeping focused during the work. 
 ## Supported platforms
 Currently, workus supports only two platforms:
 1. Android
-2. Linux
+2. Linux <br> <br>
 It is considered to introduce a support for Windows users in future.
 ## Contributing
 The project is almost done, but contributions focused on following things would be really appreciated:
