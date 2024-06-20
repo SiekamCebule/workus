@@ -29,7 +29,7 @@ A simple and modern timer-like application for keeping focused during the work. 
 
 ## Running
 1. Download the folder from "Releases" section
-2. Unpack the zip
+2. Unpack the archive (for the linux's tar.gz)
 3. Run the executable (for desktop) or install the .apk for Android
 4. Enjoy the app!
 ## Acknowledgements
