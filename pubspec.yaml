@@ -1,7 +1,7 @@
 name: workus
-description: "A new Flutter project."
+description: "A simple and modern timer-like application for keeping focused during the work."
 publish_to: 'none'
-version: 1.0.0-rc+1
+version: 1.0.0-b
 versionCode: 1
 
 environment:
