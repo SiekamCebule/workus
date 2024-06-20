@@ -10,7 +10,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
     List<Task>? tasks,
   });
 
-  final NotifierProvider<TasksNotifier, List<Task>> tasksProvider;
+  final NotifierProvider<TasksNotifier, Iterable<Task>> tasksProvider;
 
   final _builder = TaskStatusesBuilder();
   Map<Task, bool>? _statuses;
@@ -24,7 +24,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
 
   @override
   Map<Task, bool> build() {
-    List<Task> tasks = ref.watch(tasksProvider);
+    Iterable<Task> tasks = ref.watch(tasksProvider);
 
     if (_statuses == null) {
       statuses = _builder.filledWithFalse(tasks);
@@ -51,7 +51,7 @@ class TaskStatusesNotifier extends Notifier<Map<Task, bool>> {
     _syncStatuses();
   }
 
-  void fillWithNewTasks(List<Task> tasks, {required bool completed}) {
+  void fillWithNewTasks(Iterable<Task> tasks, {required bool completed}) {
     state = {
       for (var task in tasks) task: completed,
     };

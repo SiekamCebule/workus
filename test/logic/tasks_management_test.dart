@@ -10,7 +10,7 @@ import 'package:workus/app_state/tasks_management/tasks.dart';
 void main() {
   const type = TaskType.beforeSession;
   group('TasksNotifier provider', () {
-    late final NotifierProvider<TasksNotifier, List<Task>> tasksProvider;
+    late final NotifierProvider<TasksNotifier, Iterable<Task>> tasksProvider;
     late final ProviderContainer ref;
     setUp(() {
       tasksProvider = NotifierProvider(() => TasksNotifier());
@@ -48,7 +48,7 @@ void main() {
     });
   });
   group('TaskStatusesNotifier provider', () {
-    late final NotifierProvider<TasksNotifier, List<Task>> tasksProvider;
+    late final NotifierProvider<TasksNotifier, Iterable<Task>> tasksProvider;
     late final NotifierProvider<TaskStatusesNotifier, Map<Task, bool>>
         taskStatusesProvider;
     late final ProviderContainer ref;
@@ -60,7 +60,7 @@ void main() {
       ref = ProviderContainer();
     });
 
-    List<Task> tasks() => ref.read(tasksProvider);
+    Iterable<Task> tasks() => ref.read(tasksProvider);
     Map<Task, bool> statuses() => ref.read(taskStatusesProvider);
     void add(Task t) {
       ref.read(tasksProvider.notifier).add(t);
@@ -82,9 +82,9 @@ void main() {
           Task(title: 'task trzeci', type: type, id: 2),
         ],
       );
-      update(tasks()[0], true);
-      update(tasks()[1], true);
-      remove(tasks()[0]);
+      update(tasks().elementAt(0), true);
+      update(tasks().elementAt(1), true);
+      remove(tasks().elementAt(0));
       expect(statuses(), {
         const Task(title: 'task drugi', type: type, id: 1): true,
         const Task(title: 'task trzeci', type: type, id: 2): false,

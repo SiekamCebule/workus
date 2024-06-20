@@ -31,7 +31,7 @@ class TasksView extends ConsumerWidget {
     );
   }
 
-  List<Widget> _buildTaskTiles(List<Task> tasks, WidgetRef ref) {
+  Iterable<Widget> _buildTaskTiles(Iterable<Task> tasks, WidgetRef ref) {
     if (tasks.length > maxTasksCountInCategory) {
       throw TooManyTasksError(
           'there are too many tasks (${tasks.length} vs limit of $maxTasksCountInCategory) when building task tiles for TasksView');

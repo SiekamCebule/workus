@@ -19,7 +19,7 @@ class _AppState extends ConsumerState<App> {
     final language = ref.watch(languageProvider);
     final languageCode = language.code;
     final theme = ref.watch(lightThemeProvider);
-    return MaterialApp(
+    final app = MaterialApp(
       locale: Locale(languageCode),
       theme: theme,
       localizationsDelegates: const [
@@ -39,5 +39,6 @@ class _AppState extends ConsumerState<App> {
       ],
       home: const AdaptiveMainScaffold(),
     );
+    return app;
   }
 }

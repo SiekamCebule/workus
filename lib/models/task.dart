@@ -7,6 +7,18 @@ class Task {
     required this.id,
   });
 
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      title: json['title'] as String,
+      type: TaskType.values.firstWhere((e) => e.name == json['type']),
+      id: json['id'],
+    );
+  }
+
+  final Object id;
+  final String title;
+  final TaskType type;
+
   Task copyWith({
     String? title,
     TaskType? type,
@@ -27,12 +39,16 @@ class Task {
     return title == other.title && type == other.type && id == other.id;
   }
 
-  final Object id;
-  final String title;
-  final TaskType type;
-
   @override
   String toString() {
     return '$title (${type.name})';
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'type': type.name,
+      'id': id,
+    };
   }
 }

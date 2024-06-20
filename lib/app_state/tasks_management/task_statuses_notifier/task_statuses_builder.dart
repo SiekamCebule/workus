@@ -3,22 +3,22 @@ import 'package:workus/utils/collections_filtering.dart';
 
 class TaskStatusesBuilder {
   Map<Task, bool> statuses = {};
-  List<Task> tasks = [];
+  Iterable<Task> tasks = [];
 
-  Map<Task, bool> filledWithFalse(List<Task> keys) {
+  Map<Task, bool> filledWithFalse(Iterable<Task> keys) {
     return {
       for (var task in keys) task: false,
     };
   }
 
-  Map<Task, bool> rebuilded(Map<Task, bool> oldStatuses, List<Task> newTasks) {
+  Map<Task, bool> rebuilded(Map<Task, bool> oldStatuses, Iterable<Task> newTasks) {
     _updateFields(oldStatuses, newTasks);
     _rebuild();
     _sortByTasksOrderList();
     return statuses;
   }
 
-  void _updateFields(Map<Task, bool> oldStatuses, List<Task> newTasks) {
+  void _updateFields(Map<Task, bool> oldStatuses, Iterable<Task> newTasks) {
     statuses = oldStatuses;
     tasks = newTasks;
   }

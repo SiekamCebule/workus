@@ -9,11 +9,7 @@ import 'package:workus/app_state/global_session_state/notificating_module.dart';
 import 'package:workus/app_state/notifications/notification_responses_handling.dart';
 import 'package:workus/app_state/notifications/notifications.dart';
 import 'package:workus/app_state/quotes/quotes_provider.dart';
-import 'package:workus/app_state/tasks_management/task_statuses_notifier/task_statuses_notifier.dart';
-import 'package:workus/app_state/tasks_management/tasks.dart';
-import 'package:workus/models/task.dart';
-import 'package:workus/models/task_type.dart';
-import 'package:workus/utils/uuid_gen.dart';
+import 'package:workus/app_state/tasks_management/loading.dart';
 
 final _initializer = _AppInitializer();
 
@@ -32,16 +28,12 @@ class _AppInitializer {
   late ProviderSubscription<bool> showNotificationProviderChangesSubscription;
 
   Future<void> initialize(BuildContext context, WidgetRef ref) async {
-    _context = context;
-    _ref = ref;
-    _initializeTasksBeforeWork();
-    _initializeTasksDuringMiniBreak();
-    _initializeTasksAfterWork();
-    if (!_context.mounted) return;
-    await loadSettings(_context, _ref);
+    _initializeFields(context, ref);
+    await _loadSettings(context);
+    if (context.mounted) await _loadTasks(context);
     await _initializeQuotes();
-    defaultSessionTimingConfigurationGuard.run(_ref);
-    _ref.read(appIsInitializedProvider.notifier).state = true;
+    _runDefaultSessionTimingConfigurationGuard();
+    _markAppAsInitialized();
     if (Platform.environment.containsKey('FLUTTER_TEST')) {
       _initializeForTesting();
     }
@@ -51,53 +43,27 @@ class _AppInitializer {
     _setUpNotificationsSender();
   }
 
-  void _initializeTasksBeforeWork() {
-    _ref.read(tasksBeforeWorkProvider.notifier).updateAll([
-      Task(
-        title: 'Zrobić 10 przysiadów',
-        type: TaskType.beforeSession,
-        id: uuidV4(),
-      ),
-      Task(
-        title: 'Wykonać ćwiczenie na skupienie',
-        type: TaskType.beforeSession,
-        id: uuidV4(),
-      ),
-    ]);
-    _ref
-        .read(taskBeforeWorkStatusesProvider.notifier)
-        .fillWithNewTasks(_ref.read(tasksBeforeWorkProvider), completed: false);
+  Future<void> _loadSettings(BuildContext context) async {
+    if (context.mounted) {
+      await loadSettings(_context, _ref);
+    }
   }
 
-  void _initializeTasksDuringMiniBreak() {
-    _ref.read(tasksDuringShortBreakProvider.notifier).updateAll([
-      Task(
-        title: 'Rozluźnić mięśnie oka',
-        type: TaskType.duringShortBreak,
-        id: uuidV4(),
-      ),
-    ]);
-    _ref
-        .read(taskDuringShortBreakStatusesProvider.notifier)
-        .fillWithNewTasks(_ref.read(tasksDuringShortBreakProvider), completed: false);
+  Future<void> _loadTasks(BuildContext context) async {
+    await loadAllTasks(_ref);
   }
 
-  void _initializeTasksAfterWork() {
-    _ref.read(tasksAfterWorkProvider.notifier).updateAll([
-      Task(
-        title: 'Uśmiechnąć się',
-        type: TaskType.afterSession,
-        id: uuidV4(),
-      ),
-      Task(
-        title: 'Zrobić 4 pajacyki',
-        type: TaskType.afterSession,
-        id: uuidV4(),
-      ),
-    ]);
-    _ref
-        .read(taskAfterWorkStatusesProvider.notifier)
-        .fillWithNewTasks(_ref.read(tasksAfterWorkProvider), completed: false);
+  void _runDefaultSessionTimingConfigurationGuard() {
+    defaultSessionTimingConfigurationGuard.run(_ref);
+  }
+
+  void _markAppAsInitialized() {
+    _ref.read(appIsInitializedProvider.notifier).state = true;
+  }
+
+  void _initializeFields(BuildContext context, WidgetRef ref) {
+    _context = context;
+    _ref = ref;
   }
 
   Future<void> _initializeQuotes() async {
