@@ -1,7 +1,7 @@
 name: workus
 description: "A simple and modern timer-like application for keeping focused during the work."
 publish_to: 'none'
-version: 1.0.0-b
+version: 1.0.0-b+1
 versionCode: 1
 
 environment:
