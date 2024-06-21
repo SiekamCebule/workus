@@ -22,7 +22,6 @@ Future<void> loadTasksByType(TaskType type, WidgetRef ref) async {
 
 Future<void> loadAllTasks(WidgetRef ref) async {
   for (var type in TaskType.values) {
-    print('TYPPPE: $type');
     await loadTasksByType(type, ref);
   }
 }

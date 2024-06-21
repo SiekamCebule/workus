@@ -23,9 +23,10 @@ class AdaptiveMainScaffold extends ConsumerStatefulWidget {
 }
 
 class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold>
-    with WidgetsBindingObserver, WindowListener {
+    with WindowListener {
   late AlarmPlayer _alarmPlayer;
-  late ProviderSubscription languageChanges;
+  late ProviderSubscription _languageChanges;
+  late AppLifecycleListener _lifecycleListener;
 
   @override
   void initState() {
@@ -36,13 +37,16 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold>
       _alarmPlayer = ref.read(alarmPlayerProvider);
       _runQuotesGuard();
     });
-    WidgetsBinding.instance.addObserver(this);
     WindowManager.instance.addListener(this);
+    _lifecycleListener = AppLifecycleListener(
+      onInactive: _scheduleTasksSaving,
+      onDetach: _scheduleTasksSaving,
+    );
     super.initState();
   }
 
   void _runQuotesGuard() {
-    languageChanges =
+    _languageChanges =
         ref.listenManual<AppLanguage>(languageProvider, (previous, current) async {
       await ref
           .read(quotesProvider.notifier)
@@ -57,37 +61,29 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold>
     Future.microtask(() async {
       await _alarmPlayer.dispose();
     });
-    languageChanges.close();
-    WidgetsBinding.instance.removeObserver(this);
+    _languageChanges.close();
     WindowManager.instance.removeListener(this);
+    _lifecycleListener.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvokedWithResult: (didPop, result) {
-        print('on pop invoked');
-        if (didPop) {
-          _scheduleTasksSaving();
-        }
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final layoutType = LayoutType.fromConstraints(constraints);
+        debugPrint('layoutType: $layoutType');
+        return switch (layoutType) {
+          LayoutType.verticalPhone ||
+          LayoutType.verticalTablet =>
+            const PageViewScaffold(),
+          LayoutType.foldSquare ||
+          LayoutType.horizontalPhone ||
+          LayoutType.horizontalTablet ||
+          LayoutType.desktop =>
+            const NavigationRailScaffold(),
+        };
       },
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final layoutType = LayoutType.fromConstraints(constraints);
-          debugPrint('layoutType: $layoutType');
-          return switch (layoutType) {
-            LayoutType.verticalPhone ||
-            LayoutType.verticalTablet =>
-              const PageViewScaffold(),
-            LayoutType.foldSquare ||
-            LayoutType.horizontalPhone ||
-            LayoutType.horizontalTablet ||
-            LayoutType.desktop =>
-              const NavigationRailScaffold(),
-          };
-        },
-      ),
     );
   }
 
@@ -98,9 +94,7 @@ class _AdaptiveMainScaffoldState extends ConsumerState<AdaptiveMainScaffold>
   }
 
   void _scheduleTasksSaving() {
-    print('I will save all tasks in a moment...');
     Future.microtask(() async {
-      print('saving all tasks...');
       await saveAllTasks(ref);
     });
   }
