@@ -6,7 +6,7 @@ A simple and modern timer-like application for keeping focused during the work. 
 ![image](https://github.com/SiekamCebule/workus/assets/61906978/474e8631-120f-4973-81f5-1976d625a52a)
 
 ## Features
-- Motivational quotes (which are locateed in *data/flutter_assets/assets/quotes* folder)
+- Motivational quotes (which are located in *data/flutter_assets/assets/quotes* folder)
 - Short breaks during the work, every regular time interval
 - Fixed tasks
     - Before the work
